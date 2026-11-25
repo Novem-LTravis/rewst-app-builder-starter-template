@@ -1,0 +1,478 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - heading "Novem Patch Insights" [level=1] [ref=e3]
+    - generic [ref=e4]:
+      - generic [ref=e5]: Mock data
+      - button "How to read this dashboard" [ref=e6] [cursor=pointer]: ⓘ How to read this dashboard
+      - button "Toggle light/dark theme" [ref=e7] [cursor=pointer]: 🌙
+      - button "Refresh" [ref=e8] [cursor=pointer]
+  - generic [ref=e9]:
+    - navigation [ref=e10]:
+      - button "Overview" [ref=e11] [cursor=pointer]
+    - main [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - heading "Novem Patch Insights" [level=2] [ref=e15]
+          - generic [ref=e16]: Data as of 30 Oct 2026
+        - generic [ref=e17]:
+          - generic [ref=e18]:
+            - generic [ref=e19]:
+              - generic [ref=e20]:
+                - paragraph [ref=e21]: Devices in scope
+                - paragraph [ref=e22]: "807"
+              - button [ref=e23] [cursor=pointer]:
+                - paragraph [ref=e24]:
+                  - text: Coverage
+                  - button "More information" [ref=e26]: i
+                - paragraph [ref=e27]: 89.6%
+                - paragraph [ref=e28]: 723 of 807 devices
+              - button [ref=e29] [cursor=pointer]:
+                - paragraph [ref=e30]:
+                  - text: Compliance
+                  - button "More information" [ref=e32]: i
+                - paragraph [ref=e33]: 82.2%
+                - paragraph [ref=e34]: 574 of 698 devices
+              - button [ref=e35] [cursor=pointer]:
+                - paragraph [ref=e36]: Install errors
+                - paragraph [ref=e37]: "23"
+              - button [ref=e38] [cursor=pointer]:
+                - paragraph [ref=e39]:
+                  - text: Stale devices
+                  - button "More information" [ref=e41]: i
+                - paragraph [ref=e42]: "25"
+            - generic [ref=e43]:
+              - button [ref=e44] [cursor=pointer]:
+                - generic [ref=e45]:
+                  - heading "Workstations" [level=3] [ref=e46]
+                  - paragraph [ref=e47]: Desktops and laptops
+                - paragraph [ref=e48]: 722 devices
+                - generic [ref=e49]:
+                  - button "Compliance ! 82.9% 526 of 635 devices" [ref=e50]:
+                    - generic [ref=e51]: Compliance
+                    - generic [ref=e52]: "! 82.9%"
+                    - generic "526 of 635 workstations are fully patched. 87 workstations with no policy or no recent check-in are excluded." [ref=e53]: 526 of 635 devices
+                  - button "Coverage ! 90.8% 656 of 722 devices" [ref=e54]:
+                    - generic [ref=e55]: Coverage
+                    - generic [ref=e56]: "! 90.8%"
+                    - generic "656 of 722 workstations have a patch policy. 66 have no policy." [ref=e57]: 656 of 722 devices
+                - generic [ref=e58]:
+                  - button "Install errors 16" [ref=e59]:
+                    - generic [ref=e60]: Install errors
+                    - generic [ref=e61]: "16"
+                  - button "Stale 21" [ref=e62]:
+                    - generic [ref=e63]: Stale
+                    - generic [ref=e64]: "21"
+              - button [ref=e65] [cursor=pointer]:
+                - generic [ref=e66]:
+                  - heading "Servers" [level=3] [ref=e67]
+                  - paragraph [ref=e68]: Physical and virtual servers
+                - paragraph [ref=e69]: 85 devices
+                - generic [ref=e70]:
+                  - button "Compliance ✕ 70.4% 45 of 64 devices" [ref=e71]:
+                    - generic [ref=e72]: Compliance
+                    - generic [ref=e73]: ✕ 70.4%
+                    - generic "45 of 64 servers are fully patched. 21 servers with no policy or no recent check-in are excluded." [ref=e74]: 45 of 64 devices
+                  - button "Coverage ✕ 79.5% 68 of 85 devices" [ref=e75]:
+                    - generic [ref=e76]: Coverage
+                    - generic [ref=e77]: ✕ 79.5%
+                    - generic "68 of 85 servers have a patch policy. 17 have no policy." [ref=e78]: 68 of 85 devices
+                - generic [ref=e79]:
+                  - button "Install errors 7" [ref=e80]:
+                    - generic [ref=e81]: Install errors
+                    - generic [ref=e82]: "7"
+                  - button "Stale 4" [ref=e83]:
+                    - generic [ref=e84]: Stale
+                    - generic [ref=e85]: "4"
+            - generic [ref=e86]:
+              - button "Unsupported OS ✕ 93 Past end of support" [ref=e87] [cursor=pointer]:
+                - paragraph [ref=e88]: Unsupported OS
+                - paragraph [ref=e89]:
+                  - generic [ref=e90]: ✕ 93
+                - paragraph [ref=e91]: Past end of support
+              - button "Support ending soon ! 21 Ends within ~12 months" [ref=e92] [cursor=pointer]:
+                - paragraph [ref=e93]: Support ending soon
+                - paragraph [ref=e94]:
+                  - generic [ref=e95]: "! 21"
+                - paragraph [ref=e96]: Ends within ~12 months
+              - button "Reboot overdue ! 23 Needs a reboot, not restarted in 7+ days" [ref=e97] [cursor=pointer]:
+                - paragraph [ref=e98]: Reboot overdue
+                - paragraph [ref=e99]:
+                  - generic [ref=e100]: "! 23"
+                - paragraph [ref=e101]: Needs a reboot, not restarted in 7+ days
+              - button "Oldest critical patch ✕ 41 days Oldest approved critical patch still outstanding" [ref=e102] [cursor=pointer]:
+                - paragraph [ref=e103]: Oldest critical patch
+                - paragraph [ref=e104]:
+                  - generic [ref=e105]: ✕ 41 days
+                - paragraph [ref=e106]: Oldest approved critical patch still outstanding
+          - generic [ref=e107]:
+            - heading "Status breakdown" [level=3] [ref=e108]
+            - generic [ref=e110]:
+              - img "Device status breakdown" [ref=e111]:
+                - 'generic "Fully patched: 600 (74.3%)" [ref=e112]'
+                - 'generic "Approved pending: 79 (9.8%) — View customers →" [ref=e113] [cursor=pointer]'
+                - 'generic "Reboot required: 35 (4.3%) — View customers →" [ref=e114] [cursor=pointer]'
+                - 'generic "Install error: 23 (2.9%) — View customers →" [ref=e115] [cursor=pointer]'
+                - 'generic "No policy: 59 (7.3%) — View customers →" [ref=e116] [cursor=pointer]'
+                - 'generic "No data: 11 (1.4%)" [ref=e117]'
+              - generic [ref=e118]:
+                - generic [ref=e119]:
+                  - text: Fully patched
+                  - generic [ref=e121]: 600 · 74.3%
+                - button "Approved pending 79 · 9.8%" [ref=e122] [cursor=pointer]:
+                  - text: Approved pending
+                  - generic [ref=e124]: 79 · 9.8%
+                - button "Reboot required 35 · 4.3%" [ref=e125] [cursor=pointer]:
+                  - text: Reboot required
+                  - generic [ref=e127]: 35 · 4.3%
+                - button "Install error 23 · 2.9%" [ref=e128] [cursor=pointer]:
+                  - text: Install error
+                  - generic [ref=e130]: 23 · 2.9%
+                - button "No policy 59 · 7.3%" [ref=e131] [cursor=pointer]:
+                  - text: No policy
+                  - generic [ref=e133]: 59 · 7.3%
+                - generic [ref=e134]:
+                  - text: No data
+                  - generic [ref=e136]: 11 · 1.4%
+          - generic [ref=e137]:
+            - heading [level=3] [ref=e138]:
+              - text: Compliance and coverage trend
+              - generic [ref=e139]:
+                - group "Trend view" [ref=e140]:
+                  - button "Overall" [pressed] [ref=e141] [cursor=pointer]
+                  - button "Workstations" [ref=e142] [cursor=pointer]
+                  - button "Servers" [ref=e143] [cursor=pointer]
+                  - button "Compare" [ref=e144] [cursor=pointer]
+                - group "Trend period" [ref=e145]:
+                  - button "30 days" [pressed] [ref=e146] [cursor=pointer]
+                  - button "90 days" [ref=e147] [cursor=pointer]
+            - generic [ref=e149]:
+              - img "Trend chart, latest 30 Oct 2026 — Compliance 82.2% · Coverage 89.6%" [ref=e150]:
+                - generic [ref=e151]: 0%
+                - generic [ref=e152]: 20%
+                - generic [ref=e153]: 40%
+                - generic [ref=e154]: 60%
+                - generic [ref=e155]: 80%
+                - generic [ref=e156]: 100%
+                - generic [ref=e157]: 1 Oct
+                - generic [ref=e158]: 7 Oct
+                - generic [ref=e159]: 13 Oct
+                - generic [ref=e160]: 18 Oct
+                - generic [ref=e161]: 24 Oct
+                - generic [ref=e162]: 30 Oct
+              - generic [ref=e166]: 30 Oct 2026 — Compliance 82.2% · Coverage 89.6%
+              - generic [ref=e167]:
+                - generic [ref=e168]: Compliance
+                - generic [ref=e170]: Coverage (dashed)
+          - generic [ref=e172]:
+            - heading "Operating systems" [level=3] [ref=e173]
+            - table [ref=e177]:
+              - rowgroup [ref=e178]:
+                - row [ref=e179]:
+                  - columnheader "Operating system" [ref=e180] [cursor=pointer]
+                  - columnheader "Devices" [ref=e181] [cursor=pointer]:
+                    - text: Devices
+                    - generic [ref=e182]: ▼
+                  - columnheader "% of total" [ref=e183] [cursor=pointer]
+                  - columnheader "Lifecycle" [ref=e184] [cursor=pointer]
+              - rowgroup [ref=e185]:
+                - row [ref=e186]:
+                  - cell "Windows 11" [ref=e187]
+                  - cell "638" [ref=e188]
+                  - cell "79.1%" [ref=e189]
+                  - cell "Supported" [ref=e193]
+                - row [ref=e195]:
+                  - cell "Windows 10" [ref=e196]
+                  - cell "81" [ref=e197]
+                  - cell "10.0%" [ref=e198]
+                  - cell "Unsupported" [ref=e202]
+                - row [ref=e204]:
+                  - cell "Server 2019" [ref=e205]
+                  - cell "32" [ref=e206]
+                  - cell "4.0%" [ref=e207]
+                  - cell "Supported" [ref=e211]
+                - row [ref=e213]:
+                  - cell "Server 2022" [ref=e214]
+                  - cell "24" [ref=e215]
+                  - cell "3.0%" [ref=e216]
+                  - cell "Supported" [ref=e220]
+                - row [ref=e222]:
+                  - cell "Server 2016" [ref=e223]
+                  - cell "16" [ref=e224]
+                  - cell "2.0%" [ref=e225]
+                  - cell "Ending soon" [ref=e229]
+                - row [ref=e231]:
+                  - cell "macOS" [ref=e232]
+                  - cell "8" [ref=e233]
+                  - cell "1.0%" [ref=e234]
+                  - cell "Check manually" [ref=e238]
+                - row [ref=e240]:
+                  - cell "Windows 8.1 or older" [ref=e241]
+                  - cell "4" [ref=e242]
+                  - cell "0.5%" [ref=e243]
+                  - cell "Unsupported" [ref=e247]
+                - row [ref=e249]:
+                  - cell "Other" [ref=e250]
+                  - cell "4" [ref=e251]
+                  - cell "0.5%" [ref=e252]
+                  - cell "Check manually" [ref=e256]
+          - generic [ref=e259]:
+            - heading "Customers" [level=3] [ref=e260]
+            - generic [ref=e261]:
+              - generic [ref=e262]:
+                - searchbox "Search sites by name" [ref=e263]
+                - generic [ref=e264]: 15 of 15 sites
+                - group [ref=e265]:
+                  - generic "Columns ▾" [ref=e266] [cursor=pointer]
+                - button "Export CSV" [ref=e267] [cursor=pointer]
+              - table [ref=e270]:
+                - rowgroup [ref=e271]:
+                  - row [ref=e272]:
+                    - columnheader "Site name" [ref=e273] [cursor=pointer]
+                    - columnheader "Workstations" [ref=e274] [cursor=pointer]
+                    - columnheader "Servers" [ref=e275] [cursor=pointer]
+                    - columnheader "Devices" [ref=e276] [cursor=pointer]
+                    - columnheader "Compliance %" [ref=e277] [cursor=pointer]:
+                      - text: Compliance %
+                      - generic [ref=e278]: ▲
+                    - columnheader "Coverage %" [ref=e279] [cursor=pointer]
+                    - columnheader "7-day change" [ref=e280] [cursor=pointer]
+                    - columnheader "Install errors" [ref=e281] [cursor=pointer]
+                    - columnheader "Unsupported OS" [ref=e282] [cursor=pointer]
+                    - columnheader "Oldest critical" [ref=e283] [cursor=pointer]
+                - rowgroup [ref=e284]:
+                  - link "Open Harbourview Dental Group" [ref=e285] [cursor=pointer]:
+                    - cell "Harbourview Dental Group" [ref=e286]
+                    - cell "37" [ref=e287]
+                    - cell "3" [ref=e288]
+                    - cell "40" [ref=e289]
+                    - cell "✕ 60.6%" [ref=e290]
+                    - cell "92.5%" [ref=e291]
+                    - cell "▲ +2.4 pts" [ref=e292]
+                    - cell "3" [ref=e293]
+                    - cell "5" [ref=e294]
+                    - cell "✓ 4 days" [ref=e295]
+                  - link "Open Fernhill Care Homes" [ref=e296] [cursor=pointer]:
+                    - cell "Fernhill Care Homes" [ref=e297]
+                    - cell "120" [ref=e298]
+                    - cell "0" [ref=e299]
+                    - cell "120" [ref=e300]
+                    - cell "✕ 64.2%" [ref=e301]
+                    - cell "89.0%" [ref=e302]
+                    - cell "▼ -0.8 pts" [ref=e303]
+                    - cell "7" [ref=e304]
+                    - cell "25" [ref=e305]
+                    - cell "✕ 22 days" [ref=e306]
+                  - link "Open Meridian Print & Packaging" [ref=e307] [cursor=pointer]:
+                    - cell "Meridian Print & Packaging" [ref=e308]
+                    - cell "61" [ref=e309]
+                    - cell "5" [ref=e310]
+                    - cell "66" [ref=e311]
+                    - cell "✕ 69.8%" [ref=e312]
+                    - cell "80.8%" [ref=e313]
+                    - cell "▲ +1.4 pts" [ref=e314]
+                    - cell "2" [ref=e315]
+                    - cell "6" [ref=e316]
+                    - cell "! 8 days" [ref=e317]
+                  - link "Open Eastgate Primary School" [ref=e318] [cursor=pointer]:
+                    - cell "Eastgate Primary School" [ref=e319]
+                    - cell "78" [ref=e320]
+                    - cell "7" [ref=e321]
+                    - cell "85" [ref=e322]
+                    - cell "✕ 71.5%" [ref=e323]
+                    - cell "85.1%" [ref=e324]
+                    - cell "▲ +3.5 pts" [ref=e325]
+                    - cell "2" [ref=e326]
+                    - cell "9" [ref=e327]
+                    - cell "! 12 days" [ref=e328]
+                  - link "Open Ironbridge Construction" [ref=e329] [cursor=pointer]:
+                    - cell "Ironbridge Construction" [ref=e330]
+                    - cell "88" [ref=e331]
+                    - cell "8" [ref=e332]
+                    - cell "96" [ref=e333]
+                    - cell "✕ 79.3%" [ref=e334]
+                    - cell "81.5%" [ref=e335]
+                    - cell "▼ -2.1 pts" [ref=e336]
+                    - cell "3" [ref=e337]
+                    - cell "18" [ref=e338]
+                    - cell "✕ 18 days" [ref=e339]
+                  - link "Open Lakeside Community Trust" [ref=e340] [cursor=pointer]:
+                    - cell "Lakeside Community Trust" [ref=e341]
+                    - cell "23" [ref=e342]
+                    - cell "0" [ref=e343]
+                    - cell "23" [ref=e344]
+                    - cell "! 85.4%" [ref=e345]
+                    - cell "88.8%" [ref=e346]
+                    - cell "—" [ref=e347]
+                    - cell "2" [ref=e348]
+                    - cell "0" [ref=e349]
+                    - cell "✕ 33 days" [ref=e350]
+                  - link "Open Greywater Engineering" [ref=e351] [cursor=pointer]:
+                    - cell "Greywater Engineering" [ref=e352]
+                    - cell "68" [ref=e353]
+                    - cell "6" [ref=e354]
+                    - cell "74" [ref=e355]
+                    - cell "! 88.9%" [ref=e356]
+                    - cell "98.5%" [ref=e357]
+                    - cell "▼ -1.9 pts" [ref=e358]
+                    - cell "1" [ref=e359]
+                    - cell "7" [ref=e360]
+                    - cell "✕ 41 days" [ref=e361]
+                  - link "Open Cedar & Stone Architects" [ref=e362] [cursor=pointer]:
+                    - cell "Cedar & Stone Architects" [ref=e363]
+                    - cell "17" [ref=e364]
+                    - cell "2" [ref=e365]
+                    - cell "19" [ref=e366]
+                    - cell "! 92.0%" [ref=e367]
+                    - cell "93.7%" [ref=e368]
+                    - cell "▲ +3.8 pts" [ref=e369]
+                    - cell "0" [ref=e370]
+                    - cell "1" [ref=e371]
+                    - cell "✓ 5 days" [ref=e372]
+                  - link "Open Juniper Hotels Group" [ref=e373] [cursor=pointer]:
+                    - cell "Juniper Hotels Group" [ref=e374]
+                    - cell "58" [ref=e375]
+                    - cell "0" [ref=e376]
+                    - cell "58" [ref=e377]
+                    - cell "! 93.6%" [ref=e378]
+                    - cell "91.8%" [ref=e379]
+                    - cell "▼ -2.6 pts" [ref=e380]
+                    - cell "1" [ref=e381]
+                    - cell "3" [ref=e382]
+                    - cell "✓ 6 days" [ref=e383]
+                  - link "Open Northgate Accountancy" [ref=e384] [cursor=pointer]:
+                    - cell "Northgate Accountancy" [ref=e385]
+                    - cell "15" [ref=e386]
+                    - cell "0" [ref=e387]
+                    - cell "15" [ref=e388]
+                    - cell "✓ 95.5%" [ref=e389]
+                    - cell "90.5%" [ref=e390]
+                    - cell "▼ -0.1 pts" [ref=e391]
+                    - cell "0" [ref=e392]
+                    - cell "1" [ref=e393]
+                    - cell "✕ 15 days" [ref=e394]
+                  - link "Open Dunmore Legal LLP" [ref=e395] [cursor=pointer]:
+                    - cell "Dunmore Legal LLP" [ref=e396]
+                    - cell "43" [ref=e397]
+                    - cell "4" [ref=e398]
+                    - cell "47" [ref=e399]
+                    - cell "✓ 96.8%" [ref=e400]
+                    - cell "99.7%" [ref=e401]
+                    - cell "—" [ref=e402]
+                    - cell "0" [ref=e403]
+                    - cell "12" [ref=e404]
+                    - cell "! 9 days" [ref=e405]
+                  - link "Open Birchwood Veterinary Clinics" [ref=e406] [cursor=pointer]:
+                    - cell "Birchwood Veterinary Clinics" [ref=e407]
+                    - cell "28" [ref=e408]
+                    - cell "0" [ref=e409]
+                    - cell "28" [ref=e410]
+                    - cell "✓ 97.4%" [ref=e411]
+                    - cell "90.3%" [ref=e412]
+                    - cell "▼ -1.8 pts" [ref=e413]
+                    - cell "0" [ref=e414]
+                    - cell "4" [ref=e415]
+                    - cell "✓ 3 days" [ref=e416]
+                  - link "Open Kestrel Insurance Brokers" [ref=e417] [cursor=pointer]:
+                    - cell "Kestrel Insurance Brokers" [ref=e418]
+                    - cell "38" [ref=e419]
+                    - cell "3" [ref=e420]
+                    - cell "41" [ref=e421]
+                    - cell "✓ 98.2%" [ref=e422]
+                    - cell "90.3%" [ref=e423]
+                    - cell "▼ -0.9 pts" [ref=e424]
+                    - cell "1" [ref=e425]
+                    - cell "2" [ref=e426]
+                    - cell "✓ 0 days" [ref=e427]
+                  - link "Open Atlas Freight & Logistics" [ref=e428] [cursor=pointer]:
+                    - cell "Atlas Freight & Logistics" [ref=e429]
+                    - cell "57" [ref=e430]
+                    - cell "5" [ref=e431]
+                    - cell "62" [ref=e432]
+                    - cell "✓ 99.1%" [ref=e433]
+                    - cell "93.2%" [ref=e434]
+                    - cell "▼ -2.6 pts" [ref=e435]
+                    - cell "1" [ref=e436]
+                    - cell "0" [ref=e437]
+                    - cell "—" [ref=e438]
+                  - link "Open Halcyon Wealth Partners" [ref=e439] [cursor=pointer]:
+                    - cell "Halcyon Wealth Partners" [ref=e440]
+                    - cell "30" [ref=e441]
+                    - cell "3" [ref=e442]
+                    - cell "33" [ref=e443]
+                    - cell "✓ 100.0%" [ref=e444]
+                    - cell "93.5%" [ref=e445]
+                    - cell "▼ -0.4 pts" [ref=e446]
+                    - cell "0" [ref=e447]
+                    - cell "0" [ref=e448]
+                    - cell "✓ 2 days" [ref=e449]
+          - generic [ref=e451]:
+            - heading "Top outstanding patches" [level=3] [ref=e452]
+            - table [ref=e456]:
+              - rowgroup [ref=e457]:
+                - row [ref=e458]:
+                  - columnheader "KB" [ref=e459] [cursor=pointer]
+                  - columnheader "Title" [ref=e460] [cursor=pointer]
+                  - columnheader "Severity" [ref=e461] [cursor=pointer]
+                  - columnheader "Devices" [ref=e462] [cursor=pointer]
+                  - columnheader "Sites" [ref=e463] [cursor=pointer]
+              - rowgroup [ref=e464]:
+                - row [ref=e465]:
+                  - cell "KB5044284" [ref=e466]
+                  - cell "2024-10 Cumulative Update for Windows 11 Version 24H2" [ref=e467]
+                  - cell "Critical" [ref=e468]
+                  - cell "142" [ref=e470]
+                  - cell "14" [ref=e471]
+                - row [ref=e472]:
+                  - cell "KB5044273" [ref=e473]
+                  - cell "2024-10 Cumulative Update for Windows 11 Version 23H2" [ref=e474]
+                  - cell "Critical" [ref=e475]
+                  - cell "118" [ref=e477]
+                  - cell "13" [ref=e478]
+                - row [ref=e479]:
+                  - cell "KB5044277" [ref=e480]
+                  - cell "2024-10 Cumulative Update for Windows 10 Version 22H2" [ref=e481]
+                  - cell "Important" [ref=e482]
+                  - cell "96" [ref=e484]
+                  - cell "12" [ref=e485]
+                - row [ref=e486]:
+                  - cell "KB5044281" [ref=e487]
+                  - cell "2024-10 Cumulative Update for Windows Server 2022" [ref=e488]
+                  - cell "Critical" [ref=e489]
+                  - cell "21" [ref=e491]
+                  - cell "9" [ref=e492]
+                - row [ref=e493]:
+                  - cell "KB5044286" [ref=e494]
+                  - cell "2024-10 Cumulative Update for Windows Server 2019" [ref=e495]
+                  - cell "Important" [ref=e496]
+                  - cell "14" [ref=e498]
+                  - cell "7" [ref=e499]
+                - row [ref=e500]:
+                  - cell "KB5042421" [ref=e501]
+                  - cell "Security Update for Microsoft Office 2016" [ref=e502]
+                  - cell "Important" [ref=e503]
+                  - cell "77" [ref=e505]
+                  - cell "11" [ref=e506]
+                - row [ref=e507]:
+                  - cell "KB5043178" [ref=e508]
+                  - cell ".NET Framework 4.8.1 Security and Quality Rollup" [ref=e509]
+                  - cell "Moderate" [ref=e510]
+                  - cell "64" [ref=e512]
+                  - cell "12" [ref=e513]
+                - row [ref=e514]:
+                  - cell "KB5041585" [ref=e515]
+                  - cell "Microsoft Edge Stable Channel Update" [ref=e516]
+                  - cell "Unspecified" [ref=e517]
+                  - cell "51" [ref=e519]
+                  - cell "10" [ref=e520]
+                - row [ref=e521]:
+                  - cell "KB890830" [ref=e522]
+                  - cell "Windows Malicious Software Removal Tool" [ref=e523]
+                  - cell "Low" [ref=e524]
+                  - cell "38" [ref=e526]
+                  - cell "8" [ref=e527]
+                - row [ref=e528]:
+                  - cell "KB5039895" [ref=e529]
+                  - cell "Servicing Stack Update for Windows 10 Version 22H2" [ref=e530]
+                  - cell "Moderate" [ref=e531]
+                  - cell "17" [ref=e533]
+                  - cell "5" [ref=e534]

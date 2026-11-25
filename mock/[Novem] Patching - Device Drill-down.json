@@ -1,0 +1,23 @@
+{
+  "drilldown": {
+    "device": {
+      "hostname": "APPLAP215",
+      "site_name": "Apprentify",
+      "operating_system": "Microsoft Windows 11 Enterprise 10.0.26200",
+      "online": true,
+      "last_seen_utc": "2026-10-29T10:43:24Z",
+      "last_audit_utc": "2026-10-29T11:01:31Z",
+      "patch_status": "NoPolicy",
+      "portal_url": "https://pinotage.rmm.datto.com/device/22681054"
+    },
+    "pending_patches": [
+      { "kb": "KB5044284", "title": "2024-10 Cumulative Update for Windows 11 Version 24H2", "severity": "CRITICAL", "release_date": "2026-10-08T00:00:00Z", "reboot_required": true }
+    ],
+    "not_approved_patches": [
+      { "kb": "KB5043178", "title": ".NET Framework 4.8.1 Security and Quality Rollup", "severity": "MODERATE", "release_date": 1791417600000, "reboot_required": false }
+    ],
+    "policies": [
+      { "policy_name": "Workstations - Monthly Patching", "enabled": true, "schedule": "Second Tuesday 02:00" }
+    ]
+  }
+}

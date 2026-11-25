@@ -1,0 +1,24 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - heading "Novem Patch Insights" [level=1] [ref=e3]
+    - generic [ref=e4]:
+      - generic [ref=e5]: Mock data
+      - button "Toggle light/dark theme" [ref=e6] [cursor=pointer]: 🌙
+      - button "Refresh" [ref=e7] [cursor=pointer]
+  - generic [ref=e8]:
+    - navigation [ref=e9]:
+      - button "Overview" [ref=e10] [cursor=pointer]
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - heading "Novem Patch Insights" [level=2] [ref=e14]
+        - generic [ref=e15]:
+          - status "Loading" [ref=e17]
+          - generic [ref=e23]:
+            - heading "Compliance and coverage trend" [level=3] [ref=e24]
+            - status "Loading" [ref=e26]
+          - generic [ref=e28]:
+            - heading "Customers" [level=3] [ref=e29]
+            - status "Loading" [ref=e31]
+          - generic [ref=e41]:
+            - heading "Top outstanding patches" [level=3] [ref=e42]
+            - status "Loading" [ref=e44]

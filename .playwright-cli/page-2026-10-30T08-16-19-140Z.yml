@@ -1,0 +1,31 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - heading "Novem Patch Insights" [level=1] [ref=f1e3]
+    - generic [ref=f1e4]:
+      - generic [ref=f1e5]: Mock data
+      - button "Toggle light/dark theme" [ref=f1e6] [cursor=pointer]: 🌙
+      - button "Refresh" [ref=f1e7] [cursor=pointer]
+  - generic [ref=f1e8]:
+    - navigation [ref=f1e9]:
+      - button "Overview" [ref=f1e10] [cursor=pointer]
+    - main [ref=f1e11]:
+      - generic [ref=f1e12]:
+        - generic [ref=f1e13]:
+          - button "← Back to overview" [ref=f1e15] [cursor=pointer]
+          - generic [ref=f1e16]:
+            - heading "Harbourview Dental Group" [level=2] [ref=f1e17]
+            - generic [ref=f1e18]: "Autotask ID: 3344"
+        - generic [ref=f1e19]:
+          - status "Loading" [ref=f1e21]
+          - generic [ref=f1e27]:
+            - heading "Status breakdown" [level=3] [ref=f1e28]
+            - status "Loading" [ref=f1e30]
+          - generic [ref=f1e32]:
+            - heading "Compliance and coverage trend" [level=3] [ref=f1e33]
+            - status "Loading" [ref=f1e35]
+          - generic [ref=f1e37]:
+            - heading "Devices" [level=3] [ref=f1e38]
+            - status "Loading" [ref=f1e40]
+          - generic [ref=f1e50]:
+            - heading "Top pending patches" [level=3] [ref=f1e51]
+            - status "Loading" [ref=f1e53]

@@ -1,0 +1,10 @@
+{
+  "drilldown": {
+    "device": { "hostname": 12345, "operating_system": { "name": "Windows" }, "online": true, "patch_status": { "x": 1 }, "portal_url": 42 },
+    "pending_patches": [
+      { "kb": 5044284, "title": ["a", "b"], "severity": { "level": 1 }, "release_date": "not a date", "reboot_required": 1 }
+    ],
+    "not_approved_patches": "oops",
+    "policies": [ { "policy_name": 7, "enabled": "False", "level": "Site", "owner_site": null, "window_minutes": "90", "days_of_week": 3, "force_reboot": "True" } ]
+  }
+}

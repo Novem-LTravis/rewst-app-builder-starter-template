@@ -1,0 +1,19 @@
+{
+  "drilldown": {
+    "device": {
+      "hostname": null,
+      "site_name": null,
+      "operating_system": null,
+      "online": null,
+      "last_seen_utc": null,
+      "last_audit_utc": null,
+      "patch_status": null,
+      "portal_url": null
+    },
+    "pending_patches": null,
+    "policies": [
+      { "policy_name": null, "enabled": null, "level": null, "schedule_type": null, "window_minutes": null, "last_updated": null },
+      {}
+    ]
+  }
+}

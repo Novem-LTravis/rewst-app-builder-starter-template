@@ -1,0 +1,18 @@
+{
+  "overview": {
+    "as_of": "20261030",
+    "tiles": { "devices_in_scope": 7715, "coverage_pct": 96.7, "compliance_pct": 73.2, "install_error": 116, "devices_stale": 651 },
+    "trend": [
+      { "date": "20261029", "compliance_pct": 73.2, "coverage_pct": 96.7 },
+      { "date": "20261030", "compliance_pct": 74.0, "coverage_pct": 96.8 }
+    ],
+    "sites": [
+      { "site_uid": "aaaa-1111", "site_name": "Harbourview Dental Group", "autotask_company_id": "3101", "devices_in_scope": 40, "compliance_pct": 60.6, "coverage_pct": 92.5, "change_7d": 2.4, "install_error": 3, "devices_stale": 3 },
+      { "site_uid": "1d4b589f-3082-4a73-aa0a-a94c6087d9a2", "site_name": "Apprentify", "autotask_company_id": "3344", "devices_in_scope": 251, "compliance_pct": 100.0, "coverage_pct": 99.6, "change_7d": null, "install_error": 0, "devices_stale": 29 }
+    ],
+    "top_pending": [
+      { "kb": "KB5044284", "title": "2024-10 Cumulative Update for Windows 11 Version 24H2", "severity": "CRITICAL", "devices": 142, "sites": 14 },
+      { "kb": "KB5044277", "title": "2024-10 Cumulative Update for Windows 10 Version 22H2", "severity": "IMPORTANT", "devices": 96, "sites": 12 }
+    ]
+  }
+}

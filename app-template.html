@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Novem Patch Insights</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    {{ CSS_THEME }}
+  </style>
+
+  <script>
+    // Set the theme attribute before first paint to avoid a flash of the
+    // wrong theme. Kept inline (not in src/) since it must run before any
+    // other script and has no dependencies.
+    (function () {
+      try {
+        var saved = localStorage.getItem('nat-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+      } catch (e) { /* localStorage/matchMedia unavailable — CSS default (light) applies */ }
+    })();
+  </script>
+</head>
+<body>
+  <header id="nat-header">
+    <img id="nat-header-logo" src="REWST_LOGO_URL_PLACEHOLDER" alt="" width="200" height="50" onerror="this.style.display='none'">
+    <h1 id="nat-header-title" class="pi-sr">Novem Patch Insights</h1>
+    <div style="margin-left:auto; display:flex; align-items:center; gap: var(--space-3);">
+      <span id="nat-mode-badge" class="pi-mode"></span>
+      <button id="nat-help-btn" class="nat-btn" type="button"><span aria-hidden="true">&#9432;</span> How to read this dashboard</button>
+      <button id="nat-theme-toggle-btn" class="nat-btn" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">&#9789;</button>
+      <button id="nat-refresh-btn" class="nat-btn">Refresh</button>
+    </div>
+  </header>
+
+  <div id="nat-app-body">
+    <nav id="nat-sidebar"></nav>
+    <main id="nat-main">
+      <div id="nat-main-content"></div>
+    </main>
+  </div>
+
+  <script>
+    {{ CONFIG }}
+  </script>
+  <script>
+    {{ MOCK_DATA }}
+  </script>
+  <script>
+    {{ DATA_CLIENT }}
+  </script>
+  <script>
+    {{ PAGE_APP }}
+  </script>
+  <script>
+    {{ PAGE_OVERVIEW }}
+  </script>
+  <script>
+    {{ PAGE_SITE }}
+  </script>
+</body>
+</html>

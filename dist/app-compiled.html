@@ -1,0 +1,3394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Novem Patch Insights</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /**
+ * Design Tokens — Rewst App Builder Starter Template
+ *
+ * One place to change the whole app's look: brand colours, spacing, type
+ * scale, radius/shadow and the light/dark palettes below. Values are static
+ * (no Jinja) — this file is inlined by build.js directly into an App
+ * Builder HTML container and must never contain Jinja delimiter sequences
+ * (double curly braces or curly-percent pairs).
+ */
+
+/* Light theme is the default (:root) and is also selected explicitly via
+   [data-theme='light'] once the user has made a choice (see pages/app.js
+   theme toggle, which sets document.documentElement's data-theme attr and
+   persists the choice in localStorage). */
+[data-theme='light'],
+:root {
+  /* Brand */
+  --color-accent-primary:       #b86bff;
+  --color-accent-primary-hover: #9B46FF;
+  --color-accent-secondary:     #E9DDFD;
+  --color-accent-secondary-text:#28212D;
+
+  /* Surfaces */
+  --color-bg-primary:    #F7F6F8;
+  --color-bg-secondary:  #FFFFFF;
+  --color-bg-tertiary:   #F0EEF4;
+  --color-bg-nav:        #F7F6F8;
+
+  /* Text */
+  --color-text-primary:   #28212D;
+  --color-text-secondary: #5A5465;
+  --color-text-tertiary:  #6B6478;
+  --color-text-inverse:   #FFFFFF;
+
+  /* Borders */
+  --color-border-primary:   #D8D3E0;
+  --color-border-secondary: #EAE8EE;
+  --color-border-focus:     #b86bff;
+
+  /* Status */
+  --color-status-success:    #48C78E;
+  --color-status-warning:    #FFB70F;
+  --color-status-error:      #F14668;
+  --color-status-info:       #3E8ED0;
+  --color-status-success-bg: rgba(72, 199, 142, 0.12);
+  --color-status-warning-bg: rgba(255, 183, 15, 0.12);
+  --color-status-error-bg:   rgba(241, 70, 104, 0.12);
+  --color-status-info-bg:    rgba(62, 142, 208, 0.12);
+
+  /* Chart series */
+  --color-chart-1: #b86bff;
+  --color-chart-2: #3E8ED0;
+  --color-chart-3: #48C78E;
+  --color-chart-4: #FFB70F;
+  --color-chart-5: #F14668;
+  --color-chart-6: #6B4EFF;
+
+  /* Patch status (fixed per status) + severity + readable text variants */
+  --color-patch-fully:    #48C78E;
+  --color-patch-approved: #FFB70F;
+  --color-patch-reboot:   #3E8ED0;
+  --color-patch-error:    #F14668;
+  --color-patch-nopolicy: #8E8A99;
+  --color-patch-nodata:   #CFCBD8;
+  --color-sev-critical:   #F14668;
+  --color-sev-important:  #F28C28;
+  --color-sev-moderate:   #FFB70F;
+  --color-sev-low:        #8E8A99;
+  --color-text-success:   #1B7A4B;
+  --color-text-error:     #B3203D;
+
+  /* Spacing (4px base unit) */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 48px;
+
+  /* Type */
+  --font-family-base: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-xs:   0.75rem;
+  --font-size-sm:   0.8125rem;
+  --font-size-base: 0.9375rem;
+  --font-size-md:   1rem;
+  --font-size-lg:   1.125rem;
+  --font-size-xl:   1.25rem;
+  --font-size-2xl:  1.5rem;
+  --font-size-3xl:  1.875rem;
+  --font-weight-normal:   400;
+  --font-weight-semibold: 700;
+
+  /* Radius / shadow */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.08);
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Explicit dark theme, applied by the toggle in pages/app.js. */
+[data-theme='dark'] {
+  --color-bg-primary:   #18141C;
+  --color-bg-secondary: #211D27;
+  --color-bg-tertiary:  #2C2834;
+  --color-bg-nav:       #18141C;
+
+  --color-text-primary:   #EFEDF1;
+  --color-text-secondary: #B0A8BC;
+  --color-text-tertiary:  #9D98A8;
+
+  --color-border-primary:   #3A3546;
+  --color-border-secondary: #2C2834;
+
+  --color-status-success-bg: rgba(72, 199, 142, 0.18);
+  --color-status-warning-bg: rgba(255, 183, 15, 0.18);
+  --color-status-error-bg:   rgba(241, 70, 104, 0.18);
+  --color-status-info-bg:    rgba(62, 142, 208, 0.18);
+
+  --color-patch-nodata:   #5A5465;
+  --color-text-success:   #5FD9A0;
+  --color-text-error:     #FF8BA0;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* Fall back to the OS/browser preference only when the user hasn't made an
+   explicit choice yet (no data-theme='light' or 'dark' set on <html>). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not([data-theme='dark']) {
+    --color-bg-primary:   #18141C;
+    --color-bg-secondary: #211D27;
+    --color-bg-tertiary:  #2C2834;
+    --color-bg-nav:       #18141C;
+
+    --color-text-primary:   #EFEDF1;
+    --color-text-secondary: #B0A8BC;
+    --color-text-tertiary:  #9D98A8;
+
+    --color-border-primary:   #3A3546;
+    --color-border-secondary: #2C2834;
+
+    --color-status-success-bg: rgba(72, 199, 142, 0.18);
+    --color-status-warning-bg: rgba(255, 183, 15, 0.18);
+    --color-status-error-bg:   rgba(241, 70, 104, 0.18);
+    --color-status-info-bg:    rgba(62, 142, 208, 0.18);
+
+    --color-patch-nodata:   #5A5465;
+    --color-text-success:   #5FD9A0;
+    --color-text-error:     #FF8BA0;
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.4);
+  }
+}
+
+/* ── Base layout ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { width: 100%; min-height: 100vh; margin: 0; padding: 0; }
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+}
+
+#nat-header {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; gap: var(--space-5);
+  height: 56px; padding: 0 var(--space-7);
+  background: var(--color-bg-nav);
+  border-bottom: 1px solid var(--color-border-primary);
+}
+#nat-header-logo { height: 28px; width: auto; object-fit: contain; }
+#nat-header-title { font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin: 0; }
+
+#nat-app-body { display: flex; align-items: flex-start; width: 100%; }
+
+#nat-sidebar {
+  flex: 0 0 200px;
+  position: sticky; top: 56px;
+  height: calc(100vh - 56px);
+  display: flex; flex-direction: column; gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+  background: var(--color-bg-nav);
+  border-right: 1px solid var(--color-border-primary);
+}
+.nat-sidebar-item {
+  appearance: none; background: none; border: none; cursor: pointer;
+  text-align: left; width: 100%;
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-md);
+  font-family: var(--font-family-base); font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+}
+.nat-sidebar-item.active { background: var(--color-bg-tertiary); color: var(--color-accent-primary); font-weight: var(--font-weight-semibold); }
+.nat-sidebar-item:hover { color: var(--color-text-primary); }
+
+#nat-main { min-width: 0; flex: 1 1 auto; max-width: 1280px; margin: 0 auto; padding: var(--space-7); width: 100%; }
+@media (max-width: 900px) { #nat-main { padding: var(--space-5); } }
+
+#nat-area-heading {
+  font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--space-5);
+}
+#nat-area-heading:empty { display: none; margin: 0; }
+
+@media (max-width: 900px) {
+  #nat-app-body { flex-direction: column; }
+  #nat-sidebar {
+    position: static; height: auto; width: 100%;
+    flex-direction: row; flex-wrap: wrap; gap: var(--space-2);
+    border-right: none; border-bottom: 1px solid var(--color-border-primary);
+    padding: var(--space-3) var(--space-5);
+  }
+  .nat-sidebar-item { width: auto; }
+}
+
+/* Banners */
+.nat-banner {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-4) var(--space-5); margin-bottom: var(--space-6);
+  border-radius: var(--radius-md); font-size: var(--font-size-sm);
+}
+.nat-banner--stale { background: var(--color-status-warning-bg); color: var(--color-text-primary); }
+.nat-banner--error { background: var(--color-status-error-bg); color: var(--color-text-primary); }
+.nat-banner--warn  { background: var(--color-status-warning-bg); color: var(--color-text-primary); }
+
+/* Tabs */
+#nat-tabs {
+  display: flex; gap: var(--space-2); margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border-primary); flex-wrap: wrap;
+}
+.nat-tab {
+  appearance: none; background: none; border: none; cursor: pointer;
+  padding: var(--space-4) var(--space-5); font-family: var(--font-family-base);
+  font-size: var(--font-size-base); color: var(--color-text-secondary);
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.nat-tab.active { color: var(--color-accent-primary); border-bottom-color: var(--color-accent-primary); font-weight: var(--font-weight-semibold); }
+.nat-tab:hover { color: var(--color-text-primary); }
+
+/* Cards */
+.nat-card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+}
+.nat-card-grid {
+  display: grid; gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.nat-metric-card .nat-metric-label { font-size: var(--font-size-sm); color: var(--color-text-secondary); margin: 0 0 var(--space-2); }
+.nat-metric-card .nat-metric-pct { font-size: var(--font-size-3xl); font-weight: var(--font-weight-semibold); line-height: 1; }
+.nat-metric-card .nat-metric-count { font-size: var(--font-size-sm); color: var(--color-text-tertiary); margin-top: var(--space-2); }
+.nat-badge {
+  display: inline-block; font-size: var(--font-size-xs); padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full); background: var(--color-bg-tertiary); color: var(--color-text-tertiary);
+  margin-left: var(--space-2); vertical-align: middle;
+}
+.nat-badge--provisional { background: var(--color-status-warning-bg); color: var(--color-text-primary); }
+.nat-badge--success { background: var(--color-status-success-bg); color: var(--color-status-success); }
+.nat-badge--neutral { background: var(--color-bg-tertiary); color: var(--color-text-tertiary); }
+
+/* Toggle / controls */
+.nat-toggle-group { display: inline-flex; border: 1px solid var(--color-border-primary); border-radius: var(--radius-md); overflow: hidden; }
+.nat-toggle-group button {
+  appearance: none; border: none; background: var(--color-bg-secondary); color: var(--color-text-secondary);
+  padding: var(--space-3) var(--space-5); font-family: var(--font-family-base); font-size: var(--font-size-sm); cursor: pointer;
+}
+.nat-toggle-group button.active { background: var(--color-accent-primary); color: var(--color-text-inverse); }
+.nat-toggle-group button[disabled] { opacity: 0.45; cursor: not-allowed; }
+.pi-section-title .nat-toggle-group + .nat-toggle-group { margin-left: var(--space-3); }
+.pi-help-list { margin: 0 0 var(--space-3); padding-left: var(--space-6); }
+.pi-help-list li { margin-bottom: var(--space-2); }
+.pi-panel p { line-height: 1.55; }
+select, input[type="text"], input[type="search"], input[type="date"] {
+  font-family: var(--font-family-base); font-size: var(--font-size-sm); color: var(--color-text-primary);
+  background: var(--color-bg-secondary); border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md); padding: var(--space-3) var(--space-4);
+}
+
+/* Tables */
+.nat-table-wrap { overflow-x: auto; }
+table.nat-table { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); }
+table.nat-table th, table.nat-table td { padding: var(--space-3) var(--space-4); text-align: left; border-bottom: 1px solid var(--color-border-secondary); white-space: nowrap; }
+table.nat-table th { color: var(--color-text-secondary); font-weight: var(--font-weight-semibold); cursor: pointer; user-select: none; }
+table.nat-table th.sorted::after { content: ' \2195'; }
+table.nat-table td.nat-tick { text-align: center; }
+
+/* Generic links/clickable-row patterns — reuse these for an activity feed,
+   a "view all" link, or a table with an expandable detail row. */
+.nat-muted { color: var(--color-text-tertiary); font-size: var(--font-size-sm); margin: 0; }
+.nat-link-btn {
+  appearance: none; border: none; background: none; cursor: pointer;
+  color: var(--color-accent-primary); font-family: var(--font-family-base);
+  font-size: var(--font-size-sm); padding: 0;
+}
+.nat-link-btn:hover { color: var(--color-accent-primary-hover); text-decoration: underline; }
+tr.nat-clickable-row { cursor: pointer; }
+tr.nat-clickable-row:hover { background: var(--color-bg-tertiary); }
+tr.nat-detail-row td { background: var(--color-bg-primary); white-space: normal; }
+
+/* Footer */
+#nat-footer {
+  margin-top: var(--space-8); padding: var(--space-5) var(--space-7);
+  font-size: var(--font-size-xs); color: var(--color-text-tertiary);
+  border-top: 1px solid var(--color-border-secondary);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-3);
+}
+
+/* Spinner */
+.nat-spinner-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-4); padding: var(--space-8) 0; color: var(--color-text-secondary); }
+.nat-spinner {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 3px solid var(--color-border-secondary); border-top-color: var(--color-accent-primary);
+  animation: nat-spin 0.8s linear infinite;
+}
+@keyframes nat-spin { to { transform: rotate(360deg); } }
+
+.nat-btn {
+  appearance: none; border: 1px solid var(--color-border-primary); background: var(--color-bg-secondary);
+  color: var(--color-text-primary); border-radius: var(--radius-md); padding: var(--space-3) var(--space-5);
+  font-family: var(--font-family-base); font-size: var(--font-size-sm); cursor: pointer;
+}
+.nat-btn:hover { border-color: var(--color-accent-primary); color: var(--color-accent-primary); }
+.nat-btn--primary { background: var(--color-accent-primary); border-color: var(--color-accent-primary); color: var(--color-text-inverse); }
+.nat-btn--primary:hover { background: var(--color-accent-primary-hover); }
+
+/* Generic clickable element — pointer cursor + a visible hover/focus state
+   (never colour alone), keyboard-reachable via tabindex. Used by the Home
+   page's area cards; reuse for any other clickable card/row. */
+.nat-clickable { cursor: pointer; border-radius: var(--radius-sm); }
+.nat-clickable:hover, .nat-clickable:focus-visible {
+  text-decoration: underline; color: var(--color-accent-primary); outline: none;
+}
+
+/* ── Patch Insights components ───────────────────────────────────────── */
+#nat-main { max-width: 1400px; }
+.pi-header { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin-bottom: var(--space-6); }
+.pi-header h2 { margin: 0; font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold); }
+.pi-header .pi-sub { color: var(--color-text-secondary); font-size: var(--font-size-sm); }
+.pi-section { margin-bottom: var(--space-6); }
+.pi-section-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin: 0 0 var(--space-4); display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+.pi-section-title .pi-spacer { flex: 1 1 auto; }
+.pi-tiles { display: grid; gap: var(--space-5); grid-template-columns: repeat(5, minmax(0, 1fr)); margin-bottom: var(--space-6); }
+@media (max-width: 1100px) { .pi-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .pi-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Workstations / Servers split cards */
+.pi-groups { display: grid; gap: var(--space-5); grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: var(--space-6); }
+@media (max-width: 700px) { .pi-groups { grid-template-columns: minmax(0, 1fr); } }
+.pi-grp-head { margin-bottom: var(--space-3); }
+.pi-grp-title { margin: 0; font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); }
+.pi-grp-count { margin: 0 0 var(--space-4); font-size: var(--font-size-3xl); font-weight: var(--font-weight-semibold); line-height: 1; }
+.pi-grp-count .nat-muted { font-size: var(--font-size-sm); font-weight: 400; }
+.pi-grp-row { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); margin-bottom: var(--space-3); }
+.pi-grp-metric, .pi-grp-small { display: flex; flex-direction: column; gap: 2px; }
+.pi-grp-pct { display: inline-block; padding: 2px 8px; border-radius: var(--radius-md); font-weight: var(--font-weight-semibold); font-size: var(--font-size-lg, 1.1rem); }
+.pi-grp-small b { font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); }
+.pi-count-line { font-size: var(--font-size-xs); cursor: help; }
+.pi-grp--empty { opacity: 0.6; }
+.pi-grp-none { margin: 0; color: var(--color-text-secondary); }
+
+/* Risk row */
+.pi-risk-row { display: grid; gap: var(--space-5); grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: var(--space-6); }
+@media (max-width: 1100px) { .pi-risk-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .pi-risk-row { grid-template-columns: minmax(0, 1fr); } }
+.pi-risk-val { margin: var(--space-2) 0; font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold); line-height: 1.2; }
+.pi-risk-val .pi-grp-pct { font-size: inherit; }
+.pi-risk-sub { margin: 0; font-size: var(--font-size-sm); }
+
+/* Columns menu */
+.pi-menu { position: relative; }
+.pi-menu > summary { list-style: none; }
+.pi-menu > summary::-webkit-details-marker { display: none; }
+.pi-menu > summary::after { content: ' \25BE'; }
+.pi-menu-list { position: absolute; right: 0; top: calc(100% + 4px); z-index: 20; min-width: 200px; display: grid; gap: var(--space-3); padding: var(--space-4); background: var(--color-bg-primary); border: 1px solid var(--color-border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
+
+/* OS panel share bar */
+.pi-osshare { display: inline-flex; align-items: center; gap: var(--space-3); }
+.pi-osbar { display: inline-block; width: 90px; height: 8px; border-radius: 4px; background: var(--color-bg-tertiary); overflow: hidden; }
+.pi-osbar > span { display: block; height: 100%; background: var(--color-accent-primary); }
+
+.pi-warn-badge {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-2) var(--space-4); border-radius: var(--radius-full);
+  background: var(--color-status-warning-bg); border: 1px solid var(--color-status-warning);
+  color: var(--color-text-primary); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold);
+}
+
+/* Info tooltip */
+.pi-info { position: relative; display: inline-flex; vertical-align: middle; margin-left: var(--space-3); }
+.pi-info-btn {
+  appearance: none; width: 16px; height: 16px; padding: 0; border-radius: 50%; cursor: help;
+  border: 1px solid var(--color-text-tertiary); background: none; color: var(--color-text-secondary);
+  font-size: 10px; line-height: 1; font-weight: var(--font-weight-semibold); font-family: var(--font-family-base);
+}
+.pi-info-tip {
+  display: none; position: absolute; z-index: 20; top: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+  width: 240px; padding: var(--space-4); border-radius: var(--radius-md); text-align: left;
+  background: var(--color-text-primary); color: var(--color-bg-secondary);
+  font-size: var(--font-size-xs); font-weight: 400; line-height: 1.4; box-shadow: var(--shadow-md);
+}
+.pi-info:hover .pi-info-tip, .pi-info:focus-within .pi-info-tip { display: block; }
+
+/* Pills (text always present; colour is reinforcement only) */
+.pi-pill {
+  display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+  padding: 2px 10px; border-radius: var(--radius-full); font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary); background: var(--color-bg-tertiary); border: 1px solid var(--pc, var(--color-border-primary));
+}
+.pi-pill::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--pc, var(--color-text-tertiary)); flex: 0 0 auto; }
+.pi-tag {
+  display: inline-block; margin-left: var(--space-3); padding: 1px 8px; border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold);
+  border: 1px solid var(--color-text-tertiary); color: var(--color-text-secondary);
+}
+
+/* Table extras */
+.pi-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4); }
+.pi-toolbar .pi-spacer { flex: 1 1 auto; }
+.pi-search { min-width: 220px; }
+table.nat-table th.pi-num, table.nat-table td.pi-num { text-align: right; }
+table.nat-table th .pi-sort { display: inline-block; width: 1em; color: var(--color-accent-primary); }
+table.nat-table th.sorted::after { content: none; }
+table.nat-table th:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: -2px; }
+table.nat-table td.pi-wrap { white-space: normal; min-width: 220px; }
+table.nat-table tr.pi-stale td { opacity: 0.62; }
+.pi-cell-good { background: var(--color-status-success-bg); color: var(--color-text-success); font-weight: var(--font-weight-semibold); }
+.pi-cell-warn { background: var(--color-status-warning-bg); color: var(--color-text-primary); font-weight: var(--font-weight-semibold); }
+.pi-cell-bad  { background: var(--color-status-error-bg); color: var(--color-text-error); font-weight: var(--font-weight-semibold); }
+.pi-delta-up { color: var(--color-text-success); font-weight: var(--font-weight-semibold); }
+.pi-delta-down { color: var(--color-text-error); font-weight: var(--font-weight-semibold); }
+.pi-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: baseline; }
+.pi-dot--on { background: var(--color-status-success); }
+.pi-dot--off { background: transparent; border: 2px solid var(--color-text-tertiary); }
+.pi-link { color: var(--color-accent-primary); text-decoration: none; font-weight: var(--font-weight-semibold); }
+.pi-link:hover { text-decoration: underline; }
+.pi-pager { display: flex; align-items: center; gap: var(--space-4); justify-content: flex-end; padding-top: var(--space-4); font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.pi-pager .nat-btn[disabled] { opacity: 0.45; cursor: default; }
+
+/* Filter chips */
+.pi-chip {
+  appearance: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 12px; border-radius: var(--radius-full); font-family: var(--font-family-base); font-size: var(--font-size-xs);
+  background: var(--color-bg-secondary); color: var(--color-text-secondary); border: 1px solid var(--color-border-primary);
+}
+.pi-chip::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--pc); }
+.pi-chip[aria-pressed="true"] { background: var(--color-bg-tertiary); color: var(--color-text-primary); border-color: var(--pc); font-weight: var(--font-weight-semibold); }
+.pi-chip[aria-pressed="true"]::after { content: '\2713'; }
+.pi-check { display: inline-flex; align-items: center; gap: var(--space-3); font-size: var(--font-size-sm); color: var(--color-text-secondary); cursor: pointer; }
+
+/* Charts */
+.pi-chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.pi-chart .pi-axis { stroke: var(--color-border-primary); }
+.pi-chart .pi-grid { stroke: var(--color-border-secondary); }
+.pi-chart text { fill: var(--color-text-secondary); font-size: 11px; font-family: var(--font-family-base); }
+.pi-legend { display: flex; flex-wrap: wrap; gap: var(--space-5); margin-top: var(--space-3); font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.pi-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.pi-chart .pi-legend svg { width: 26px; flex: 0 0 26px; }
+.pi-swatch { width: 12px; height: 12px; border-radius: 3px; background: var(--pc); flex: 0 0 auto; }
+.pi-chart-tip { margin-top: var(--space-3); min-height: 1.4em; font-size: var(--font-size-sm); color: var(--color-text-primary); }
+.pi-stack { display: flex; width: 100%; height: 28px; border-radius: var(--radius-md); overflow: hidden; background: var(--color-bg-tertiary); }
+.pi-stack > div { height: 100%; min-width: 2px; background: var(--pc); }
+.pi-breakdown { display: grid; gap: var(--space-3) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin-top: var(--space-5); }
+.pi-breakdown-item { display: flex; align-items: center; gap: var(--space-3); font-size: var(--font-size-sm); }
+.pi-breakdown-item b { margin-left: auto; font-variant-numeric: tabular-nums; }
+
+/* Drill-through: clickable metrics, highlighted column, filter banner */
+.pi-clickable { position: relative; cursor: pointer; transition: box-shadow 0.12s ease, border-color 0.12s ease, background-color 0.12s ease; }
+.pi-clickable:hover, .pi-clickable:focus-visible { border-color: var(--color-accent-primary); box-shadow: var(--shadow-md); }
+.pi-clickable:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.pi-breakdown-item.pi-clickable { padding: 2px 6px; margin: -2px -6px; border-radius: var(--radius-md); border: 1px solid transparent; }
+.pi-breakdown-item.pi-clickable:hover, .pi-breakdown-item.pi-clickable:focus-visible { background: var(--color-bg-tertiary); box-shadow: none; }
+.pi-grp-metric.pi-clickable, .pi-grp-small.pi-clickable { padding: 2px 6px; margin: -2px -6px; border-radius: var(--radius-md); border: 1px solid transparent; }
+.pi-hint {
+  position: absolute; top: -11px; right: 10px; z-index: 5; display: none; white-space: nowrap; pointer-events: none;
+  padding: 1px 8px; border-radius: var(--radius-full); font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold);
+  background: var(--color-bg-primary); color: var(--color-accent-primary); border: 1px solid var(--color-accent-primary);
+}
+.pi-clickable:hover > .pi-hint, .pi-clickable:focus-visible > .pi-hint { display: block; }
+.pi-clickable:has(.pi-clickable:hover) > .pi-hint { display: none; }
+.pi-seg-click { cursor: pointer; }
+.pi-seg-click:hover { filter: brightness(1.12); }
+.pi-drill-banner { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); padding: var(--space-3) var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-accent-primary); background: var(--color-bg-secondary); font-size: var(--font-size-sm); }
+.pi-drill-banner[hidden] { display: none; }
+table.nat-table th.pi-col-hl { box-shadow: inset 0 -3px 0 var(--color-accent-primary); }
+table.nat-table td.pi-col-hl:not(.pi-cell-good):not(.pi-cell-warn):not(.pi-cell-bad) { background: var(--color-bg-tertiary); font-weight: var(--font-weight-semibold); }
+table.nat-table td.pi-col-hl { box-shadow: inset 2px 0 0 var(--color-accent-primary), inset -2px 0 0 var(--color-accent-primary); }
+.pi-type-label { font-size: var(--font-size-sm); margin-right: var(--space-3); }
+.pi-section { scroll-margin-top: 120px; }
+
+/* States */
+.pi-skel { border-radius: var(--radius-md); background: linear-gradient(90deg, var(--color-bg-tertiary) 25%, var(--color-border-secondary) 50%, var(--color-bg-tertiary) 75%); background-size: 200% 100%; animation: pi-shimmer 1.3s linear infinite; }
+@keyframes pi-shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .pi-skel { animation: none; } }
+.pi-state { text-align: center; padding: var(--space-7) var(--space-5); }
+.pi-state p { margin: 0 0 var(--space-4); color: var(--color-text-secondary); }
+.pi-state .pi-state-title { font-weight: var(--font-weight-semibold); color: var(--color-text-primary); font-size: var(--font-size-md); }
+.pi-state--error { border-color: var(--color-status-error); }
+.pi-back { margin-bottom: var(--space-4); }
+.pi-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.nat-btn:focus-visible, .pi-chip:focus-visible, .pi-link:focus-visible, .pi-info-btn:focus-visible, .nat-toggle-group button:focus-visible, .nat-sidebar-item:focus-visible {
+  outline: 2px solid var(--color-border-focus); outline-offset: 2px;
+}
+
+/* Mode badge (Live / Mock data) in the header */
+.pi-mode { display: inline-flex; align-items: center; font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); padding: 2px 10px; border-radius: var(--radius-full); border: 1px solid var(--color-border-primary); color: var(--color-text-secondary); background: var(--color-bg-secondary); }
+.pi-mode--live { color: var(--color-text-success); border-color: var(--color-text-success); }
+.pi-mode--mock { color: var(--color-text-primary); border-color: var(--color-status-warning); background: var(--color-status-warning-bg); }
+
+/* Device drill-down side panel */
+.pi-panel-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 50; }
+.pi-panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(760px, 100vw); overflow-y: auto; z-index: 51; background: var(--color-bg-primary); border-left: 1px solid var(--color-border-primary); box-shadow: var(--shadow-md); padding: var(--space-6); }
+.pi-panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
+.pi-panel-head h2 { margin: 0 0 var(--space-3); font-size: var(--font-size-xl, 1.25rem); font-weight: var(--font-weight-semibold); }
+.pi-panel-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-4); }
+.pi-panel h3 { margin: var(--space-6) 0 var(--space-3); font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); }
+.pi-panel details > summary { cursor: pointer; font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin: var(--space-6) 0 var(--space-3); }
+.pi-panel details > summary:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.pi-policies { list-style: none; margin: 0; padding: 0; }
+.pi-policies li { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-secondary); }
+.pi-policy-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.pi-policy-meta { font-size: var(--font-size-xs); }
+.pi-policies .pi-policy-name { font-weight: var(--font-weight-semibold); }
+.pi-fetch-note { color: var(--color-text-secondary); font-size: var(--font-size-sm); margin: 0 0 var(--space-4); }
+@media (max-width: 900px) { .pi-panel { padding: var(--space-4); } }
+
+
+  </style>
+
+  <script>
+    // Set the theme attribute before first paint to avoid a flash of the
+    // wrong theme. Kept inline (not in src/) since it must run before any
+    // other script and has no dependencies.
+    (function () {
+      try {
+        var saved = localStorage.getItem('nat-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+      } catch (e) { /* localStorage/matchMedia unavailable — CSS default (light) applies */ }
+    })();
+  </script>
+</head>
+<body>
+  <header id="nat-header">
+    <img id="nat-header-logo" src="REWST_LOGO_URL_PLACEHOLDER" alt="" width="200" height="50" onerror="this.style.display='none'">
+    <h1 id="nat-header-title" class="pi-sr">Novem Patch Insights</h1>
+    <div style="margin-left:auto; display:flex; align-items:center; gap: var(--space-3);">
+      <span id="nat-mode-badge" class="pi-mode"></span>
+      <button id="nat-help-btn" class="nat-btn" type="button"><span aria-hidden="true">&#9432;</span> How to read this dashboard</button>
+      <button id="nat-theme-toggle-btn" class="nat-btn" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">&#9789;</button>
+      <button id="nat-refresh-btn" class="nat-btn">Refresh</button>
+    </div>
+  </header>
+
+  <div id="nat-app-body">
+    <nav id="nat-sidebar"></nav>
+    <main id="nat-main">
+      <div id="nat-main-content"></div>
+    </main>
+  </div>
+
+  <script>
+    // ─────────────────────────────────────────────────────────────────────────────
+// CONFIG — Novem Patch Insights
+// The workflow IDs and PAGE_ID must be plain string constants — do NOT read them
+// via a Jinja expression here; that would break the App Builder container's
+// Jinja pre-parse pass. ORG_ID is NOT a config constant: it is resolved at
+// runtime for the visiting user via GraphQL (see src/data-client.js,
+// `query getUserOrganization { userOrganization { id } }`), since it varies
+// per signed-in user/org rather than per deployment.
+//
+// Every value below must be the real value for your deployment; the three
+// workflow IDs are the only place IDs appear in this project.
+// ─────────────────────────────────────────────────────────────────────────────
+
+var NAT_CONFIG = {
+  // When true, pages load data from the local JSON fixtures in mock/ (inlined
+  // into the compiled file by build.js) instead of calling Rewst. Set to true
+  // to review the design without the workflows, then rebuild.
+  USE_MOCK_DATA: false,
+
+  // Workflow IDs live here and nowhere else.
+  // Overview page workflow. Input { days: 30 | 90 }, output key "overview".
+  REWST_WORKFLOW_ID_PATCH_OVERVIEW: '01a18856-d1f0-7fd2-95dc-5aee78636802',
+
+  // Customer page workflow. Input { site_uid, days }, output key "site_detail".
+  REWST_WORKFLOW_ID_PATCH_SITE_DETAIL: '01a18859-7ed0-72dc-be27-0afeaa093ed1',
+
+  // Device drill-down workflow. Input { device_uid }, output key "drilldown".
+  // NOTE: the ID supplied had a leading "R" (R01a1872f-...), which is not a
+  // valid UUID character; it is entered here without it. Verify.
+  REWST_WORKFLOW_ID_PATCH_DEVICE_DRILLDOWN: '01a1872f-70ab-754a-a22a-6bee2c74195a',
+
+  // The App Builder page ID hosting this container. Find it in the page's
+  // URL in App Builder, or via the page settings panel.
+  PAGE_ID: '01a18856-6ff2-7e25-a43b-37befa8778e0',
+
+  // Autotask company link on the Customer page. {id} is replaced with the
+  // site's autotask_company_id. Replace {ZONE} with your Autotask zone number
+  // (e.g. "6" for ww6); until you do, the Autotask ID is shown as plain text.
+  AUTOTASK_COMPANY_URL_TEMPLATE: 'https://ww4.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenAccount&AccountID={id}',
+
+  // Labels for the policy "days_of_week" values shown in the device drill-down,
+  // e.g. { '1': 'Monday', '5': 'Friday' }. Empty by default: unmapped values
+  // show as "Day <value>".
+  DAY_OF_WEEK_LABELS: {},
+
+  // Poll cadence and overall timeout for trigger-then-poll workflow calls.
+  // Not secrets — safe to leave as-is, or tune per workflow.
+  POLL_INTERVAL_MS: 2000,
+  POLL_TIMEOUT_MS: 90000,
+
+  // sessionStorage cache key prefix; each workflow client appends its own
+  // suffix (see data-client.js), and the actual key also embeds today's date
+  // and the call's input, so a repeat view within the same day is instant.
+  CACHE_KEY_PREFIX: 'patch_insights_',
+};
+
+  </script>
+  <script>
+    var NAT_MOCK = null;
+  </script>
+  <script>
+    // ─────────────────────────────────────────────────────────────────────────────
+// DATA CLIENT — Rewst App Builder Starter Template
+// Implements: trigger workflow -> poll workflowExecutions -> read
+// conductor.output.<outputKey> once terminal (terminal-status allowlist,
+// 90s cap, partial-response handling, sessionStorage caching keyed by
+// date). This file is generic and tenant-agnostic — it reads everything it
+// needs from NAT_CONFIG (see src/config.js) and should not need editing
+// when you start a new portal from this template.
+//
+// createWorkflowClient() is a factory: call it once per Rewst workflow your
+// app calls, each with its own workflow ID, output key, and (optionally)
+// its own sessionStorage cache-key prefix. Multiple clients built from this
+// factory run fully independently of one another — nothing below this
+// point is shared between instances except two things that are safe and
+// intentional to share: org-ID resolution (same visiting user/org serves
+// every client) and the conductorFieldSupported capability flag (a
+// property of the GraphQL API itself, not of any one workflow).
+//
+// No Jinja-collision risk: all GraphQL uses single braces, and no literal
+// double-brace / percent-brace sequences appear anywhere below.
+// ─────────────────────────────────────────────────────────────────────────────
+
+var NAT_DATA;
+
+(function () {
+  'use strict';
+
+  // Explicit allowlist — REQUESTED is a pre-running state, not terminal.
+  // Rewst's real statusEnum values observed in practice use SUCCEEDED (not
+  // COMPLETED) for a successful run; both are accepted for the "success"
+  // case in case the API is inconsistent across workflow types.
+  var TERMINAL_SUCCESS_STATUSES = ['SUCCEEDED', 'COMPLETED'];
+  var TERMINAL_FAILURE_STATUSES = ['FAILED', 'TERMINATED', 'TIMED_OUT'];
+  var TERMINAL_STATUSES = TERMINAL_SUCCESS_STATUSES.concat(TERMINAL_FAILURE_STATUSES);
+
+  // Shared across every workflow client — see header comment above. Flips
+  // to false if a partial-response error targets "conductor".
+  var conductorFieldSupported = true;
+
+  function todayKey() {
+    var d = new Date();
+    var y = d.getFullYear();
+    var m = String(d.getMonth() + 1).padStart(2, '0');
+    var day = String(d.getDate()).padStart(2, '0');
+    return '' + y + m + day;
+  }
+
+  function graphql(query, variables) {
+    return fetch('/graphql', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: query, variables: variables }),
+    }).then(function (res) {
+      if (!res.ok) {
+        throw new Error('GraphQL request failed with status ' + res.status);
+      }
+      return res.json();
+    });
+  }
+
+  // Turns a GraphQL response's top-level "errors" array (if present) into a
+  // short readable string, so a 200-OK response that still failed server-
+  // side (bad pageId/orgId pairing, workflow not bound to the page, missing
+  // permission, etc.) doesn't get swallowed into a generic message.
+  function describeGraphQLErrors(json) {
+    if (!json || !Array.isArray(json.errors) || json.errors.length === 0) return '';
+    return json.errors.map(function (e) { return e && e.message ? e.message : String(e); }).join('; ');
+  }
+
+  function hasConductorPathError(json) {
+    if (!json || !json.errors) return false;
+    return json.errors.some(function (err) {
+      return Array.isArray(err.path) && err.path.some(function (seg) {
+        return String(seg).indexOf('conductor') !== -1;
+      });
+    });
+  }
+
+  // ── Org ID resolution ────────────────────────────────────────────────────
+  // The visiting user's org ID varies per user/session, so it cannot be a
+  // static config constant (and must not be read via Jinja). Resolve it once
+  // via GraphQL, matching the pattern used elsewhere in the Rewst portals,
+  // then cache in-memory and in sessionStorage so subsequent triggers/polls
+  // (and reloads within the same tab) don't pay for a second round trip.
+  // Shared by every workflow client — every call runs as the same visiting
+  // user, so there is only ever one org ID to resolve.
+  var ORG_ID_STORAGE_KEY = 'nat_resolved_org_id';
+  var resolvedOrgId = null;
+  var resolvingOrgIdPromise = null;
+
+  var CURRENT_ORG_QUERY = 'query getUserOrganization { userOrganization { id } }';
+
+  function getOrgId() {
+    if (resolvedOrgId) return Promise.resolve(resolvedOrgId);
+
+    try {
+      var cached = sessionStorage.getItem(ORG_ID_STORAGE_KEY);
+      if (cached) {
+        resolvedOrgId = cached;
+        return Promise.resolve(cached);
+      }
+    } catch (e) { /* sessionStorage unavailable — fall through to network */ }
+
+    if (resolvingOrgIdPromise) return resolvingOrgIdPromise;
+
+    resolvingOrgIdPromise = graphql(CURRENT_ORG_QUERY, {}).then(function (json) {
+      var id = json && json.data && json.data.userOrganization && json.data.userOrganization.id;
+      if (!id) {
+        var detail = describeGraphQLErrors(json);
+        throw new Error('Could not resolve the current organization ID.' + (detail ? ' ' + detail : ''));
+      }
+      resolvedOrgId = id;
+      try { sessionStorage.setItem(ORG_ID_STORAGE_KEY, id); } catch (e) { /* non-fatal */ }
+      return id;
+    }).finally(function () {
+      resolvingOrgIdPromise = null;
+    });
+
+    return resolvingOrgIdPromise;
+  }
+
+  // ── Logged-in user (best-effort) ─────────────────────────────────────────
+  // Optional helper for any page that wants to pre-fill the current user's
+  // name (e.g. a review/approval form). Never rejects — any failure just
+  // resolves null, so a page module can treat "no logged-in user available"
+  // as a normal case and fall back to asking.
+  var resolvedUsername = null;
+  var resolvingUsernamePromise = null;
+  var CURRENT_USER_QUERY = 'query getMe { me { id username } }';
+
+  function getCurrentUsername() {
+    if (resolvedUsername) return Promise.resolve(resolvedUsername);
+    if (resolvingUsernamePromise) return resolvingUsernamePromise;
+
+    resolvingUsernamePromise = graphql(CURRENT_USER_QUERY, {}).then(function (json) {
+      var username = json && json.data && json.data.me && json.data.me.username;
+      resolvedUsername = username || null;
+      return resolvedUsername;
+    }).catch(function () {
+      return null;
+    }).finally(function () {
+      resolvingUsernamePromise = null;
+    });
+
+    return resolvingUsernamePromise;
+  }
+
+  var TRIGGER_MUTATION =
+    'mutation Trigger($id: ID!, $pageId: ID!, $orgId: ID!, $input: JSON) {' +
+    '  executeWorkflowFromPage(id: $id, pageId: $pageId, orgId: $orgId, input: $input) {' +
+    '    executionId' +
+    '  }' +
+    '}';
+
+  function statusQuery(includeConductor) {
+    var fields = 'id status statusEnum numSuccessfulTasks';
+    if (includeConductor) fields += ' conductor { output }';
+    return (
+      'query ExecStatus($id: ID!, $orgId: ID!) {' +
+      '  workflowExecutions(where: { id: $id, orgId: $orgId }) {' +
+      '    ' + fields +
+      '  }' +
+      '}'
+    );
+  }
+
+  // Builds one independent workflow client: its own workflow ID, its own
+  // output key to read the result from, and (optionally) its own
+  // sessionStorage cache key prefix. Two clients built from this factory
+  // can trigger, poll and cache fully in parallel — nothing below this
+  // point is shared between instances (only the module-level helpers above
+  // are shared, and those are safe to share — see the file header comment).
+  //
+  // `cacheKeyPrefix` is optional. When omitted (e.g. the drill-through
+  // ticket lookup, which is keyed on {start,end,team,metric,value} rather
+  // than "once per day"), caching is a no-op here and getPayload() always
+  // fetches fresh — callers that need per-parameter caching keep their own
+  // in-memory cache instead.
+  function createWorkflowClient(clientOptions) {
+    var workflowId     = clientOptions.workflowId;
+    var outputKey       = clientOptions.outputKey;
+    var cacheKeyPrefix = clientOptions.cacheKeyPrefix;
+    // When true, and neither output[outputKey] nor output.result is present,
+    // fall back to using the whole conductor.output object as the payload.
+    // Useful for a "fire and forget" write-style workflow whose real
+    // conductor.output shape hasn't been observed yet (e.g. a workflow that
+    // just returns "{ok: true}") — this avoids the call hanging/erroring if
+    // the workflow returns the object directly with no wrapper key, without
+    // changing behaviour for any other client.
+    var rawOutputFallback = !!clientOptions.rawOutputFallback;
+
+    // `suffix` lets a single client cache more than one thing per day —
+    // e.g. a client that's re-triggered with different filter input
+    // (dates, team, etc.) whenever those filters change needs its own
+    // cache slot per combination, to avoid serving one filter combo's
+    // payload under another's. Omitted by callers that only ever fetch one
+    // thing per day.
+    function cacheKey(suffix) {
+      return cacheKeyPrefix + todayKey() + (suffix ? '_' + suffix : '');
+    }
+
+    function readCache(suffix) {
+      if (!cacheKeyPrefix) return null;
+      try {
+        var raw = sessionStorage.getItem(cacheKey(suffix));
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function writeCache(payload, suffix) {
+      if (!cacheKeyPrefix) return;
+      try {
+        sessionStorage.setItem(cacheKey(suffix), JSON.stringify(payload));
+      } catch (e) {
+        // sessionStorage unavailable/full — non-fatal, just skip caching.
+      }
+    }
+
+    function clearCache(suffix) {
+      if (!cacheKeyPrefix) return;
+      try {
+        sessionStorage.removeItem(cacheKey(suffix));
+      } catch (e) { /* noop */ }
+    }
+
+    function triggerWorkflow(input) {
+      return getOrgId().then(function (orgId) {
+        return graphql(TRIGGER_MUTATION, {
+          id: workflowId,
+          pageId: NAT_CONFIG.PAGE_ID,
+          orgId: orgId,
+          input: input || {},
+        });
+      })
+        .then(function (json) {
+          var executionId = json && json.data && json.data.executeWorkflowFromPage &&
+            json.data.executeWorkflowFromPage.executionId;
+          if (!executionId) {
+            var detail = describeGraphQLErrors(json);
+            throw new Error('No execution ID returned when triggering the workflow.' + (detail ? ' ' + detail : ''));
+          }
+          return executionId;
+        });
+    }
+
+    function pollOnce(executionId) {
+      var query = statusQuery(conductorFieldSupported);
+      return getOrgId().then(function (orgId) {
+        return graphql(query, { id: executionId, orgId: orgId });
+      }).then(function (json) {
+        if (conductorFieldSupported && hasConductorPathError(json)) {
+          // Partial response: a row resolved but conductor was refused.
+          // Drop conductor from the query going forward and keep polling status.
+          conductorFieldSupported = false;
+          return { partial: true, execution: null };
+        }
+        var list = (json && json.data && json.data.workflowExecutions) || [];
+        var execution = list[0] || null;
+        return { partial: false, execution: execution };
+      });
+    }
+
+    // `elapsed`/`timedOut` live inside this per-call Promise executor, so
+    // concurrent polls from different clients never share a timer or a
+    // timeout flag.
+    function waitForCompletion(executionId, onProgress) {
+      return new Promise(function (resolve, reject) {
+        var elapsed = 0;
+        var timedOut = false;
+
+        function tick() {
+          if (timedOut) return;
+          elapsed += NAT_CONFIG.POLL_INTERVAL_MS;
+
+          pollOnce(executionId).then(function (result) {
+            if (timedOut) return;
+
+            if (result.partial) {
+              if (onProgress) {
+                onProgress({ status: 'running', numSuccessfulTasks: null, degraded: true });
+              }
+            } else {
+              var execution = result.execution;
+              if (!execution) {
+                if (onProgress) onProgress({ status: 'unknown', numSuccessfulTasks: null });
+              } else {
+                if (onProgress) {
+                  onProgress({
+                    status: execution.status,
+                    numSuccessfulTasks: execution.numSuccessfulTasks,
+                  });
+                }
+
+                var isTerminal = TERMINAL_STATUSES.indexOf(execution.statusEnum) !== -1;
+                if (isTerminal) {
+                  var succeeded = TERMINAL_SUCCESS_STATUSES.indexOf(execution.statusEnum) !== -1;
+                  if (!succeeded) {
+                    reject(new Error('Workflow execution ended with status ' + execution.statusEnum + '.'));
+                    return;
+                  }
+                  var output = execution.conductor && execution.conductor.output;
+                  // "result" is also accepted as a fallback key in case a
+                  // workflow uses that generic name instead of its own.
+                  var payload = output && (output[outputKey] || output.result);
+                  if (!payload && rawOutputFallback && output && typeof output === 'object') {
+                    payload = output;
+                  }
+                  if (!payload) {
+                    if (!conductorFieldSupported) {
+                      reject(new Error(
+                        'Workflow completed but result data was unavailable (conductor field was refused by the API).'
+                      ));
+                      return;
+                    }
+                    // Completed but result not populated yet on this tick — keep polling briefly.
+                  } else {
+                    resolve(payload);
+                    return;
+                  }
+                }
+              }
+            }
+
+            if (elapsed >= NAT_CONFIG.POLL_TIMEOUT_MS) {
+              timedOut = true;
+              reject(new Error('TIMEOUT'));
+              return;
+            }
+            setTimeout(tick, NAT_CONFIG.POLL_INTERVAL_MS);
+          }).catch(function (err) {
+            if (timedOut) return;
+            if (elapsed >= NAT_CONFIG.POLL_TIMEOUT_MS) {
+              timedOut = true;
+              reject(new Error('TIMEOUT'));
+              return;
+            }
+            // Transient fetch error mid-poll — retry rather than fail hard.
+            setTimeout(tick, NAT_CONFIG.POLL_INTERVAL_MS);
+          });
+        }
+
+        setTimeout(tick, NAT_CONFIG.POLL_INTERVAL_MS);
+      });
+    }
+
+    // Runs trigger + poll, always writing a fresh cache entry on success.
+    function fetchFresh(input, onProgress, suffix) {
+      conductorFieldSupported = true;
+      if (onProgress) onProgress({ status: 'REQUESTED', numSuccessfulTasks: 0 });
+      return triggerWorkflow(input).then(function (executionId) {
+        return waitForCompletion(executionId, onProgress);
+      }).then(function (payload) {
+        writeCache(payload, suffix);
+        return payload;
+      });
+    }
+
+    // Public API: returns cached payload if present for today, otherwise
+    // triggers + polls. `forceRefresh` bypasses the cache (Refresh button).
+    // `input` is passed through to the workflow trigger (e.g. { days: 90 });
+    // defaults to {}.
+    // `cacheSuffix` namespaces the cache slot when a client can be called
+    // with more than one distinct input per day (see the comment on
+    // cacheKey() above) — omitted by callers that only ever fetch one
+    // thing per day.
+    function getPayload(getOptions) {
+      getOptions = getOptions || {};
+      var onProgress = getOptions.onProgress;
+      var input = getOptions.input || {};
+      var suffix = getOptions.cacheSuffix;
+      if (!getOptions.forceRefresh) {
+        var cached = readCache(suffix);
+        if (cached) return Promise.resolve(cached);
+      } else {
+        clearCache(suffix);
+      }
+      return fetchFresh(input, onProgress, suffix);
+    }
+
+    return {
+      getPayload: getPayload,
+      clearCache: clearCache,
+    };
+  }
+
+  // One client per Rewst workflow, each with its own outputKey and
+  // cacheKeyPrefix so their sessionStorage caches never collide.
+  var overviewClient = createWorkflowClient({
+    workflowId: NAT_CONFIG.REWST_WORKFLOW_ID_PATCH_OVERVIEW,
+    outputKey: 'overview',
+    cacheKeyPrefix: NAT_CONFIG.CACHE_KEY_PREFIX + 'getOverview_',
+    rawOutputFallback: true,
+  });
+  var siteDetailClient = createWorkflowClient({
+    workflowId: NAT_CONFIG.REWST_WORKFLOW_ID_PATCH_SITE_DETAIL,
+    outputKey: 'site_detail',
+    cacheKeyPrefix: NAT_CONFIG.CACHE_KEY_PREFIX + 'getSiteDetail_',
+    rawOutputFallback: true,
+  });
+  var drilldownClient = createWorkflowClient({
+    workflowId: NAT_CONFIG.REWST_WORKFLOW_ID_PATCH_DEVICE_DRILLDOWN,
+    outputKey: 'drilldown',
+    cacheKeyPrefix: NAT_CONFIG.CACHE_KEY_PREFIX + 'getDeviceDrilldown_',
+    rawOutputFallback: true,
+  });
+
+  // ── Unwrap + normalise ───────────────────────────────────────────────────
+  // The payload may arrive as { key: {...} }, { result: { key: {...} } },
+  // { result: {...} }, the object itself, or a JSON string of any of those.
+  function parseIfString(v) {
+    if (typeof v !== 'string') return v;
+    try { return JSON.parse(v); } catch (e) { return v; }
+  }
+
+  function unwrap(payload, key) {
+    var p = parseIfString(payload);
+    for (var depth = 0; depth < 4 && p && typeof p === 'object' && !Array.isArray(p); depth++) {
+      if (p[key] != null) return parseIfString(p[key]);
+      if (p.result != null) p = parseIfString(p.result);
+      else break;
+    }
+    return p;
+  }
+
+  var BOOL_KEYS = { stale: 1, online: 1, enabled: 1, reboot_required: 1 };
+
+  function toBool(v) {
+    if (typeof v === 'string') return v.trim().toLowerCase() === 'true';
+    return !!v;
+  }
+
+  // Epoch ms (number or numeric string) or ISO string -> ISO string, else null.
+  function toIso(v) {
+    if (v == null || v === '') return null;
+    var n = typeof v === 'number' ? v : (/^\d{10,}$/.test(String(v)) ? Number(v) : NaN);
+    var d = isNaN(n) ? new Date(v) : new Date(n);
+    return isNaN(d.getTime()) ? null : d.toISOString();
+  }
+
+  function normalise(node) {
+    if (Array.isArray(node)) return node.map(normalise);
+    if (!node || typeof node !== 'object') return node;
+    var out = {};
+    Object.keys(node).forEach(function (k) {
+      var v = node[k];
+      if (BOOL_KEYS[k] && typeof v !== 'number') { out[k] = toBool(v); return; }
+      if (k === 'release_date') { out[k] = toIso(v); return; }
+      if (/_json$/.test(k) && typeof v === 'string') {
+        var parsed = normalise(parseIfString(v));
+        out[k] = parsed;
+        out[k.slice(0, -5)] = parsed;
+        return;
+      }
+      out[k] = normalise(v);
+    });
+    return out;
+  }
+
+  function finish(payload, key) {
+    var data = unwrap(payload, key);
+    if (!data || typeof data !== 'object') {
+      throw new Error('The workflow returned no "' + key + '" data.');
+    }
+    return normalise(data);
+  }
+
+  // ── Mock data (USE_MOCK_DATA) ────────────────────────────────────────────
+  // NAT_MOCK holds the fixtures from mock/ (inlined by build.js), in the same
+  // wrapped shape the workflows return, so they go through the same unwrap
+  // and normalise path as live data.
+  function mockResponse(build) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        try { resolve(build()); } catch (e) { reject(e); }
+      }, 450);
+    });
+  }
+
+  function mockFixture(name, key) {
+    if (typeof NAT_MOCK === 'undefined' || !NAT_MOCK) {
+      throw new Error('Mock data is not included in this build.');
+    }
+    return finish(JSON.parse(JSON.stringify(NAT_MOCK[name])), key);
+  }
+
+  function trimTrend(data, days) {
+    if (data.trend && days) data.trend = data.trend.slice(-days);
+    return data;
+  }
+
+  // ── Cache ────────────────────────────────────────────────────────────────
+  // Live calls are cached in sessionStorage by function + arguments + day
+  // (see createWorkflowClient). clearCache() drops the entries for the
+  // functions the current page uses; the header Refresh button calls it.
+  function clearCache(fnNames) {
+    var prefixes = (fnNames || ['getOverview', 'getSiteDetail', 'getDeviceDrilldown']).map(function (n) {
+      return NAT_CONFIG.CACHE_KEY_PREFIX + n + '_';
+    });
+    try {
+      var doomed = [];
+      for (var i = 0; i < sessionStorage.length; i++) {
+        var k = sessionStorage.key(i);
+        if (prefixes.some(function (p) { return k.indexOf(p) === 0; })) doomed.push(k);
+      }
+      doomed.forEach(function (k) { sessionStorage.removeItem(k); });
+    } catch (e) { /* non-fatal */ }
+  }
+
+  // The pages' only entry points to data. Mock or live is decided here, so
+  // page modules never know which one they are talking to.
+  NAT_DATA = {
+    isMock: function () { return !!NAT_CONFIG.USE_MOCK_DATA; },
+
+    getOverview: function (days) {
+      if (NAT_CONFIG.USE_MOCK_DATA) {
+        return mockResponse(function () { return trimTrend(mockFixture('overview', 'overview'), days); });
+      }
+      return overviewClient.getPayload({
+        input: { days: days },
+        cacheSuffix: JSON.stringify([days]),
+      }).then(function (p) { return finish(p, 'overview'); });
+    },
+
+    getSiteDetail: function (siteUid, days) {
+      if (NAT_CONFIG.USE_MOCK_DATA) {
+        return mockResponse(function () { return trimTrend(mockFixture('site_detail', 'site_detail'), days); });
+      }
+      return siteDetailClient.getPayload({
+        input: { site_uid: siteUid, days: days },
+        cacheSuffix: JSON.stringify([siteUid, days]),
+      }).then(function (p) { return finish(p, 'site_detail'); });
+    },
+
+    getDeviceDrilldown: function (deviceUid) {
+      if (NAT_CONFIG.USE_MOCK_DATA) {
+        return mockResponse(function () { return mockFixture('drilldown', 'drilldown'); });
+      }
+      return drilldownClient.getPayload({
+        input: { device_uid: deviceUid },
+        cacheSuffix: JSON.stringify([deviceUid]),
+      }).then(function (p) { return finish(p, 'drilldown'); });
+    },
+
+    clearCache: clearCache,
+    getCurrentUsername: getCurrentUsername,
+  };
+})();
+
+
+  </script>
+  <script>
+    // ─────────────────────────────────────────────────────────────────────────────
+// UTIL — shared helpers used by every page module: DOM builder, formatters,
+// KPI tiles, pills, info tooltips, SVG trend chart, sortable/paged table and
+// the loading / error / empty state panels.
+// Note: this file must never contain a double-curly or curly-percent
+// sequence (build.js aborts if it does) — keep a space or newline between
+// consecutive closing braces.
+// ─────────────────────────────────────────────────────────────────────────────
+
+var NAT_UTIL = (function () {
+  'use strict';
+
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var EMPTY_TEXT = 'No snapshot data yet. The first daily snapshot runs at 05:31.';
+
+  var STATUS_ORDER = ['FullyPatched', 'ApprovedPending', 'RebootRequired', 'InstallError', 'NoPolicy', 'NoData'];
+  var STATUS_META = {
+    FullyPatched:    { label: 'Fully patched',    color: 'var(--color-patch-fully)' },
+    ApprovedPending: { label: 'Approved pending', color: 'var(--color-patch-approved)' },
+    RebootRequired:  { label: 'Reboot required',  color: 'var(--color-patch-reboot)' },
+    InstallError:    { label: 'Install error',    color: 'var(--color-patch-error)' },
+    NoPolicy:        { label: 'No policy',        color: 'var(--color-patch-nopolicy)' },
+    NoData:          { label: 'No data',          color: 'var(--color-patch-nodata)' },
+  };
+  var SEVERITY_META = {
+    CRITICAL:    { label: 'Critical',    color: 'var(--color-sev-critical)' },
+    IMPORTANT:   { label: 'Important',   color: 'var(--color-sev-important)' },
+    MODERATE:    { label: 'Moderate',    color: 'var(--color-sev-moderate)' },
+    LOW:         { label: 'Low',         color: 'var(--color-sev-low)' },
+    UNSPECIFIED: { label: 'Unspecified', color: 'var(--color-sev-low)' },
+  };
+
+  var TILE_DEFS = [
+    { key: 'devices_in_scope', label: 'Devices in scope', kind: 'int' },
+    { key: 'coverage_pct', label: 'Coverage', kind: 'pct',
+      tip: 'Devices with a patch policy, out of all devices in scope.' },
+    { key: 'compliance_pct', label: 'Compliance', kind: 'pct',
+      tip: 'Fully patched devices, out of devices with a policy that reported in the last 14 days.' },
+    { key: 'install_error', label: 'Install errors', kind: 'int' },
+    { key: 'devices_stale', label: 'Stale devices', kind: 'int',
+      tip: "Devices that haven't reported to Datto in 14+ days. Excluded from compliance." },
+  ];
+
+  // ── Drill-through definitions ───────────────────────────────────────────
+  // Overview metric -> customer-table filter/sort and the device filter carried
+  // to the Customer view. `field` is both the sites-list field and its column
+  // key. `device` is a DEVICE_FILTERS key (or null for "show all devices").
+  function above0(v) { var n = numOrNull(v); return n !== null && n > 0; }
+  // Fields: field = sort + highlight column key; filterField = field the site
+  // filter tests (defaults to field); base = the base column the Columns menu
+  // knows it by; group = 'ws' | 'srv' when the table swaps to that device
+  // type's columns; device = device filter keys for the Customer view.
+  function below(n) { return function (v) { var x = numOrNull(v); return x !== null && x < n; }; }
+  var DRILLS = {
+    install_error:    { field: 'install_error',        test: above0, dir: 'desc', device: ['install_error'],    desc: 'install errors' },
+    stale:            { field: 'devices_stale',        test: above0, dir: 'desc', device: ['stale'],            desc: 'stale devices' },
+    no_policy:        { field: 'no_policy',            test: above0, dir: 'desc', device: ['no_policy'],        desc: 'devices with no patch policy' },
+    compliance:       { field: 'compliance_pct',       test: below(95), dir: 'asc', device: [],                 desc: 'compliance below 95%' },
+    os_unsupported:   { field: 'os_unsupported',       test: above0, dir: 'desc', device: ['unsupported_os'],   desc: 'unsupported operating systems' },
+    os_ending_soon:   { field: 'os_ending_soon',       test: above0, dir: 'desc', device: ['ending_soon'],      desc: 'operating system support ending soon' },
+    reboot_overdue:   { field: 'reboot_overdue',       test: above0, dir: 'desc', device: ['reboot_overdue'],   desc: 'overdue reboots' },
+    oldest_critical:  { field: 'oldest_critical_days', test: function (v) { return numOrNull(v) !== null; }, dir: 'desc', device: ['approved_pending'], desc: 'an outstanding critical patch' },
+    approved_pending: { field: 'approved_pending',     test: above0, dir: 'desc', device: ['approved_pending'], desc: 'approved patches pending' },
+    reboot_required:  { field: 'reboot_required',      test: above0, dir: 'desc', device: ['reboot_required'],  desc: 'reboots required' },
+  };
+  [['ws', 'workstations', 'Workstations'], ['srv', 'servers', 'Servers']].forEach(function (g) {
+    var p = g[0], type = g[1], name = g[2];
+    function add(suffix, o) {
+      DRILLS[p + '_' + suffix] = Object.assign({ group: p, dir: 'desc', test: above0 }, o);
+    }
+    add('card', { field: p + '_compliance_pct', filterField: p + '_devices_in_scope', base: 'compliance_pct', dir: 'asc', device: [type], desc: name + ' in scope' });
+    add('compliance', { field: p + '_compliance_pct', base: 'compliance_pct', test: below(95), dir: 'asc', device: [type], desc: name + ' with compliance below 95%' });
+    add('coverage', { field: p + '_coverage_pct', base: 'coverage_pct', test: below(100), dir: 'asc', device: [type, 'no_policy'], desc: name + ' with coverage below 100%' });
+    add('install_error', { field: p + '_install_error', base: 'install_error', device: [type, 'install_error'], desc: name + ' with install errors' });
+    add('stale', { field: p + '_stale', base: 'devices_stale', device: [type, 'stale'], desc: name + ' with stale devices' });
+  });
+  var DEVICE_FILTER_KEYS = ['workstations', 'servers', 'install_error', 'no_policy', 'approved_pending', 'reboot_required', 'stale', 'unsupported_os', 'ending_soon', 'reboot_overdue'];
+  // Overview tile / risk-tile / status-segment key -> DRILLS key.
+  var TILE_DRILL = { coverage_pct: 'no_policy', compliance_pct: 'compliance', install_error: 'install_error', devices_stale: 'stale' };
+  var RISK_DRILL = { os_unsupported: 'os_unsupported', os_ending_soon: 'os_ending_soon', reboot_overdue: 'reboot_overdue', oldest_critical_days: 'oldest_critical' };
+  var STATUS_DRILL = { ApprovedPending: 'approved_pending', RebootRequired: 'reboot_required', NoPolicy: 'no_policy', InstallError: 'install_error' };
+
+  // Makes a card/item keyboard- and mouse-clickable with a hover hint pill.
+  function makeClickable(node, hint, onClick) {
+    node.classList.add('pi-clickable');
+    node.setAttribute('role', 'button');
+    node.setAttribute('tabindex', '0');
+    node.addEventListener('click', function (e) {
+      var hit = e.target.closest && e.target.closest('.pi-info, .pi-clickable');
+      if (hit && hit !== node) return;
+      onClick();
+    });
+    node.addEventListener('keydown', function (e) {
+      if (e.target !== node) return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); }
+    });
+    return node;
+  }
+
+  // ── Formatting ──────────────────────────────────────────────────────────
+  function fmtDate(yyyymmdd) {
+    var s = String(yyyymmdd == null ? '' : yyyymmdd);
+    if (!/^\d{8}$/.test(s)) return s;
+    var m = MONTHS[parseInt(s.slice(4, 6), 10) - 1];
+    if (!m) return s;
+    return parseInt(s.slice(6, 8), 10) + ' ' + m + ' ' + s.slice(0, 4);
+  }
+
+  function isNum(n) { return typeof n === 'number' && isFinite(n); }
+
+  function fmtPct(n) { return isNum(n) ? n.toFixed(1) + '%' : '\u2014'; }
+  function fmtInt(n) { return isNum(n) ? n.toLocaleString('en-GB') : '\u2014'; }
+
+  function pad2(n) { return String(n).padStart(2, '0'); }
+  function localYmd(d) { return '' + d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate()); }
+
+  // True when as_of is today or yesterday (local time).
+  function isFresh(asOf) {
+    var now = new Date();
+    var y = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+    var s = String(asOf || '');
+    return s === localYmd(now) || s === localYmd(y);
+  }
+
+  function relTime(iso) {
+    var t = Date.parse(iso || '');
+    if (isNaN(t)) return '\u2014';
+    var mins = Math.floor((Date.now() - t) / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return mins + (mins === 1 ? ' minute ago' : ' minutes ago');
+    var hours = Math.floor(mins / 60);
+    if (hours < 24) return hours + (hours === 1 ? ' hour ago' : ' hours ago');
+    var days = Math.floor(hours / 24);
+    return days + (days === 1 ? ' day ago' : ' days ago');
+  }
+
+  function safeUrl(u) {
+    return /^https?:\/\//i.test(String(u || '')) ? u : null;
+  }
+
+  // ── DOM ─────────────────────────────────────────────────────────────────
+  // el('div', { class: 'foo', onclick: fn }, [child1, 'text']).
+  // attrs.class sets className; attrs.html sets innerHTML (static markup
+  // only — never pass data); on* functions become listeners; "selected"/
+  // "checked" are DOM properties; everything else is setAttribute.
+  function el(tag, attrs, children) {
+    var node = document.createElement(tag);
+    attrs = attrs || {};
+    Object.keys(attrs).forEach(function (k) {
+      var v = attrs[k];
+      if (v === undefined || v === null || v === false) return;
+      if (k === 'class') node.className = v;
+      else if (k === 'html') node.innerHTML = v;
+      else if (k.indexOf('on') === 0 && typeof v === 'function') node.addEventListener(k.slice(2), v);
+      else if (k === 'selected') node.selected = true;
+      else if (k === 'checked') node.checked = true;
+      else node.setAttribute(k, v);
+    });
+    // Any child that is not a Node is converted to text (arrays are flattened,
+    // null/undefined/booleans are skipped) so bad data can never reach
+    // appendChild as a non-Node.
+    (function add(list) {
+      list.forEach(function (c) {
+        if (c == null || typeof c === 'boolean') return;
+        if (Array.isArray(c)) { add(c); return; }
+        if (typeof c === 'object' && typeof c.nodeType === 'number') { node.appendChild(c); return; }
+        node.appendChild(document.createTextNode(typeof c === 'object' ? safeText(c) : String(c)));
+      });
+    })(children || []);
+    return node;
+  }
+
+  // Text for any value: objects/arrays become compact JSON rather than "[object Object]".
+  function safeText(v) {
+    if (v == null) return '';
+    if (typeof v === 'string') return v;
+    if (typeof v === 'object') {
+      try { return JSON.stringify(v); } catch (e) { return ''; }
+    }
+    return String(v);
+  }
+
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+  function svgEl(tag, attrs, children) {
+    var node = document.createElementNS(SVG_NS, tag);
+    Object.keys(attrs || {}).forEach(function (k) { node.setAttribute(k, attrs[k]); });
+    (children || []).forEach(function (c) { if (c) node.appendChild(c); });
+    return node;
+  }
+
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); return node; }
+
+  // ── Pills, tags, tooltip ────────────────────────────────────────────────
+  function pill(text, color) {
+    return el('span', { class: 'pi-pill', style: '--pc:' + color }, [text]);
+  }
+  function statusPill(status) {
+    var m = STATUS_META[status];
+    return m ? pill(m.label, m.color) : pill(safeText(status) || 'Unknown', 'var(--color-patch-nopolicy)');
+  }
+  function severityPill(sev) {
+    var key = String(sev || 'UNSPECIFIED').toUpperCase();
+    var m = SEVERITY_META[key] || SEVERITY_META.UNSPECIFIED;
+    return pill(SEVERITY_META[key] ? m.label : (key.charAt(0) + key.slice(1).toLowerCase()), m.color);
+  }
+
+  var tipSeq = 0;
+  function infoTip(text) {
+    var id = 'pi-tip-' + (++tipSeq);
+    return el('span', { class: 'pi-info' }, [
+      el('button', { type: 'button', class: 'pi-info-btn', 'aria-label': 'More information', 'aria-describedby': id }, ['i']),
+      el('span', { class: 'pi-info-tip', role: 'tooltip', id: id }, [text]),
+    ]);
+  }
+
+  function warnBadge(text) {
+    return el('span', { class: 'pi-warn-badge', role: 'status' }, ['\u26A0 ' + text]);
+  }
+
+  // Compliance cell: colour plus a symbol and the number, so colour is never
+  // the only signal.
+  function complianceCell(n) {
+    if (!isNum(n)) return '\u2014';
+    var cls = n >= 95 ? 'pi-cell-good' : n >= 80 ? 'pi-cell-warn' : 'pi-cell-bad';
+    var icon = n >= 95 ? '\u2713 ' : n >= 80 ? '! ' : '\u2715 ';
+    return { cls: cls, node: el('span', {}, [icon + n.toFixed(1) + '%']) };
+  }
+
+  function deltaNode(n) {
+    if (!isNum(n)) return '\u2014';
+    if (n > 0) return el('span', { class: 'pi-delta-up' }, ['\u25B2 +' + n.toFixed(1) + ' pts']);
+    if (n < 0) return el('span', { class: 'pi-delta-down' }, ['\u25BC ' + n.toFixed(1) + ' pts']);
+    return '0.0 pts';
+  }
+
+  // ── States ──────────────────────────────────────────────────────────────
+  function skel(height, extra) {
+    return el('div', { class: 'pi-skel', style: 'height:' + height + ';' + (extra || ''), 'aria-hidden': 'true' });
+  }
+  function skelTiles() {
+    var wrap = el('div', { class: 'pi-tiles', role: 'status', 'aria-label': 'Loading' });
+    for (var i = 0; i < 5; i++) wrap.appendChild(skel('92px'));
+    var groups = el('div', { class: 'pi-groups', 'aria-hidden': 'true' }, [skel('150px'), skel('150px')]);
+    var risk = el('div', { class: 'pi-risk-row', 'aria-hidden': 'true' }, [skel('110px'), skel('110px'), skel('110px'), skel('110px')]);
+    return el('div', {}, [wrap, groups, risk]);
+  }
+  function skelBlock(height) {
+    return el('div', { role: 'status', 'aria-label': 'Loading' }, [skel(height)]);
+  }
+  function skelTable(rows) {
+    var wrap = el('div', { class: 'nat-card', role: 'status', 'aria-label': 'Loading' });
+    wrap.appendChild(skel('22px', 'margin-bottom:12px;width:40%;'));
+    for (var i = 0; i < (rows || 6); i++) wrap.appendChild(skel('18px', 'margin-bottom:10px;'));
+    return wrap;
+  }
+
+  function errorPanel(message, retry) {
+    var card = el('div', { class: 'nat-card pi-state pi-state--error', role: 'alert' }, [
+      el('p', { class: 'pi-state-title' }, ['Something went wrong']),
+      el('p', {}, [message]),
+    ]);
+    if (retry) card.appendChild(el('button', { type: 'button', class: 'nat-btn nat-btn--primary', onclick: retry }, ['Retry']));
+    return card;
+  }
+
+  function emptyPanel(message) {
+    return el('div', { class: 'nat-card pi-state' }, [
+      el('p', { class: 'pi-state-title' }, ['Nothing to show yet']),
+      el('p', {}, [message || EMPTY_TEXT]),
+    ]);
+  }
+
+  function errorMessage(err) {
+    if (err && err.message === 'TIMEOUT') return 'The workflow did not finish within 90 seconds.';
+    return 'Could not load data: ' + (err && err.message ? err.message : 'unknown error');
+  }
+
+  // Secondary "132 of 299 devices" line + explanatory tooltip behind a
+  // compliance/coverage %. Returns null when the counts are missing (older data).
+  function countDetail(g, kind, noun) {
+    if (!g || typeof g !== 'object') return null;
+    var scope = numOrNull(g.devices_in_scope);
+    var part = numOrNull(kind === 'compliance' ? g.fully_patched_assessable : g.covered);
+    var whole = kind === 'compliance' ? numOrNull(g.assessable) : scope;
+    if (part === null || whole === null || scope === null) return null;
+    var tip = kind === 'compliance'
+      ? fmtInt(part) + ' of ' + fmtInt(whole) + ' ' + noun + ' are fully patched. ' + fmtInt(Math.max(0, scope - whole)) + ' ' + noun + ' with no policy or no recent check-in are excluded.'
+      : fmtInt(part) + ' of ' + fmtInt(whole) + ' ' + noun + ' have a patch policy. ' + fmtInt(Math.max(0, scope - part)) + ' have no policy.';
+    return { text: fmtInt(part) + ' of ' + fmtInt(whole) + ' devices', tip: tip };
+  }
+
+  // ── KPI tiles ───────────────────────────────────────────────────────────
+  // drill = { hint, on: { <tile key>: fn } } makes the listed tiles clickable.
+  function kpiTiles(tiles, drill) {
+    tiles = tiles || {};
+    var grid = el('div', { class: 'pi-tiles' });
+    TILE_DEFS.forEach(function (d) {
+      var v = tiles[d.key];
+      var label = el('p', { class: 'nat-metric-label' }, [d.label]);
+      if (d.tip) label.appendChild(infoTip(d.tip));
+      var card = el('div', { class: 'nat-card nat-metric-card' }, [
+        label,
+        el('p', { class: 'nat-metric-pct' }, [d.kind === 'pct' ? fmtPct(v) : fmtInt(v)]),
+      ]);
+      var detail = d.kind === 'pct' ? countDetail(tiles, d.key === 'compliance_pct' ? 'compliance' : 'coverage', 'devices') : null;
+      if (detail) card.appendChild(el('p', { class: 'nat-metric-count', title: detail.tip }, [detail.text]));
+      if (drill && drill.on[d.key]) makeClickable(card, drill.hint, drill.on[d.key]);
+      grid.appendChild(card);
+    });
+    return grid;
+  }
+
+  // ── Workstations / Servers split ────────────────────────────────────────
+  // Two wider cards under the KPI tiles. A group that is missing from the
+  // response (older data) is skipped; if both are missing, returns null.
+  var GROUP_DEFS = [
+    { key: 'workstations', p: 'ws', title: 'Workstations', sub: 'Desktops and laptops', none: 'No workstations at this site' },
+    { key: 'servers', p: 'srv', title: 'Servers', sub: 'Physical and virtual servers', none: 'No servers at this site' },
+  ];
+
+  function numOrNull(v) {
+    if (v == null || v === '' || typeof v === 'boolean') return null;
+    var n = Number(v);
+    return isFinite(n) ? n : null;
+  }
+
+  // drill = { hint, on: { ws_card, ws_compliance, ws_coverage, ws_install_error,
+  // ws_stale, srv_* : fn } }. A card is clickable if on.<p>_card exists, and
+  // each figure if its own key exists. Empty (0 device) cards never are.
+  function groupCards(tiles, drill) {
+    var cards = [];
+    GROUP_DEFS.forEach(function (def) {
+      var g = tiles && tiles[def.key];
+      if (!g || typeof g !== 'object' || Array.isArray(g)) return;
+      var count = numOrNull(g.devices_in_scope);
+      if (count === null) return;
+
+      var head = el('div', { class: 'pi-grp-head' }, [
+        el('h3', { class: 'pi-grp-title' }, [def.title]),
+        el('p', { class: 'nat-muted' }, [def.sub]),
+      ]);
+      var card = el('div', { class: 'nat-card pi-grp' + (count === 0 ? ' pi-grp--empty' : '') }, [head]);
+      function link(node, suffix) {
+        var fn = drill && count > 0 && drill.on[def.p + '_' + suffix];
+        return fn ? makeClickable(node, drill.hint, fn) : node;
+      }
+
+      if (count === 0) {
+        card.appendChild(el('p', { class: 'pi-grp-none' }, [def.none]));
+      } else {
+        function pct(label, value, suffix) {
+          var c = complianceCell(numOrNull(value));
+          var shown = typeof c === 'string' ? el('span', {}, [c]) : el('span', { class: 'pi-grp-pct ' + c.cls }, [c.node]);
+          var parts = [el('span', { class: 'nat-muted' }, [label]), shown];
+          var detail = countDetail(g, suffix, def.key === 'servers' ? 'servers' : 'workstations');
+          if (detail) parts.push(el('span', { class: 'nat-muted pi-count-line', title: detail.tip }, [detail.text]));
+          return link(el('div', { class: 'pi-grp-metric', title: detail ? detail.tip : null }, parts), suffix);
+        }
+        function small(label, value, suffix) {
+          return link(el('div', { class: 'pi-grp-small' }, [el('span', { class: 'nat-muted' }, [label]), el('b', {}, [fmtInt(numOrNull(value))])]), suffix);
+        }
+        card.appendChild(el('p', { class: 'pi-grp-count' }, [fmtInt(count), el('span', { class: 'nat-muted' }, [' devices'])]));
+        card.appendChild(el('div', { class: 'pi-grp-row' }, [pct('Compliance', g.compliance_pct, 'compliance'), pct('Coverage', g.coverage_pct, 'coverage')]));
+        card.appendChild(el('div', { class: 'pi-grp-row' }, [small('Install errors', g.install_error, 'install_error'), small('Stale', g.devices_stale, 'stale')]));
+      }
+      link(card, 'card');
+      cards.push(card);
+    });
+    return cards.length ? el('div', { class: 'pi-groups' }, cards) : null;
+  }
+
+  // ── Risk row, lifecycle pills, OS panel, status bar, CSV, column menu ───
+  var BAND_ICON = { good: '\u2713 ', warn: '! ', bad: '\u2715 ' };
+
+  // Age of the oldest outstanding patch: green < 7, amber 7-14, red > 14.
+  function ageCell(n) {
+    n = numOrNull(n);
+    if (n === null) return '\u2014';
+    var b = n < 7 ? 'good' : n <= 14 ? 'warn' : 'bad';
+    return { cls: 'pi-cell-' + b, node: el('span', {}, [BAND_ICON[b] + n + (n === 1 ? ' day' : ' days')]) };
+  }
+
+  function riskTiles(risk, drill) {
+    if (!risk || typeof risk !== 'object' || Array.isArray(risk)) return null;
+    var defs = [
+      { key: 'os_unsupported', label: 'Unsupported OS', sub: 'Past end of support', band: 'bad' },
+      { key: 'os_ending_soon', label: 'Support ending soon', sub: 'Ends within ~12 months', band: 'warn' },
+      { key: 'reboot_overdue', label: 'Reboot overdue', sub: 'Needs a reboot, not restarted in 7+ days', band: 'warn' },
+      { key: 'oldest_critical_days', label: 'Oldest critical patch', sub: 'Oldest approved critical patch still outstanding', age: true },
+    ];
+    var cards = [];
+    defs.forEach(function (d) {
+      if (risk[d.key] === undefined) return;
+      var n = numOrNull(risk[d.key]);
+      var value;
+      if (d.age) {
+        var c = ageCell(n);
+        value = typeof c === 'string' ? el('span', {}, [c]) : el('span', { class: 'pi-grp-pct ' + c.cls }, [c.node]);
+      } else if (n > 0) {
+        value = el('span', { class: 'pi-grp-pct pi-cell-' + d.band }, [BAND_ICON[d.band] + fmtInt(n)]);
+      } else {
+        value = el('span', {}, [fmtInt(n)]);
+      }
+      var card = el('div', { class: 'nat-card pi-risk' }, [
+        el('p', { class: 'nat-metric-label' }, [d.label]),
+        el('p', { class: 'pi-risk-val' }, [value]),
+        el('p', { class: 'nat-muted pi-risk-sub' }, [d.sub]),
+      ]);
+      if (d.age && risk.oldest_important_days !== undefined) {
+        var imp = numOrNull(risk.oldest_important_days);
+        card.appendChild(el('p', { class: 'nat-muted pi-risk-sub' }, ['Oldest important patch: ' + (imp === null ? '\u2014' : imp + (imp === 1 ? ' day' : ' days'))]));
+      }
+      if (drill && drill.on[d.key]) makeClickable(card, drill.hint, drill.on[d.key]);
+      cards.push(card);
+    });
+    return cards.length ? el('div', { class: 'pi-risk-row' }, cards) : null;
+  }
+
+  var LIFECYCLE_META = {
+    supported:   { label: 'Supported',      color: 'var(--color-patch-fully)' },
+    ending_soon: { label: 'Ending soon',    color: 'var(--color-patch-approved)' },
+    unsupported: { label: 'Unsupported',    color: 'var(--color-patch-error)' },
+    unknown:     { label: 'Check manually', color: 'var(--color-patch-nopolicy)' },
+  };
+
+  function lifecyclePill(lc) {
+    var m = LIFECYCLE_META[String(lc == null ? '' : lc).toLowerCase()] || LIFECYCLE_META.unknown;
+    return pill(m.label, m.color);
+  }
+
+  // Fixed family -> lifecycle mapping for the OS panel.
+  function familyLifecycle(family) {
+    var f = String(family == null ? '' : family).toLowerCase().replace(/\s+/g, ' ').trim().replace(/^windows (?=server)/, '');
+    if (/ltsc/.test(f) || /^(macos|mac os|other)/.test(f)) return 'unknown';
+    if (/^windows 11\b/.test(f) || /^server 20(19|22|25)\b/.test(f)) return 'supported';
+    if (/^server 2016\b/.test(f)) return 'ending_soon';
+    if (/^windows 10\b/.test(f) || /^windows (8|7|vista|xp)/.test(f) || /older/.test(f) || /^server 20(12|08|03)/.test(f)) return 'unsupported';
+    return 'unknown';
+  }
+
+  function osPanel(list) {
+    if (!Array.isArray(list)) return null;
+    var rows = [], total = 0;
+    list.forEach(function (o) {
+      if (!o || typeof o !== 'object' || numOrNull(o.devices) === null) return;
+      var n = numOrNull(o.devices);
+      total += n;
+      rows.push({ family: safeText(o.family) || 'Other', devices: n });
+    });
+    if (!rows.length || !total) return null;
+    rows.forEach(function (r) { r.share = (r.devices / total) * 100; r.lifecycle = familyLifecycle(r.family); });
+    return dataTable({
+      columns: [
+        { key: 'family', label: 'Operating system' },
+        { key: 'devices', label: 'Devices', num: true, render: function (r) { return fmtInt(r.devices); } },
+        { key: 'share', label: '% of total', num: true, render: function (r) {
+          return el('span', { class: 'pi-osshare' }, [
+            el('span', { class: 'pi-osbar', 'aria-hidden': 'true' }, [el('span', { style: 'width:' + r.share.toFixed(1) + '%' })]),
+            r.share.toFixed(1) + '%',
+          ]);
+        } },
+        { key: 'lifecycle', label: 'Lifecycle', render: function (r) { return lifecyclePill(r.lifecycle); } },
+      ],
+      rows: rows,
+      defaultSort: { key: 'devices', dir: 'desc' },
+    }).el;
+  }
+
+  // Horizontal stacked status bar with counts. Returns null with no data.
+  // drill = { hint, on: { <status key>: fn } } makes those segments and legend
+  // entries clickable.
+  function statusBreakdown(breakdown, drill) {
+    if (!breakdown || typeof breakdown !== 'object') return null;
+    var total = 0;
+    STATUS_ORDER.forEach(function (k) { total += numOrNull(breakdown[k]) || 0; });
+    if (!total) return null;
+    var card = el('div', { class: 'nat-card' });
+    var bar = el('div', { class: 'pi-stack', role: 'img', 'aria-label': 'Device status breakdown' });
+    var list = el('div', { class: 'pi-breakdown' });
+    STATUS_ORDER.forEach(function (k) {
+      var n = numOrNull(breakdown[k]) || 0;
+      var m = STATUS_META[k];
+      var share = ((n / total) * 100).toFixed(1) + '%';
+      var go = drill && drill.on[k];
+      if (n > 0) {
+        var seg = el('div', { style: '--pc:' + m.color + ';width:' + (n / total) * 100 + '%', title: m.label + ': ' + n + ' (' + share + ')' + (go ? ' \u2014 ' + drill.hint : '') });
+        if (go) { seg.classList.add('pi-seg-click'); seg.addEventListener('click', go); }
+        bar.appendChild(seg);
+      }
+      var item = el('div', { class: 'pi-breakdown-item' }, [
+        el('span', { class: 'pi-swatch', style: '--pc:' + m.color, 'aria-hidden': 'true' }),
+        m.label,
+        el('b', {}, [fmtInt(n) + ' \u00B7 ' + share]),
+      ]);
+      list.appendChild(go ? makeClickable(item, drill.hint, go) : item);
+    });
+    card.appendChild(bar);
+    card.appendChild(list);
+    return card;
+  }
+
+  function todayIso() {
+    var d = new Date();
+    return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+  }
+  function slug(s) {
+    return String(s == null ? '' : s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'site';
+  }
+
+  function csvCell(v) {
+    if (v == null) return '';
+    if (typeof v === 'boolean') return v ? 'true' : 'false';
+    var s = String(v);
+    // Stop spreadsheet apps treating text as a formula.
+    if (typeof v === 'string' && /^[=+@\t\r]/.test(s)) s = "'" + s;
+    return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  }
+
+  // cols: [{ label, value(row) }]
+  function downloadCsv(filename, cols, rows) {
+    var lines = [cols.map(function (c) { return csvCell(c.label); }).join(',')];
+    rows.forEach(function (r) {
+      lines.push(cols.map(function (c) { var v; try { v = c.value(r); } catch (e) { v = ''; } return csvCell(v); }).join(','));
+    });
+    var blob = new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = el('a', { href: url, download: filename, style: 'display:none' });
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  }
+
+  function exportButton(getRows, cols, getFilename) {
+    return el('button', { type: 'button', class: 'nat-btn', onclick: function () { downloadCsv(getFilename(), cols, getRows()); } }, ['Export CSV']);
+  }
+
+  // Show/hide columns menu; the choice is kept in sessionStorage only.
+  // defs: [{ key, label, locked, on }]
+  function columnMenu(defs, storageKey, onChange) {
+    var saved = null;
+    try { saved = JSON.parse(sessionStorage.getItem(storageKey) || 'null'); } catch (e) { saved = null; }
+    var visible = {};
+    var forced = null, boxes = {};
+    defs.forEach(function (d) { visible[d.key] = d.locked ? true : Array.isArray(saved) ? saved.indexOf(d.key) !== -1 : !!d.on; });
+    var list = el('div', { class: 'pi-menu-list' });
+    defs.forEach(function (d) {
+      var box = el('input', { type: 'checkbox', checked: visible[d.key], disabled: d.locked ? 'disabled' : null });
+      boxes[d.key] = box;
+      box.addEventListener('change', function () {
+        if (forced === d.key) forced = null; // the user has taken control of this column
+        visible[d.key] = box.checked;
+        try { sessionStorage.setItem(storageKey, JSON.stringify(defs.filter(function (x) { return visible[x.key]; }).map(function (x) { return x.key; }))); } catch (e) { /* non-fatal */ }
+        onChange();
+      });
+      list.appendChild(el('label', { class: 'pi-check' }, [box, d.label]));
+    });
+    var root = el('details', { class: 'pi-menu' }, [el('summary', { class: 'nat-btn' }, ['Columns']), list]);
+    function outside(e) {
+      if (!root.isConnected) { document.removeEventListener('click', outside); return; }
+      if (!root.contains(e.target)) root.removeAttribute('open');
+    }
+    document.addEventListener('click', outside);
+    // Temporarily shows a column (a drill's metric) without saving it.
+    function setForced(key) {
+      if (forced && boxes[forced]) boxes[forced].checked = visible[forced];
+      forced = key && boxes[key] ? key : null;
+      if (forced) boxes[forced].checked = true;
+    }
+    return { el: root, setForced: setForced, isVisible: function (key) { return visible[key] !== false || key === forced; } };
+  }
+
+  // ── Trend line chart (inline SVG, no external library) ─────────────────
+  var TREND_VIEWS = [
+    { key: 'overall', label: 'Overall' },
+    { key: 'workstations', label: 'Workstations' },
+    { key: 'servers', label: 'Servers' },
+    { key: 'compare', label: 'Compare' },
+  ];
+  var C1 = 'var(--color-chart-1)', C2 = 'var(--color-chart-2)', C4 = 'var(--color-chart-4)';
+  var TREND_SERIES = {
+    overall: [
+      { key: 'compliance_pct', label: 'Compliance', color: C1, dash: '' },
+      { key: 'coverage_pct', label: 'Coverage', color: C2, dash: '7 4' },
+    ],
+    workstations: [
+      { key: 'ws_compliance_pct', label: 'Workstation compliance', color: C1, dash: '' },
+      { key: 'ws_coverage_pct', label: 'Workstation coverage', color: C2, dash: '7 4' },
+    ],
+    servers: [
+      { key: 'srv_compliance_pct', label: 'Server compliance', color: C1, dash: '' },
+      { key: 'srv_coverage_pct', label: 'Server coverage', color: C2, dash: '7 4' },
+    ],
+    compare: [
+      { key: 'ws_compliance_pct', label: 'Workstations compliance', color: C2, dash: '' },
+      { key: 'srv_compliance_pct', label: 'Servers compliance', color: C4, dash: '' },
+    ],
+  };
+  var SPLIT_KEYS = ['ws_compliance_pct', 'ws_coverage_pct', 'srv_compliance_pct', 'srv_coverage_pct'];
+  var SPLIT_FALLBACK_DATE = '20261030';
+
+  // Selected trend view survives page navigation but lives only in memory
+  // (gone on reload).
+  var trendView = 'overall';
+  function getTrendView() { return trendView; }
+  function setTrendView(v) { if (TREND_SERIES[v]) trendView = v; }
+
+  // Which split views make sense for these tiles. A group is unavailable only
+  // when it is present and has 0 devices; a missing group stays selectable.
+  function trendAvail(tiles) {
+    function has(g) {
+      var c = tiles && tiles[g] && typeof tiles[g] === 'object' ? numOrNull(tiles[g].devices_in_scope) : null;
+      return c !== 0;
+    }
+    var ws = has('workstations'), srv = has('servers');
+    return { overall: true, workstations: ws, servers: srv, compare: ws && srv };
+  }
+
+  function effectiveView(avail) {
+    return avail && avail[trendView] === false ? 'overall' : trendView;
+  }
+
+  function trendViewToggle(current, onChange, avail) {
+    var group = el('div', { class: 'nat-toggle-group', role: 'group', 'aria-label': 'Trend view' });
+    var NONE = { workstations: 'No workstations at this site', servers: 'No servers at this site', compare: 'Needs both workstations and servers' };
+    TREND_VIEWS.forEach(function (v) {
+      var off = avail && avail[v.key] === false;
+      var noneMsg = v.key === 'compare'
+        ? (avail.workstations === false ? NONE.workstations : NONE.servers)
+        : NONE[v.key];
+      group.appendChild(el('button', {
+        type: 'button', class: v.key === current ? 'active' : '', 'aria-pressed': v.key === current ? 'true' : 'false',
+        disabled: off ? 'disabled' : null, title: off ? noneMsg : null,
+        onclick: function () { if (v.key !== current) { setTrendView(v.key); onChange(v.key); } },
+      }, [v.label]));
+    });
+    return group;
+  }
+
+  function trendChart(trend, view) {
+    var pts = (trend || []).filter(function (p) { return p && p.date; });
+    var wrap = el('div', { class: 'nat-card pi-chart' });
+    if (!pts.length) {
+      wrap.appendChild(el('p', { class: 'nat-muted' }, ['No trend data for this period.']));
+      return wrap;
+    }
+    view = TREND_SERIES[view] ? view : 'overall';
+    var series = TREND_SERIES[view];
+    if (view !== 'overall' && !pts.some(function (p) { return series.some(function (s) { return isNum(p[s.key]); }); })) {
+      var from = pts.filter(function (p) { return SPLIT_KEYS.some(function (k) { return isNum(p[k]); }); }).map(function (p) { return p.date; }).sort()[0];
+      wrap.appendChild(el('p', { class: 'nat-muted' }, ['Workstation/server trend data starts from ' + fmtDate(from || SPLIT_FALLBACK_DATE)]));
+      return wrap;
+    }
+
+    var W = 860, H = 280, m = { l: 42, r: 16, t: 12, b: 30 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b, n = pts.length;
+    function x(i) { return m.l + (n === 1 ? iw / 2 : (i * iw) / (n - 1)); }
+    function y(v) { return m.t + ih * (1 - Math.max(0, Math.min(100, v)) / 100); }
+
+    var last = pts[n - 1];
+    function describe(p) {
+      return fmtDate(p.date) + ' \u2014 ' + series.map(function (s) { return s.label + ' ' + fmtPct(p[s.key]); }).join(' \u00B7 ');
+    }
+    var svg = svgEl('svg', {
+      viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+      'aria-label': 'Trend chart, latest ' + describe(last),
+    });
+
+    [0, 20, 40, 60, 80, 100].forEach(function (t) {
+      svg.appendChild(svgEl('line', { x1: m.l, x2: W - m.r, y1: y(t), y2: y(t), class: t === 0 ? 'pi-axis' : 'pi-grid' }));
+      var lbl = svgEl('text', { x: m.l - 8, y: y(t) + 4, 'text-anchor': 'end' });
+      lbl.textContent = t + '%';
+      svg.appendChild(lbl);
+    });
+
+    var ticks = Math.min(6, n);
+    for (var k = 0; k < ticks; k++) {
+      var idx = ticks === 1 ? 0 : Math.round((k * (n - 1)) / (ticks - 1));
+      var tl = svgEl('text', { x: x(idx), y: H - 8, 'text-anchor': k === 0 ? 'start' : k === ticks - 1 ? 'end' : 'middle' });
+      tl.textContent = fmtDate(pts[idx].date).replace(/ \d{4}$/, '');
+      svg.appendChild(tl);
+    }
+
+    series.forEach(function (s) {
+      var d = '';
+      pts.forEach(function (p, i) {
+        if (!isNum(p[s.key])) return;
+        // A null breaks the line: restart with M after any gap.
+        var prevOk = i > 0 && isNum(pts[i - 1][s.key]);
+        d += (prevOk ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(p[s.key]).toFixed(1);
+      });
+      if (d) svg.appendChild(svgEl('path', {
+        d: d, fill: 'none', stroke: s.color, 'stroke-width': '2.5', 'stroke-linejoin': 'round',
+        'stroke-dasharray': s.dash,
+      }));
+      // Isolated points between gaps would otherwise be invisible.
+      pts.forEach(function (p, i) {
+        if (!isNum(p[s.key])) return;
+        var lone = !(i > 0 && isNum(pts[i - 1][s.key])) && !(i < n - 1 && isNum(pts[i + 1][s.key]));
+        if (lone) svg.appendChild(svgEl('circle', { cx: x(i), cy: y(p[s.key]), r: 3, fill: s.color }));
+      });
+    });
+
+    var cursor = svgEl('line', { y1: m.t, y2: m.t + ih, class: 'pi-axis', style: 'display:none' });
+    svg.appendChild(cursor);
+    var dots = series.map(function (s) {
+      var c = svgEl('circle', { r: 4.5, fill: s.color, stroke: 'var(--color-bg-secondary)', 'stroke-width': '2', style: 'display:none' });
+      svg.appendChild(c);
+      return c;
+    });
+
+    var tip = el('div', { class: 'pi-chart-tip', 'aria-live': 'polite' });
+    tip.textContent = describe(last);
+
+    function show(i) {
+      var p = pts[i];
+      cursor.setAttribute('x1', x(i)); cursor.setAttribute('x2', x(i)); cursor.style.display = '';
+      series.forEach(function (s, si) {
+        if (!isNum(p[s.key])) { dots[si].style.display = 'none'; return; }
+        dots[si].setAttribute('cx', x(i)); dots[si].setAttribute('cy', y(p[s.key])); dots[si].style.display = '';
+      });
+      tip.textContent = describe(p);
+    }
+    function hide() {
+      cursor.style.display = 'none';
+      dots.forEach(function (c) { c.style.display = 'none'; });
+      tip.textContent = describe(last);
+    }
+
+    var overlay = svgEl('rect', { x: m.l, y: m.t, width: iw, height: ih, fill: 'transparent' });
+    overlay.addEventListener('pointermove', function (e) {
+      var r = svg.getBoundingClientRect();
+      var px = ((e.clientX - r.left) / r.width) * W;
+      var i = n === 1 ? 0 : Math.round(((px - m.l) / iw) * (n - 1));
+      show(Math.max(0, Math.min(n - 1, i)));
+    });
+    overlay.addEventListener('pointerleave', hide);
+    svg.appendChild(overlay);
+
+    var legend = el('div', { class: 'pi-legend' });
+    series.forEach(function (s) {
+      var line = svgEl('svg', { width: '26', height: '10', 'aria-hidden': 'true' }, [
+        svgEl('line', { x1: 0, x2: 26, y1: 5, y2: 5, stroke: s.color, 'stroke-width': '2.5', 'stroke-dasharray': s.dash }),
+      ]);
+      legend.appendChild(el('span', { class: 'pi-legend-item' }, [line, s.label + (s.dash ? ' (dashed)' : '')]));
+    });
+
+    wrap.appendChild(svg);
+    wrap.appendChild(tip);
+    wrap.appendChild(legend);
+    return wrap;
+  }
+
+  // ── 30 / 90 day toggle ──────────────────────────────────────────────────
+  function daysToggle(current, onChange) {
+    var group = el('div', { class: 'nat-toggle-group', role: 'group', 'aria-label': 'Trend period' });
+    [30, 90].forEach(function (d) {
+      group.appendChild(el('button', {
+        type: 'button', class: d === current ? 'active' : '', 'aria-pressed': d === current ? 'true' : 'false',
+        onclick: function () { if (d !== current) onChange(d); },
+      }, [d + ' days']));
+    });
+    return group;
+  }
+
+  // Generic single-choice segmented control (same look as the 30/90 toggle).
+  function segmented(label, options, current, onChange) {
+    var group = el('div', { class: 'nat-toggle-group', role: 'group', 'aria-label': label });
+    options.forEach(function (o) {
+      group.appendChild(el('button', {
+        type: 'button', class: o.value === current ? 'active' : '', 'aria-pressed': o.value === current ? 'true' : 'false',
+        onclick: function () { if (o.value !== current) onChange(o.value); },
+      }, [o.label]));
+    });
+    return group;
+  }
+
+  // ── Sortable, paginated table ───────────────────────────────────────────
+  // columns: [{ key, label, num, render(row) -> string|Node|{cls,node},
+  //            sortValue(row), firstDir }]
+  // Rows render 50 at a time so very large device lists stay responsive.
+  function dataTable(opts) {
+    var columns = opts.columns;
+    var pageSize = opts.pageSize || 50;
+    var rows = [];
+    var page = 0;
+    var sort = opts.defaultSort ? { key: opts.defaultSort.key, dir: opts.defaultSort.dir } : null;
+    var highlight = null;
+
+    var root = el('div', {});
+    var card = el('div', { class: 'nat-card nat-table-wrap' });
+    var pager = el('div', { class: 'pi-pager' });
+    root.appendChild(card);
+    root.appendChild(pager);
+
+    function sortedRows() {
+      if (!sort) return rows;
+      var col = columns.filter(function (c) { return c.key === sort.key; })[0];
+      if (!col) return rows;
+      var get = col.sortValue || function (r) { return r[col.key]; };
+      var dir = sort.dir === 'asc' ? 1 : -1;
+      return rows.map(function (r, i) { return { r: r, i: i, v: get(r) }; }).sort(function (a, b) {
+        var an = a.v == null || a.v === '', bn = b.v == null || b.v === '';
+        if (an && bn) return a.i - b.i;
+        if (an) return 1;
+        if (bn) return -1;
+        var c = typeof a.v === 'string'
+          ? a.v.localeCompare(b.v, undefined, { numeric: true, sensitivity: 'base' })
+          : a.v - b.v;
+        return c ? c * dir : a.i - b.i;
+      }).map(function (o) { return o.r; });
+    }
+
+    function setSort(col) {
+      if (col.sortable === false) return;
+      if (sort && sort.key === col.key) sort.dir = sort.dir === 'asc' ? 'desc' : 'asc';
+      else sort = { key: col.key, dir: col.firstDir || (col.num ? 'desc' : 'asc') };
+      page = 0;
+      draw();
+    }
+
+    function cellContent(td, col, row) {
+      var out = col.render ? col.render(row) : row[col.key];
+      if (out && typeof out === 'object' && !out.nodeType) {
+        if (out.cls) td.className = (td.className ? td.className + ' ' : '') + out.cls;
+        out = out.node;
+      }
+      if (out == null || typeof out === 'boolean') out = '';
+      if (!(out && typeof out === 'object' && typeof out.nodeType === 'number')) out = document.createTextNode(safeText(out));
+      td.appendChild(out);
+    }
+
+    function draw() {
+      var all = sortedRows();
+      var pages = Math.max(1, Math.ceil(all.length / pageSize));
+      if (page >= pages) page = pages - 1;
+      var slice = all.slice(page * pageSize, (page + 1) * pageSize);
+
+      var tr = el('tr', {});
+      columns.forEach(function (col) {
+        var sorted = sort && sort.key === col.key;
+        var th = el('th', {
+          scope: 'col', class: (col.num ? 'pi-num ' : '') + (sorted ? 'sorted ' : '') + (col.key === highlight ? 'pi-col-hl' : ''),
+          'aria-sort': sorted ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none',
+          tabindex: col.sortable === false ? null : '0',
+          onclick: function () { setSort(col); },
+          onkeydown: function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSort(col); } },
+        }, [col.label, el('span', { class: 'pi-sort', 'aria-hidden': 'true' }, [sorted ? (sort.dir === 'asc' ? ' \u25B2' : ' \u25BC') : ''])]);
+        tr.appendChild(th);
+      });
+
+      var tbody = el('tbody', {});
+      if (!slice.length) {
+        tbody.appendChild(el('tr', {}, [el('td', { colspan: String(columns.length), class: 'pi-wrap' }, [opts.noRowsText || 'No matching rows.'])]));
+      }
+      slice.forEach(function (row) {
+        var cls = (opts.onRowClick ? 'nat-clickable-row ' : '') + (opts.rowClass ? opts.rowClass(row) : '');
+        var rtr = el('tr', { class: cls.trim() });
+        if (opts.onRowClick) {
+          rtr.setAttribute('tabindex', '0');
+          rtr.setAttribute('role', 'link');
+          if (opts.rowLabel) rtr.setAttribute('aria-label', opts.rowLabel(row));
+          rtr.addEventListener('click', function () { opts.onRowClick(row); });
+          rtr.addEventListener('keydown', function (e) { if (e.key === 'Enter') opts.onRowClick(row); });
+        }
+        columns.forEach(function (col) {
+          var td = el('td', { class: (col.num ? 'pi-num ' : '') + (col.wrap ? 'pi-wrap' : '') });
+          cellContent(td, col, row);
+          if (col.key === highlight) td.classList.add('pi-col-hl');
+          rtr.appendChild(td);
+        });
+        tbody.appendChild(rtr);
+      });
+
+      clear(card);
+      card.appendChild(el('table', { class: 'nat-table' }, [el('thead', {}, [tr]), tbody]));
+
+      clear(pager);
+      if (all.length > pageSize) {
+        var from = page * pageSize + 1, to = Math.min(all.length, (page + 1) * pageSize);
+        pager.appendChild(el('span', {}, ['Showing ' + from + '\u2013' + to + ' of ' + all.length.toLocaleString('en-GB')]));
+        pager.appendChild(el('button', { type: 'button', class: 'nat-btn', disabled: page === 0 ? 'disabled' : null, onclick: function () { page--; draw(); } }, ['Previous']));
+        pager.appendChild(el('span', {}, ['Page ' + (page + 1) + ' of ' + pages]));
+        pager.appendChild(el('button', { type: 'button', class: 'nat-btn', disabled: page >= pages - 1 ? 'disabled' : null, onclick: function () { page++; draw(); } }, ['Next']));
+      }
+    }
+
+    function setRows(next) { rows = next || []; page = 0; draw(); }
+    function setColumns(next) { columns = next; if (sort && !columns.some(function (c) { return c.key === sort.key; })) sort = null; draw(); }
+    function sortBy(key, dir) { sort = key ? { key: key, dir: dir || 'desc' } : null; page = 0; draw(); }
+    function setHighlight(key) { highlight = key || null; draw(); }
+    setRows(opts.rows);
+    return { el: root, setRows: setRows, setColumns: setColumns, getRows: sortedRows, sortBy: sortBy, setHighlight: setHighlight };
+  }
+
+  // ── "How to read this dashboard" side panel ─────────────────────────────
+  var HELP_SECTIONS = [
+    { h: 'Where the data comes from', p: [
+      'Every morning at about 05:30, Rewst takes a snapshot of every device in Datto RMM and stores it. The figures on this page come from the latest snapshot, so they can be up to a day old. The device detail panel is the exception: it fetches live from Datto when you open it.'] },
+    { h: 'Devices in scope', p: [
+      "Desktops, laptops and servers in Datto RMM. It excludes On Demand sites and any device that is deleted or suspended. Printers, network devices and other non-computer devices aren't counted."] },
+    { h: 'Coverage', p: [
+      'The percentage of in-scope devices that have a Datto patch policy assigned. A device with no patch policy is never patched automatically, so low coverage means devices are being missed entirely.'] },
+    { h: 'Compliance', p: [
+      'Of the devices that have a patch policy and have reported to Datto in the last 14 days, the percentage that are Fully Patched. Fully Patched means every patch our policy has approved is installed.',
+      "Compliance is measured against our patch policies, not against every update Microsoft releases. Updates the policy deliberately doesn't approve (for example feature upgrades or drivers) don't count against a device.",
+      "Devices without a policy are excluded here, because they're reflected in Coverage. Stale devices are excluded because their status can't be trusted."] },
+    { h: 'Stale devices', p: [
+      "Devices that haven't completed a Datto audit in the last 14 days, usually because they're switched off, offline or decommissioned. Their last known patch status may be out of date, so they're counted in device totals but left out of compliance."] },
+    { h: 'Install errors', p: [
+      'Devices where the last patch run failed to install one or more approved patches. These usually need an engineer to look at.'] },
+    { h: 'Patch statuses', items: [
+      ['Fully patched', 'every approved patch is installed.'],
+      ['Approved pending', 'approved patches are waiting to install, usually in the next patch window.'],
+      ['Reboot required', 'patches are installed but need a restart to finish.'],
+      ['Install error', 'one or more approved patches failed to install.'],
+      ['No policy', "no patch policy is assigned, so the device isn't being patched."],
+      ['No data', "a policy is assigned but Datto hasn't reported patch information yet."]] },
+    { h: 'Operating system support', p: [
+      'Each device\u2019s operating system is checked against Microsoft\u2019s support lifecycle. "Unsupported" means Microsoft no longer provides security updates (for example Windows 10 outside ESU, and Server 2012). "Ending soon" means support ends within about a year (Server 2016 ends in January 2027). Windows 10 LTSC, macOS and other systems are marked "Check manually" because their support depends on the edition.'] },
+    { h: 'Reboot overdue', p: [
+      'Devices that need a restart to finish installing updates and haven\u2019t restarted in 7 or more days. Patches aren\u2019t fully applied until the device restarts.'] },
+    { h: 'Oldest critical patch', p: [
+      'How many days the oldest approved critical patch has been waiting to install. Compliance shows how many devices are behind; this shows how long they\u2019ve been behind.'] },
+    { h: 'Workstations vs servers', p: [
+      "Workstations are desktops and laptops. Servers are physical and virtual servers. They're shown separately because servers usually follow a different, more cautious patch schedule."] },
+    { h: '7-day change', p: [
+      'Today\u2019s compliance compared with the snapshot from about a week ago. Green means improving, red means getting worse. It shows "\u2014" until there\u2019s a week of history.'] },
+  ];
+
+  var helpPanel = null;
+  function closeHelp() {
+    if (!helpPanel) return;
+    document.removeEventListener('keydown', helpPanel.onKey);
+    [helpPanel.overlay, helpPanel.root].forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
+    var opener = helpPanel.opener;
+    helpPanel = null;
+    if (opener && opener.focus) opener.focus();
+  }
+
+  function openHelp() {
+    closeHelp();
+    var opener = document.activeElement;
+    var body = el('div', {});
+    HELP_SECTIONS.forEach(function (s) {
+      body.appendChild(el('h3', {}, [s.h]));
+      (s.p || []).forEach(function (t) { body.appendChild(el('p', {}, [t])); });
+      if (s.items) {
+        body.appendChild(el('ul', { class: 'pi-help-list' }, s.items.map(function (it) {
+          return el('li', {}, [el('b', {}, [it[0]]), ': ' + it[1]]);
+        })));
+      }
+    });
+    var overlay = el('div', { class: 'pi-panel-overlay', onclick: closeHelp });
+    var closeBtn = el('button', { type: 'button', class: 'nat-btn', 'aria-label': 'Close panel', onclick: closeHelp }, ['Close']);
+    var root = el('aside', { class: 'pi-panel', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'How to read this dashboard' }, [
+      el('div', { class: 'pi-panel-head' }, [el('h2', {}, ['How to read this dashboard']), closeBtn]),
+      body,
+    ]);
+    function onKey(e) { if (e.key === 'Escape') closeHelp(); }
+    document.addEventListener('keydown', onKey);
+    document.body.appendChild(overlay);
+    document.body.appendChild(root);
+    helpPanel = { root: root, overlay: overlay, onKey: onKey, opener: opener };
+    closeBtn.focus();
+  }
+
+  return {
+    openHelp: openHelp,
+    trendViewToggle: trendViewToggle, trendAvail: trendAvail, effectiveView: effectiveView,
+    getTrendView: getTrendView, setTrendView: setTrendView, EMPTY_TEXT: EMPTY_TEXT,
+    STATUS_ORDER: STATUS_ORDER,
+    STATUS_META: STATUS_META,
+    fmtDate: fmtDate, fmtPct: fmtPct, fmtInt: fmtInt, isNum: isNum,
+    isFresh: isFresh, relTime: relTime, safeUrl: safeUrl,
+    el: el, svgEl: svgEl, clear: clear,
+    pill: pill, statusPill: statusPill, severityPill: severityPill,
+    infoTip: infoTip, warnBadge: warnBadge,
+    complianceCell: complianceCell, deltaNode: deltaNode,
+    skel: skel, skelTiles: skelTiles, skelBlock: skelBlock, skelTable: skelTable,
+    errorPanel: errorPanel, emptyPanel: emptyPanel, errorMessage: errorMessage,
+    kpiTiles: kpiTiles, groupCards: groupCards, trendChart: trendChart, daysToggle: daysToggle, dataTable: dataTable,
+    riskTiles: riskTiles, ageCell: ageCell, lifecyclePill: lifecyclePill, osPanel: osPanel, statusBreakdown: statusBreakdown,
+    exportButton: exportButton, columnMenu: columnMenu, todayIso: todayIso, slug: slug, numOrNull: numOrNull,
+    segmented: segmented, DRILLS: DRILLS, DEVICE_FILTER_KEYS: DEVICE_FILTER_KEYS, TILE_DRILL: TILE_DRILL,
+    RISK_DRILL: RISK_DRILL, STATUS_DRILL: STATUS_DRILL,
+  };
+})();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// APP SHELL — sidebar, theme toggle, Refresh button and page navigation.
+// Pages register with NAT_APP.registerPage(key, { render(host, state, opts) })
+// and own their data loading and loading/error/empty states. The Customer
+// page ('site') is not in the sidebar — it opens from an Overview row via
+// NAT_APP.goToTab('site', { selectedSite: {...} }) and sits under Overview.
+// ─────────────────────────────────────────────────────────────────────────────
+
+var NAT_APP = (function () {
+  'use strict';
+
+  var state = {
+    activeArea: 'overview',
+    activeTab: 'overview',
+    selectedSite: null, // { site_uid, site_name, autotask_company_id }
+    drill: null,        // Overview drill key (NAT_UTIL.DRILLS), e.g. 'reboot_overdue'
+    deviceFilter: null, // Customer view device filter keys, comma-separated
+  };
+
+  var AREAS = {
+    overview: { label: 'Overview', tabs: ['site'], defaultTab: 'overview' },
+  };
+  var SIDEBAR_AREA_ORDER = ['overview'];
+
+  var TAB_AREA = { overview: 'overview' };
+  Object.keys(AREAS).forEach(function (areaKey) {
+    AREAS[areaKey].tabs.forEach(function (tabKey) { TAB_AREA[tabKey] = areaKey; });
+  });
+
+  var PAGES = { overview: null, site: null };
+
+  function byId(id) { return document.getElementById(id); }
+
+  function renderSidebar() {
+    var host = byId('nat-sidebar');
+    if (!host) return;
+    host.innerHTML = '';
+    SIDEBAR_AREA_ORDER.forEach(function (areaKey) {
+      host.appendChild(NAT_UTIL.el('button', {
+        type: 'button',
+        class: 'nat-sidebar-item' + (state.activeArea === areaKey ? ' active' : ''),
+        'aria-current': state.activeArea === areaKey ? 'page' : null,
+        onclick: function () { goToTab(AREAS[areaKey].defaultTab, { drill: null, deviceFilter: null }); },
+      }, [AREAS[areaKey].label]));
+    });
+  }
+
+  function renderActivePage(opts) {
+    var host = byId('nat-main-content');
+    host.innerHTML = '';
+    var mod = PAGES[state.activeTab];
+    if (!mod) return;
+    try {
+      mod.render(host, state, opts || {});
+    } catch (e) {
+      host.innerHTML = '';
+      host.appendChild(NAT_UTIL.errorPanel('This view could not be rendered: ' + e.message, function () { renderActivePage(); }));
+    }
+  }
+
+  // ── Theme toggle ─────────────────────────────────────────────────────
+  // The initial theme is set on <html> by an inline script in <head> (before
+  // first paint). This wires the toggle button to flip and persist it.
+  var THEME_STORAGE_KEY = 'nat-theme';
+
+  function updateThemeToggleIcon(theme) {
+    var btn = byId('nat-theme-toggle-btn');
+    if (btn) btn.textContent = theme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+  }
+
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute('data-theme') || 'light';
+    var next = current === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem(THEME_STORAGE_KEY, next); } catch (e) { /* non-fatal */ }
+    document.documentElement.setAttribute('data-theme', next);
+    updateThemeToggleIcon(next);
+  }
+
+  function registerPage(key, mod) { PAGES[key] = mod; }
+
+  // Nav state is remembered across a reload within the same tab via
+  // sessionStorage. The drill / device filter are also mirrored into the URL
+  // query (?drill=... or ?site=...&filter=...) with the History API so they
+  // survive a refresh, can be shared and work with Back. That part is
+  // best-effort: if the host (e.g. a sandboxed Rewst iframe) refuses
+  // pushState, everything still works without URL / Back support.
+  var NAV_STORAGE_KEY = 'nat_nav_state';
+
+  function persistNavState() {
+    try {
+      sessionStorage.setItem(NAV_STORAGE_KEY, JSON.stringify({
+        activeTab: state.activeTab,
+        selectedSite: state.selectedSite,
+        drill: state.drill,
+        deviceFilter: state.deviceFilter,
+      }));
+    } catch (e) { /* nav just won't persist */ }
+  }
+
+  function restoreNavState() {
+    try {
+      var saved = JSON.parse(sessionStorage.getItem(NAV_STORAGE_KEY) || 'null');
+      if (!saved || !TAB_AREA[saved.activeTab]) return;
+      if (saved.activeTab === 'site' && !(saved.selectedSite && saved.selectedSite.site_uid)) return;
+      state.activeTab = saved.activeTab;
+      state.activeArea = TAB_AREA[saved.activeTab];
+      state.selectedSite = saved.selectedSite || null;
+      state.drill = NAT_UTIL.DRILLS[saved.drill] ? saved.drill : null;
+      state.deviceFilter = saved.deviceFilter || null;
+    } catch (e) { /* corrupt/unavailable — fall back to Overview */ }
+  }
+
+  function urlFor() {
+    var q = [];
+    if (state.activeTab === 'site' && state.selectedSite && state.selectedSite.site_uid) {
+      q.push('site=' + encodeURIComponent(state.selectedSite.site_uid));
+      if (state.deviceFilter) q.push('filter=' + state.deviceFilter.split(',').map(encodeURIComponent).join(','));
+    } else if (state.drill) {
+      q.push('drill=' + encodeURIComponent(state.drill));
+    }
+    return q.length ? '?' + q.join('&') : '';
+  }
+
+  function syncUrl(mode) {
+    try {
+      var next = urlFor();
+      if (next === (location.search || '')) return;
+      history[mode === 'replace' ? 'replaceState' : 'pushState'](null, '', next || location.pathname);
+    } catch (e) { /* URL state unavailable in this host */ }
+  }
+
+  // Applies ?drill / ?site / ?filter to state (used on load and on Back).
+  function stateFromUrl() {
+    var q;
+    try { q = new URLSearchParams(location.search); } catch (e) { return; }
+    var site = q.get('site');
+    if (site) {
+      var prev = state.selectedSite;
+      state.selectedSite = prev && prev.site_uid === site ? prev : { site_uid: site, site_name: null, autotask_company_id: null };
+      var keys = (q.get('filter') || '').split(',').filter(function (k) { return NAT_UTIL.DEVICE_FILTER_KEYS.indexOf(k) !== -1; });
+      state.deviceFilter = keys.length ? keys.join(',') : null;
+      state.activeTab = 'site';
+    } else {
+      var drill = q.get('drill');
+      state.drill = NAT_UTIL.DRILLS[drill] ? drill : null;
+      state.deviceFilter = null;
+      state.activeTab = 'overview';
+    }
+    state.activeArea = TAB_AREA[state.activeTab];
+  }
+
+  // Navigate to a tab, optionally seeding shared state first.
+  function goToTab(key, stateOverrides) {
+    if (stateOverrides) {
+      Object.keys(stateOverrides).forEach(function (k) { state[k] = stateOverrides[k]; });
+    }
+    if (TAB_AREA[key]) state.activeArea = TAB_AREA[key];
+    state.activeTab = key;
+    persistNavState();
+    syncUrl('push');
+    renderSidebar();
+    renderActivePage();
+    try { window.scrollTo(0, 0); } catch (e) { /* non-fatal */ }
+  }
+
+  // In-page drill changes: update state + URL without re-rendering the page
+  // (the page applies the change itself).
+  function setDrill(key) {
+    state.drill = key && NAT_UTIL.DRILLS[key] ? key : null;
+    persistNavState();
+    syncUrl('push');
+  }
+  function setDeviceFilter(keys, push) {
+    state.deviceFilter = keys && keys.length ? keys.join(',') : null;
+    persistNavState();
+    syncUrl(push ? 'push' : 'replace');
+  }
+
+  function onPopState() {
+    stateFromUrl();
+    persistNavState();
+    renderSidebar();
+    renderActivePage();
+  }
+
+  function init() {
+    var refresh = byId('nat-refresh-btn');
+    if (refresh) refresh.addEventListener('click', function () {
+      NAT_DATA.clearCache(state.activeTab === 'site' ? ['getSiteDetail', 'getDeviceDrilldown'] : ['getOverview']);
+      renderActivePage();
+    });
+    var helpBtn = byId('nat-help-btn');
+    if (helpBtn) helpBtn.addEventListener('click', NAT_UTIL.openHelp);
+    var mode = byId('nat-mode-badge');
+    if (mode) {
+      var mock = NAT_DATA.isMock();
+      mode.textContent = mock ? 'Mock data' : 'Live';
+      mode.className = 'pi-mode ' + (mock ? 'pi-mode--mock' : 'pi-mode--live');
+    }
+    updateThemeToggleIcon(document.documentElement.getAttribute('data-theme') || 'light');
+    var themeBtn = byId('nat-theme-toggle-btn');
+    if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+    restoreNavState();
+    if (/[?&](drill|site|filter)=/.test(location.search || '')) stateFromUrl();
+    persistNavState();
+    syncUrl('replace');
+    window.addEventListener('popstate', onPopState);
+    renderSidebar();
+    renderActivePage();
+  }
+
+  return { init: init, registerPage: registerPage, getState: function () { return state; }, goToTab: goToTab, setDrill: setDrill, setDeviceFilter: setDeviceFilter };
+})();
+
+document.addEventListener('DOMContentLoaded', function () {
+  NAT_APP.init();
+});
+
+  </script>
+  <script>
+    // ─────────────────────────────────────────────────────────────────────────────
+// PAGE: Overview — fleet-wide KPI tiles, compliance/coverage trend, customer
+// table (click a row to open the Customer page) and top outstanding patches.
+// Data: NAT_DATA.getOverview(days) -> the workflow's "overview" output.
+// ─────────────────────────────────────────────────────────────────────────────
+
+(function () {
+  'use strict';
+
+  var U = NAT_UTIL;
+  var el = U.el;
+  var days = 30;
+  var token = 0;
+
+  function isEmpty(d) {
+    return !d || (!(d.sites || []).length && !(d.trend || []).length && !(d.tiles && d.tiles.devices_in_scope));
+  }
+
+  function num(label, key, render) {
+    return { key: key, label: label, num: true, render: render || function (r) { return U.fmtInt(r[key]); } };
+  }
+
+  // on = visible by default; opt = hidden entirely when no site has the field
+  // (older data).
+  function siteColumnDefs() {
+    return [
+      { key: 'site_name', label: 'Site name', locked: true, on: true,
+        render: function (r) { return U.el('span', { class: 'pi-link' }, [r.site_name || '(unnamed)']); } },
+      Object.assign(num('Workstations', 'ws_devices_in_scope'), { opt: true, on: true }),
+      Object.assign(num('Servers', 'srv_devices_in_scope'), { opt: true, on: true }),
+      Object.assign(num('Devices', 'devices_in_scope'), { on: true }),
+      Object.assign(num('Compliance %', 'compliance_pct', function (r) { return U.complianceCell(r.compliance_pct); }), { on: true }),
+      Object.assign(num('Coverage %', 'coverage_pct', function (r) { return U.fmtPct(r.coverage_pct); }), { on: true }),
+      Object.assign(num('Workstation compliance %', 'ws_compliance_pct', function (r) { return U.complianceCell(r.ws_compliance_pct); }), { opt: true }),
+      Object.assign(num('Server compliance %', 'srv_compliance_pct', function (r) { return U.complianceCell(r.srv_compliance_pct); }), { opt: true }),
+      Object.assign(num('Workstation coverage %', 'ws_coverage_pct', function (r) { return U.fmtPct(r.ws_coverage_pct); }), { opt: true }),
+      Object.assign(num('Server coverage %', 'srv_coverage_pct', function (r) { return U.fmtPct(r.srv_coverage_pct); }), { opt: true }),
+      Object.assign(num('7-day change', 'change_7d', function (r) { return U.deltaNode(r.change_7d); }), { on: true }),
+      Object.assign(num('Install errors', 'install_error'), { on: true }),
+      Object.assign(num('Approved pending', 'approved_pending'), { opt: true }),
+      Object.assign(num('Reboot required', 'reboot_required'), { opt: true }),
+      Object.assign(num('No policy', 'no_policy'), { opt: true }),
+      Object.assign(num('Unsupported OS', 'os_unsupported'), { opt: true, on: true }),
+      Object.assign(num('Support ending soon', 'os_ending_soon'), { opt: true }),
+      Object.assign(num('Reboot overdue', 'reboot_overdue'), { opt: true }),
+      Object.assign(num('Oldest critical', 'oldest_critical_days', function (r) { return U.ageCell(r.oldest_critical_days); }), { opt: true, on: true }),
+      Object.assign(num('Stale', 'devices_stale'), {}),
+    ];
+  }
+
+  var SITE_CSV = [
+    ['Site name', 'site_name'], ['Site UID', 'site_uid'], ['Autotask company ID', 'autotask_company_id'],
+    ['Devices', 'devices_in_scope'], ['Compliance %', 'compliance_pct'], ['Coverage %', 'coverage_pct'],
+    ['7-day change', 'change_7d'], ['Install errors', 'install_error'], ['Approved pending', 'approved_pending'],
+    ['Reboot required', 'reboot_required'], ['No policy', 'no_policy'], ['Unsupported OS', 'os_unsupported'],
+    ['Support ending soon', 'os_ending_soon'], ['Reboot overdue', 'reboot_overdue'],
+    ['Oldest critical (days)', 'oldest_critical_days'], ['Stale', 'devices_stale'],
+    ['Workstations', 'ws_devices_in_scope'], ['Workstation compliance %', 'ws_compliance_pct'], ['Workstation coverage %', 'ws_coverage_pct'],
+    ['Workstation install errors', 'ws_install_error'], ['Workstation stale', 'ws_stale'],
+    ['Servers', 'srv_devices_in_scope'], ['Server compliance %', 'srv_compliance_pct'], ['Server coverage %', 'srv_coverage_pct'],
+    ['Server install errors', 'srv_install_error'], ['Server stale', 'srv_stale'],
+  ].map(function (p) { return { label: p[0], value: function (r) { return r[p[1]]; } }; });
+
+  // When drilled into Workstations / Servers, these base columns swap to that
+  // device type's values (and say so in the header).
+  function groupColumn(base, p) {
+    var word = p === 'ws' ? 'Workstation' : 'Server';
+    var map = {
+      devices_in_scope: { field: p + '_devices_in_scope', label: p === 'ws' ? 'Workstations' : 'Servers' },
+      compliance_pct: { field: p + '_compliance_pct', label: word + ' compliance %', render: function (r) { return U.complianceCell(r[p + '_compliance_pct']); } },
+      coverage_pct: { field: p + '_coverage_pct', label: word + ' coverage %', render: function (r) { return U.fmtPct(r[p + '_coverage_pct']); } },
+      install_error: { field: p + '_install_error', label: word + ' install errors' },
+      devices_stale: { field: p + '_stale', label: word + ' stale' },
+    };
+    var m = map[base.key];
+    return m ? Object.assign(num(m.label, m.field, m.render), { on: base.on }) : base;
+  }
+
+  function pendingColumns() {
+    return [
+      { key: 'kb', label: 'KB' },
+      { key: 'title', label: 'Title', wrap: true },
+      { key: 'severity', label: 'Severity', render: function (r) { return U.severityPill(r.severity); } },
+      { key: 'devices', label: 'Devices', num: true, render: function (r) { return U.fmtInt(r.devices); } },
+      { key: 'sites', label: 'Sites', num: true, render: function (r) { return U.fmtInt(r.sites); } },
+    ];
+  }
+
+  function section(title, extra) {
+    var head = el('h3', { class: 'pi-section-title' }, [title]);
+    var body = el('div', {});
+    if (extra) { head.appendChild(el('span', { class: 'pi-spacer' })); head.appendChild(extra); }
+    return { root: el('section', { class: 'pi-section' }, [head, body]), body: body };
+  }
+
+  function renderHeader(headerHost, data) {
+    U.clear(headerHost);
+    headerHost.appendChild(el('h2', {}, ['Novem Patch Insights']));
+    if (data) {
+      headerHost.appendChild(el('span', { class: 'pi-sub' }, ['Data as of ' + U.fmtDate(data.as_of)]));
+      if (!U.isFresh(data.as_of)) headerHost.appendChild(U.warnBadge('Data may be out of date'));
+    }
+  }
+
+  // Returns { applyDrill(key, { scroll, url }) } or null when there are no
+  // sites. A drill filters + sorts the table, forces its column visible and
+  // highlights it, and shows a banner with a "Clear filter" action.
+  function renderCustomers(host, sites, initialDrill) {
+    U.clear(host);
+    if (!sites.length) { host.appendChild(U.emptyPanel()); return null; }
+
+    var search = el('input', { type: 'search', class: 'pi-search', placeholder: 'Search site name', 'aria-label': 'Search sites by name' });
+    var count = el('span', { class: 'nat-muted' });
+    var banner = el('div', { class: 'pi-drill-banner', role: 'status' });
+    banner.hidden = true;
+    var drill = null; // { key, ...DRILLS[key] }
+    var defs = siteColumnDefs().filter(function (d) {
+      return !d.opt || sites.some(function (s) { return s && s[d.key] !== undefined; });
+    });
+    var menu = U.columnMenu(defs, 'patch_insights_cols_overview', function () { table.setColumns(shown()); });
+    function shown() {
+      var list = defs.filter(function (d) { return menu.isVisible(d.key); });
+      if (!drill || !drill.group) return list;
+      var seen = {};
+      return list.map(function (d) { return groupColumn(d, drill.group); }).filter(function (d) {
+        if (seen[d.key]) return false;
+        seen[d.key] = true;
+        return true;
+      });
+    }
+    var table = U.dataTable({
+      columns: shown(),
+      rows: sites,
+      defaultSort: { key: 'compliance_pct', dir: 'asc' },
+      noRowsText: 'No sites match your search.',
+      rowLabel: function (r) { return 'Open ' + r.site_name; },
+      onRowClick: function (r) {
+        NAT_APP.goToTab('site', {
+          selectedSite: { site_uid: r.site_uid, site_name: r.site_name, autotask_company_id: r.autotask_company_id },
+          deviceFilter: drill && drill.device.length ? drill.device.join(',') : null,
+        });
+      },
+    });
+
+    function plural(n) { return n + (n === 1 ? ' customer' : ' customers'); }
+
+    function apply() {
+      var q = search.value.trim().toLowerCase();
+      var base = sites;
+      if (drill) {
+        var f = drill.filterField || drill.field;
+        base = sites.filter(function (s) { return s && drill.test(s[f]); });
+      }
+      var rows = q ? base.filter(function (s) { return String(s.site_name || '').toLowerCase().indexOf(q) !== -1; }) : base;
+      table.setRows(rows);
+      count.textContent = rows.length + ' of ' + sites.length + ' sites';
+      U.clear(banner);
+      banner.hidden = !drill;
+      if (drill) {
+        banner.appendChild(el('span', {}, ['Showing ' + plural(base.length) + (drill.group ? ' \u00B7 ' : ' with ') + drill.desc + ' \u00B7 ']));
+        banner.appendChild(el('button', { type: 'button', class: 'nat-link-btn', onclick: function () { applyDrill(null, { url: true }); } }, ['Clear filter']));
+      }
+    }
+
+    function applyDrill(key, o) {
+      o = o || {};
+      var d = key && U.DRILLS[key];
+      drill = d ? Object.assign({ key: key }, d) : null;
+      menu.setForced(d ? (d.base || d.field) : null);
+      table.setColumns(shown());
+      table.setHighlight(d ? d.field : null);
+      table.sortBy(d ? d.field : 'compliance_pct', d ? d.dir : 'asc');
+      apply();
+      if (o.url) NAT_APP.setDrill(d ? key : null);
+      if (d && o.scroll) {
+        var target = host.parentNode || host;
+        var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        setTimeout(function () { try { target.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' }); } catch (e) { /* non-fatal */ } }, 0);
+      }
+    }
+
+    search.addEventListener('input', apply);
+    apply();
+
+    var exportBtn = U.exportButton(function () { return table.getRows(); }, SITE_CSV, function () { return 'patch-customers-' + U.todayIso() + '.csv'; });
+    host.appendChild(el('div', { class: 'pi-toolbar' }, [search, count, el('span', { class: 'pi-spacer' }), menu.el, exportBtn]));
+    host.appendChild(banner);
+    host.appendChild(table.el);
+    if (initialDrill && U.DRILLS[initialDrill]) applyDrill(initialDrill, { scroll: true });
+    return { applyDrill: applyDrill };
+  }
+
+  function renderPending(host, items) {
+    U.clear(host);
+    if (!items.length) { host.appendChild(U.emptyPanel('No outstanding patches in the latest snapshot.')); return; }
+    host.appendChild(U.dataTable({ columns: pendingColumns(), rows: items }).el);
+  }
+
+  function render(host, state, opts) {
+    var my = ++token;
+    var trendReq = 0;
+    var data = null;
+    var custApi = null;
+
+    // Fill a section, or drop it when the data is missing (older responses).
+    function fill(sec, node) {
+      U.clear(sec.body);
+      if (node) sec.body.appendChild(node);
+      else if (sec.root.parentNode) sec.root.parentNode.removeChild(sec.root);
+    }
+
+    U.clear(host);
+    var header = el('div', { class: 'pi-header' });
+    var body = el('div', {});
+    host.appendChild(header);
+    host.appendChild(body);
+    renderHeader(header, null);
+
+    function trendSection() {
+      var sec = section('Compliance and coverage trend');
+      var toggleHost = el('span', {});
+      sec.root.querySelector('h3').appendChild(el('span', { class: 'pi-spacer' }));
+      sec.root.querySelector('h3').appendChild(toggleHost);
+      return { sec: sec, toggleHost: toggleHost };
+    }
+
+    function load() {
+      U.clear(body);
+      var tiles = el('div', {}, [U.skelTiles()]);
+      var ts = trendSection();
+      ts.sec.body.appendChild(U.skelBlock('320px'));
+      var st = section('Status breakdown');
+      st.body.appendChild(U.skelBlock('120px'));
+      var os = section('Operating systems');
+      os.body.appendChild(U.skelTable(4));
+      var cust = section('Customers');
+      cust.body.appendChild(U.skelTable(8));
+      var pend = section('Top outstanding patches');
+      pend.body.appendChild(U.skelTable(5));
+      [tiles, st.root, ts.sec.root, os.root, cust.root, pend.root].forEach(function (n) { body.appendChild(n); });
+      renderHeader(header, null);
+
+      var lastTrend = null;
+      function drawToggles() {
+        var avail = U.trendAvail(data && data.tiles);
+        U.clear(ts.toggleHost);
+        ts.toggleHost.appendChild(U.trendViewToggle(U.effectiveView(avail), function () { showTrend(lastTrend); }, avail));
+        ts.toggleHost.appendChild(U.daysToggle(days, setDays));
+      }
+
+      function showTrend(trend, err) {
+        lastTrend = trend;
+        U.clear(ts.sec.body);
+        drawToggles();
+        if (err) { ts.sec.body.appendChild(U.errorPanel(err, function () { setDays(days, true); })); return; }
+        var view = U.effectiveView(U.trendAvail(data && data.tiles));
+        ts.sec.body.appendChild(trend && trend.length ? U.trendChart(trend, view) : U.emptyPanel());
+      }
+
+      function setDays(d, retry) {
+        if (d === days && !retry) return;
+        days = d;
+        var req = ++trendReq;
+        U.clear(ts.sec.body);
+        ts.sec.body.appendChild(U.skelBlock('320px'));
+        drawToggles();
+        NAT_DATA.getOverview(d).then(function (res) {
+          if (my !== token || req !== trendReq) return;
+          showTrend(res && res.trend);
+        }).catch(function (err) {
+          if (my !== token || req !== trendReq) return;
+          showTrend(null, U.errorMessage(err));
+        });
+      }
+
+      NAT_DATA.getOverview(days).then(function (res) {
+        if (my !== token) return;
+        data = res;
+        if (isEmpty(data)) {
+          renderHeader(header, null);
+          U.clear(body);
+          body.appendChild(U.emptyPanel());
+          return;
+        }
+        renderHeader(header, data);
+        var sites = data.sites || [];
+        // A drill is offered only if the sites list carries the field it needs.
+        function drillOn(map) {
+          var on = {};
+          Object.keys(map).forEach(function (k) {
+            var key = map[k], d = U.DRILLS[key];
+            var f = d.filterField || d.field;
+            if (sites.some(function (s) { return s && s[f] !== undefined; })) on[k] = function () { if (custApi) custApi.applyDrill(key, { scroll: true, url: true }); };
+          });
+          return on;
+        }
+        var HINT = 'View customers \u2192';
+        var groupMap = {};
+        Object.keys(U.DRILLS).forEach(function (k) { if (U.DRILLS[k].group) groupMap[k] = k; });
+        U.clear(tiles);
+        tiles.appendChild(U.kpiTiles(data.tiles, { hint: HINT, on: drillOn(U.TILE_DRILL) }));
+        var groups = U.groupCards(data.tiles, { hint: HINT, on: drillOn(groupMap) });
+        if (groups) tiles.appendChild(groups);
+        var risk = U.riskTiles(data.risk, { hint: HINT, on: drillOn(U.RISK_DRILL) });
+        if (risk) tiles.appendChild(risk);
+        fill(st, U.statusBreakdown(data.status_breakdown, { hint: HINT, on: drillOn(U.STATUS_DRILL) }));
+        fill(os, U.osPanel(data.os_breakdown));
+        showTrend(data.trend);
+        custApi = renderCustomers(cust.body, sites, state.drill);
+        renderPending(pend.body, data.top_pending || []);
+      }).catch(function (err) {
+        if (my !== token) return;
+        U.clear(body);
+        body.appendChild(U.errorPanel(U.errorMessage(err), function () { load(); }));
+      });
+    }
+
+    load();
+  }
+
+  NAT_APP.registerPage('overview', { render: render });
+})();
+
+  </script>
+  <script>
+    // ─────────────────────────────────────────────────────────────────────────────
+// PAGE: Customer — one site's KPI tiles, status breakdown, trend, device
+// table (with status chips, hide-stale toggle, hostname search) and top
+// pending patches. Opened from an Overview row (state.selectedSite).
+// Data: NAT_DATA.getSiteDetail(site_uid, days) -> the "site_detail" output.
+// ─────────────────────────────────────────────────────────────────────────────
+
+(function () {
+  'use strict';
+
+  var U = NAT_UTIL;
+  var el = U.el;
+  var days = 30;
+  var token = 0;
+
+  function isEmpty(d) {
+    return !d || (!(d.devices || []).length && !(d.trend || []).length && !(d.tiles && d.tiles.devices_in_scope));
+  }
+
+  function section(title) {
+    var head = el('h3', { class: 'pi-section-title' }, [title]);
+    var body = el('div', {});
+    return { root: el('section', { class: 'pi-section' }, [head, body]), head: head, body: body };
+  }
+
+  // Builds the Autotask company URL from the config template. Returns null
+  // while the {ZONE} placeholder is unset, or when the result isn't http(s).
+  function autotaskUrl(id) {
+    var tpl = typeof NAT_CONFIG !== 'undefined' && NAT_CONFIG.AUTOTASK_COMPANY_URL_TEMPLATE;
+    if (!tpl || !id || tpl.indexOf('{ZONE}') !== -1) return null;
+    return U.safeUrl(tpl.split('{id}').join(encodeURIComponent(String(id))));
+  }
+
+  function renderHeader(host, site, asOf) {
+    U.clear(host);
+    host.appendChild(el('div', { class: 'pi-back' }, [
+      el('button', { type: 'button', class: 'nat-link-btn', onclick: function () { NAT_APP.goToTab('overview'); } }, ['\u2190 Back to overview']),
+    ]));
+    var row = el('div', { class: 'pi-header' }, [el('h2', {}, [(site && site.site_name) || 'Customer'])]);
+    if (site && site.autotask_company_id) {
+      var label = 'Autotask ID: ' + site.autotask_company_id;
+      var href = autotaskUrl(site.autotask_company_id);
+      row.appendChild(href
+        ? el('a', { class: 'pi-sub pi-link', href: href, target: '_blank', rel: 'noopener noreferrer', title: 'Open company in Autotask' }, [label])
+        : el('span', { class: 'pi-sub', title: 'Set the {ZONE} placeholder in AUTOTASK_COMPANY_URL_TEMPLATE (src/config.js) to link to Autotask' }, [label]));
+    }
+    if (asOf) {
+      row.appendChild(el('span', { class: 'pi-sub' }, ['Data as of ' + U.fmtDate(asOf)]));
+      if (!U.isFresh(asOf)) row.appendChild(U.warnBadge('Data may be out of date'));
+    }
+    host.appendChild(row);
+  }
+
+  function renderBreakdown(host, breakdown) {
+    U.clear(host);
+    host.appendChild(U.statusBreakdown(breakdown) || U.emptyPanel());
+  }
+
+  // ── Device helpers (all tolerant of missing fields) ─────────────────────
+  function rebootDays(r) {
+    var n = U.numOrNull(r.reboot_days);
+    if (n !== null) return n;
+    var t = Date.parse(r.last_reboot_utc || '');
+    return isNaN(t) ? null : Math.max(0, Math.floor((Date.now() - t) / 86400000));
+  }
+  function rebootOverdue(r) {
+    var d = rebootDays(r);
+    return (r.reboot_required === true || r.patch_status === 'RebootRequired') && d !== null && d >= 7;
+  }
+  function osUnsupported(r) { return String(r.os_lifecycle || '').toLowerCase() === 'unsupported'; }
+
+  function deviceColumns(devices) {
+    var hasFamily = devices.some(function (d) { return d.os_family != null || d.os_lifecycle != null; });
+    var hasReboot = devices.some(function (d) { return d.last_reboot_utc != null || d.reboot_days != null; });
+    var cols = [
+      { key: 'hostname', label: 'Hostname', render: function (r) {
+        var cell = el('span', {}, [r.hostname || '\u2014']);
+        if (r.stale) cell.appendChild(el('span', { class: 'pi-tag' }, ['Stale']));
+        return cell;
+      } },
+      { key: 'category', label: 'Category' },
+      hasFamily
+        ? { key: 'os_family', label: 'OS', sortValue: function (r) { return r.os_family || r.operating_system || null; }, render: function (r) {
+          var cell = el('span', { title: r.operating_system || '' }, [r.os_family || r.operating_system || '\u2014']);
+          if (r.os_lifecycle) { cell.appendChild(document.createTextNode(' ')); cell.appendChild(U.lifecyclePill(r.os_lifecycle)); }
+          return cell;
+        } }
+        : { key: 'operating_system', label: 'OS' },
+      { key: 'patch_status', label: 'Status', render: function (r) { return U.statusPill(r.patch_status); } },
+      { key: 'patches_pending', label: 'Pending patches', num: true, render: function (r) { return U.fmtInt(r.patches_pending); } },
+    ];
+    if (hasReboot) {
+      cols.push({ key: 'last_reboot_utc', label: 'Last reboot', sortValue: function (r) { var d = rebootDays(r); return d === null ? null : -d; }, firstDir: 'asc',
+        render: function (r) {
+          var d = rebootDays(r);
+          var cell = el('span', { title: r.last_reboot_utc || '' }, [r.last_reboot_utc ? U.relTime(r.last_reboot_utc) : d === null ? '\u2014' : d + (d === 1 ? ' day ago' : ' days ago')]);
+          if (rebootOverdue(r)) cell.appendChild(el('span', { class: 'pi-tag' }, ['Reboot overdue']));
+          return cell;
+        } });
+    }
+    cols.push(
+      { key: 'last_seen_utc', label: 'Last seen', sortValue: function (r) { return Date.parse(r.last_seen_utc) || null; }, firstDir: 'desc',
+        render: function (r) { return el('span', { title: r.last_seen_utc || '' }, [U.relTime(r.last_seen_utc)]); } },
+      { key: 'online', label: 'Online', render: function (r) {
+        return el('span', {}, [
+          el('span', { class: 'pi-dot ' + (r.online ? 'pi-dot--on' : 'pi-dot--off'), 'aria-hidden': 'true' }),
+          el('span', { class: 'pi-sr' }, [r.online ? 'Online' : 'Offline']),
+        ]);
+      } },
+      { key: 'portal_url', label: 'Datto', sortable: false, render: function (r) {
+        var url = U.safeUrl(r.portal_url);
+        if (!url) return '\u2014';
+        return el('a', { class: 'pi-link', href: url, target: '_blank', rel: 'noopener noreferrer', onclick: function (e) { e.stopPropagation(); } }, ['Open in Datto']);
+      } }
+    );
+    return cols;
+  }
+
+  var DEVICE_CSV = [
+    ['Hostname', function (r) { return r.hostname; }],
+    ['Device UID', function (r) { return r.device_uid; }],
+    ['Category', function (r) { return r.category; }],
+    ['Operating system', function (r) { return r.operating_system; }],
+    ['OS family', function (r) { return r.os_family; }],
+    ['OS lifecycle', function (r) { return r.os_lifecycle; }],
+    ['Patch status', function (r) { return r.patch_status; }],
+    ['Pending patches', function (r) { return r.patches_pending; }],
+    ['Reboot required', function (r) { return r.reboot_required; }],
+    ['Last reboot (UTC)', function (r) { return r.last_reboot_utc; }],
+    ['Days since reboot', rebootDays],
+    ['Reboot overdue', function (r) { return rebootOverdue(r); }],
+    ['Stale', function (r) { return r.stale; }],
+    ['Online', function (r) { return r.online; }],
+    ['Last seen (UTC)', function (r) { return r.last_seen_utc; }],
+    ['Datto URL', function (r) { return r.portal_url; }],
+  ].map(function (p) { return { label: p[0], value: p[1] }; });
+
+  // Device-table filters a drill / tile can apply. type = Type control,
+  // status = status chip, extra = extra chip.
+  var FILTERS = {
+    workstations: { kind: 'type', id: 'ws', label: 'Workstations' },
+    servers: { kind: 'type', id: 'srv', label: 'Servers' },
+    install_error: { kind: 'status', id: 'InstallError' },
+    no_policy: { kind: 'status', id: 'NoPolicy' },
+    approved_pending: { kind: 'status', id: 'ApprovedPending' },
+    reboot_required: { kind: 'status', id: 'RebootRequired' },
+    stale: { kind: 'extra', id: 'stale' },
+    unsupported_os: { kind: 'extra', id: 'unsupported' },
+    ending_soon: { kind: 'extra', id: 'ending' },
+    reboot_overdue: { kind: 'extra', id: 'overdue' },
+  };
+  var TYPE_OPTIONS = [{ value: 'all', label: 'All' }, { value: 'ws', label: 'Workstations' }, { value: 'srv', label: 'Servers' }];
+
+  function deviceType(d) {
+    var c = String(d.category || '');
+    if (/server/i.test(c)) return 'srv';
+    if (/desktop|laptop|workstation/i.test(c)) return 'ws';
+    return null;
+  }
+
+  // Set by renderDevices so the page's tiles/cards can drive the table.
+  var deviceCtl = null;
+
+  function renderDevices(host, devices, site, initialKeys) {
+    U.clear(host);
+    deviceCtl = null;
+    if (!devices.length) { host.appendChild(U.emptyPanel()); return; }
+
+    var type = 'all';
+    var selected = {};
+    var counts = {};
+    devices.forEach(function (d) { counts[d.patch_status] = (counts[d.patch_status] || 0) + 1; });
+    var extra = {
+      unsupported: { label: 'Unsupported OS', color: 'var(--color-patch-error)', test: osUnsupported, on: false },
+      ending: { label: 'Support ending soon', color: 'var(--color-patch-approved)', test: function (r) { return String(r.os_lifecycle || '').toLowerCase() === 'ending_soon'; }, on: false },
+      overdue: { label: 'Reboot overdue', color: 'var(--color-patch-approved)', test: rebootOverdue, on: false },
+      stale: { label: 'Stale only', color: 'var(--color-patch-nopolicy)', test: function (r) { return r.stale === true; }, on: false },
+    };
+    Object.keys(extra).forEach(function (k) { extra[k].count = devices.filter(extra[k].test).length; });
+    var hideStale = false;
+    var query = '';
+    var noteKeys = null; // filter keys applied by a drill/tile (drives the "Filtered:" note)
+    var chipEls = {};
+
+    var summary = el('span', { class: 'nat-muted', 'aria-live': 'polite' });
+    var table = U.dataTable({
+      columns: deviceColumns(devices),
+      rows: devices,
+      noRowsText: 'No devices match the current filters.',
+      rowClass: function (r) { return r.stale ? 'pi-stale' : ''; },
+      onRowClick: openDrilldown,
+    });
+
+    function apply() {
+      var any = Object.keys(selected).some(function (k) { return selected[k]; });
+      var q = query.trim().toLowerCase();
+      var rows = devices.filter(function (d) {
+        if (type !== 'all' && deviceType(d) !== type) return false;
+        if (any && !selected[d.patch_status]) return false;
+        if (hideStale && d.stale) return false;
+        if (q && String(d.hostname || '').toLowerCase().indexOf(q) === -1) return false;
+        for (var k in extra) if (extra[k].on && !extra[k].test(d)) return false;
+        return true;
+      });
+      table.setRows(rows);
+      summary.textContent = rows.length + ' of ' + devices.length + ' devices';
+    }
+
+    var note = el('div', { class: 'pi-drill-banner', role: 'status' });
+    note.hidden = true;
+    var typeHost = el('span', {});
+    var chips = el('div', { class: 'pi-toolbar', role: 'group', 'aria-label': 'Filter by status' });
+    var staleBox = el('input', { type: 'checkbox' });
+
+    function labelOf(key) {
+      var f = FILTERS[key];
+      if (f.kind === 'status') return U.STATUS_META[f.id].label;
+      if (f.kind === 'extra') return extra[f.id].label;
+      return f.label;
+    }
+
+    function drawNote() {
+      U.clear(note);
+      note.hidden = !noteKeys;
+      if (!noteKeys) return;
+      note.appendChild(el('span', {}, ['Filtered: ' + noteKeys.map(labelOf).join(' + ') + ' \u00B7 ']));
+      note.appendChild(el('button', { type: 'button', class: 'nat-link-btn', onclick: function () { setFilters([], false); } }, ['Show all devices']));
+    }
+
+    function drawType() {
+      U.clear(typeHost);
+      typeHost.appendChild(el('span', { class: 'nat-muted pi-type-label' }, ['Type']));
+      typeHost.appendChild(U.segmented('Device type', TYPE_OPTIONS, type, function (v) { type = v; userChanged(); }));
+    }
+
+    function syncControls() {
+      Object.keys(chipEls).forEach(function (id) {
+        var parts = id.split(':');
+        var on = parts[0] === 'status' ? !!selected[parts[1]] : extra[parts[1]].on;
+        chipEls[id].setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      staleBox.checked = hideStale;
+      drawType();
+      drawNote();
+    }
+
+    // Any manual filter change drops the drill note and the URL filter.
+    function userChanged() {
+      if (noteKeys) { noteKeys = null; NAT_APP.setDeviceFilter(null); }
+      syncControls();
+      apply();
+    }
+
+    function addChip(id, label, count, color, onToggle) {
+      var chip = el('button', { type: 'button', class: 'pi-chip', style: '--pc:' + color, 'aria-pressed': 'false' }, [label + ' (' + count + ')']);
+      chip.addEventListener('click', function () {
+        onToggle(chip.getAttribute('aria-pressed') !== 'true');
+        userChanged();
+      });
+      chipEls[id] = chip;
+      chips.appendChild(chip);
+    }
+    function statusChip(k) {
+      addChip('status:' + k, U.STATUS_META[k].label, counts[k] || 0, U.STATUS_META[k].color, function (on) { selected[k] = on; });
+    }
+    function extraChip(k) {
+      addChip('extra:' + k, extra[k].label, extra[k].count, extra[k].color, function (on) { extra[k].on = on; });
+    }
+    U.STATUS_ORDER.forEach(function (k) { if (counts[k]) statusChip(k); });
+    Object.keys(extra).forEach(function (k) { if (extra[k].count) extraChip(k); });
+
+    // Replaces all type/chip filters. keys = FILTERS keys; asNote shows the
+    // "Filtered:" note and records the keys in the URL.
+    function setFilters(keys, asNote) {
+      type = 'all'; selected = {};
+      Object.keys(extra).forEach(function (k) { extra[k].on = false; });
+      keys.forEach(function (key) {
+        var f = FILTERS[key];
+        if (!f) return;
+        if (f.kind === 'type') type = f.id;
+        else if (f.kind === 'status') { selected[f.id] = true; if (!chipEls['status:' + f.id]) statusChip(f.id); }
+        else { extra[f.id].on = true; if (f.id === 'stale') hideStale = false; if (!chipEls['extra:' + f.id]) extraChip(f.id); }
+      });
+      noteKeys = asNote && keys.length ? keys : null;
+      NAT_APP.setDeviceFilter(noteKeys, asNote);
+      syncControls();
+      apply();
+    }
+
+    staleBox.addEventListener('change', function () { hideStale = staleBox.checked; apply(); });
+    var search = el('input', { type: 'search', class: 'pi-search', placeholder: 'Search hostname', 'aria-label': 'Search devices by hostname' });
+    search.addEventListener('input', function () { query = search.value; apply(); });
+
+    var exportBtn = U.exportButton(function () { return table.getRows(); }, DEVICE_CSV, function () {
+      return 'patch-devices-' + U.slug(site && site.site_name) + '-' + U.todayIso() + '.csv';
+    });
+
+    var hasTypes = devices.some(function (d) { return deviceType(d) !== null; });
+    var typeRow = el('div', { class: 'pi-toolbar' }, [typeHost]);
+    if (hasTypes) host.appendChild(typeRow);
+    host.appendChild(chips);
+    host.appendChild(el('div', { class: 'pi-toolbar' }, [
+      search,
+      el('label', { class: 'pi-check' }, [staleBox, 'Hide stale']),
+      el('span', { class: 'pi-spacer' }),
+      summary,
+      exportBtn,
+    ]));
+    host.appendChild(note);
+    host.appendChild(table.el);
+
+    deviceCtl = {
+      apply: function (keys) {
+        setFilters(keys, true);
+        var target = host.parentNode || host;
+        var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        setTimeout(function () { try { target.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' }); } catch (e) { /* non-fatal */ } }, 0);
+      },
+    };
+
+    var start = (initialKeys || []).filter(function (k) { return FILTERS[k]; });
+    syncControls();
+    if (start.length) setFilters(start, true);
+    else apply();
+  }
+
+  function renderPending(host, items) {
+    U.clear(host);
+    if (!items.length) { host.appendChild(U.emptyPanel('No outstanding patches for this site.')); return; }
+    host.appendChild(U.dataTable({
+      columns: [
+        { key: 'kb', label: 'KB' },
+        { key: 'title', label: 'Title', wrap: true },
+        { key: 'severity', label: 'Severity', render: function (r) { return U.severityPill(r.severity); } },
+        { key: 'devices', label: 'Devices', num: true, render: function (r) { return U.fmtInt(r.devices); } },
+      ],
+      rows: items,
+    }).el);
+  }
+
+  // ── Device drill-down side panel ────────────────────────────────────────
+  // Opens over the page (no navigation). Calls NAT_DATA.getDeviceDrilldown,
+  // which goes live to Datto, so the loading state says so.
+  var panel = null;
+
+  function closePanel() {
+    if (!panel) return;
+    document.removeEventListener('keydown', panel.onKey);
+    if (panel.overlay.parentNode) panel.overlay.parentNode.removeChild(panel.overlay);
+    if (panel.root.parentNode) panel.root.parentNode.removeChild(panel.root);
+    var opener = panel.opener;
+    panel = null;
+    if (opener && opener.focus) opener.focus();
+  }
+
+  function toMs(v) {
+    if (typeof v === 'number') return v;
+    if (/^\d{10,}$/.test(String(v || ''))) return Number(v);
+    return Date.parse(v || '');
+  }
+
+  function fmtIsoDate(iso) {
+    var t = toMs(iso);
+    if (isNaN(t)) return '\u2014';
+    var d = new Date(t);
+    return U.fmtDate('' + d.getUTCFullYear() + String(d.getUTCMonth() + 1).padStart(2, '0') + String(d.getUTCDate()).padStart(2, '0'));
+  }
+
+  function fmtIsoDateTime(iso) {
+    var t = toMs(iso);
+    if (isNaN(t)) return '\u2014';
+    var d = new Date(t);
+    return fmtIsoDate(iso) + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+  }
+
+  function patchTable(items, emptyText) {
+    if (!items.length) return U.emptyPanel(emptyText);
+    return U.dataTable({
+      columns: [
+        { key: 'kb', label: 'KB', render: function (r) { return txt(r.kb, '\u2014'); } },
+        { key: 'title', label: 'Title', wrap: true, render: function (r) { return txt(r.title, '\u2014'); } },
+        { key: 'severity', label: 'Severity', render: function (r) { return U.severityPill(typeof r.severity === 'string' ? r.severity : null); } },
+        { key: 'release_date', label: 'Release date', sortValue: function (r) { return toMs(r.release_date) || null; },
+          firstDir: 'desc', render: function (r) { return fmtIsoDate(r.release_date); } },
+        { key: 'reboot_required', label: 'Reboot required', sortValue: function (r) { return bool(r.reboot_required) ? 1 : 0; },
+          render: function (r) { return bool(r.reboot_required) ? 'Yes' : 'No'; } },
+      ],
+      rows: items,
+    }).el;
+  }
+
+  function list(v) {
+    return Array.isArray(v) ? v.filter(function (x) { return x && typeof x === 'object'; }) : [];
+  }
+
+  function bool(v) {
+    return typeof v === 'string' ? v.trim().toLowerCase() === 'true' : !!v;
+  }
+
+  function txt(v, fallback) {
+    var s = v == null || v === '' ? '' : (typeof v === 'object' ? JSON.stringify(v) : String(v));
+    return s || fallback || '';
+  }
+
+  function renderDrilldown(host, data, device) {
+    U.clear(host);
+    data = data && typeof data === 'object' ? data : {};
+    var d = data.device && typeof data.device === 'object' ? data.device : {};
+    var pending = list(data.pending_patches);
+    var notApproved = list(data.not_approved_patches);
+    var policies = list(data.policies);
+    var online = bool(d.online);
+
+    var meta = el('div', { class: 'pi-panel-meta' }, [
+      U.statusPill(d.patch_status),
+      el('span', {}, [
+        el('span', { class: 'pi-dot ' + (online ? 'pi-dot--on' : 'pi-dot--off'), 'aria-hidden': 'true' }),
+        online ? 'Online' : 'Offline',
+      ]),
+      el('span', {}, ['Last seen: ' + U.relTime(d.last_seen_utc)]),
+      el('span', {}, ['Last audit: ' + fmtIsoDateTime(d.last_audit_utc)]),
+    ]);
+    host.appendChild(meta);
+    var sub = [d.site_name, d.operating_system].filter(Boolean).map(function (x) { return txt(x); }).join(' \u00B7 ');
+    if (sub) host.appendChild(el('p', { class: 'nat-muted' }, [sub]));
+    var url = U.safeUrl(txt(d.portal_url) || txt(device && device.portal_url));
+    if (url) host.appendChild(el('p', {}, [el('a', { class: 'nat-btn nat-btn--primary', href: url, target: '_blank', rel: 'noopener noreferrer' }, ['Open in Datto'])]));
+
+    if (!pending.length && !notApproved.length && !policies.length && data.policy_count == null) {
+      host.appendChild(U.emptyPanel('No patch details were returned for this device.'));
+      return;
+    }
+
+    host.appendChild(el('h3', {}, ['Pending patches (' + pending.length + ')']));
+    host.appendChild(patchTable(pending, 'No pending patches for this device.'));
+
+    var details = el('details', {}, [
+      el('summary', {}, ['Not approved (' + notApproved.length + ')']),
+      patchTable(notApproved, 'No unapproved patches for this device.'),
+    ]);
+    host.appendChild(details);
+
+    host.appendChild(el('h3', {}, ['Patch policies']));
+    var count = Number(data.policy_count);
+    if (data.policy_count == null || data.policy_count === '' || !isFinite(count)) count = policies.length;
+    if (count === 0 && !policies.length) {
+      host.appendChild(el('p', { class: 'pi-warn-badge', role: 'status' }, ['\u26A0 No patch policy targets this device']));
+    } else {
+      if (count > 1) {
+        host.appendChild(el('p', { class: 'pi-warn-badge', role: 'status' }, ['\u26A0 This device is targeted by ' + count + ' patch policies. Their schedules and approval rules may overlap.']));
+      }
+      var ul = el('ul', { class: 'pi-policies' });
+      policies.forEach(function (p) { ul.appendChild(policyItem(p)); });
+      host.appendChild(ul);
+    }
+  }
+
+  function titleCase(s) {
+    return String(s).toLowerCase().replace(/(^|[\s_-])(\w)/g, function (m, a, b) { return (a === '_' || a === '-' ? ' ' : a) + b.toUpperCase(); });
+  }
+
+  function dayLabels(v) {
+    var s = txt(v);
+    if (!s) return '';
+    var map = (typeof NAT_CONFIG !== 'undefined' && NAT_CONFIG.DAY_OF_WEEK_LABELS) || {};
+    return s.split(',').map(function (x) { return x.trim(); }).filter(Boolean).map(function (x) {
+      return Object.prototype.hasOwnProperty.call(map, x) && map[x] ? String(map[x]) : 'Day ' + x;
+    }).join(', ');
+  }
+
+  function windowLabel(v) {
+    if (v == null || v === '' || typeof v === 'boolean') return '';
+    var m = Number(v);
+    if (!isFinite(m)) return '';
+    return String(Math.round(m / 60 * 10) / 10) + 'h window';
+  }
+
+  function policyItem(p) {
+    var head = [el('span', { class: 'pi-policy-name' }, [txt(p.policy_name, 'Unnamed policy')])];
+    var level = txt(p.level);
+    var owner = txt(p.owner_site);
+    if (level) head.push(el('span', { class: 'pi-tag' }, [/^site$/i.test(level) && owner ? 'Site: ' + owner : level]));
+    if (p.enabled != null && !bool(p.enabled)) head.push(el('span', { class: 'pi-tag' }, ['Disabled']));
+
+    var rows = [el('div', { class: 'pi-policy-head' }, head)];
+    var sched = [txt(p.schedule_type) ? titleCase(txt(p.schedule_type)) : '', dayLabels(p.days_of_week), txt(p.start_time), windowLabel(p.window_minutes)].filter(Boolean);
+    if (sched.length) rows.push(el('div', {}, [sched.join(', ')]));
+
+    var reboot = [];
+    if (txt(p.reboot_prompt)) reboot.push('Reboot prompt: ' + txt(p.reboot_prompt));
+    if (bool(p.force_reboot)) reboot.push('Forced reboot');
+    if (bool(p.wake_devices)) reboot.push('Wakes devices');
+    if (bool(p.audit_only)) reboot.push('Audit only');
+    if (reboot.length) rows.push(el('div', {}, [reboot.join(', ')]));
+
+    var upd = txt(p.last_updated);
+    if (upd) rows.push(el('div', { class: 'nat-muted pi-policy-meta' }, ['Last updated ' + upd + (txt(p.updated_by) ? ' by ' + txt(p.updated_by) : '')]));
+    return el('li', {}, rows);
+  }
+
+  function openDrilldown(device) {
+    closePanel();
+    var opener = document.activeElement;
+    var seq = 0;
+    var overlay = el('div', { class: 'pi-panel-overlay', onclick: closePanel });
+    var content = el('div', {});
+    var closeBtn = el('button', { type: 'button', class: 'nat-btn', 'aria-label': 'Close panel', onclick: closePanel }, ['Close']);
+    var root = el('aside', { class: 'pi-panel', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Device patch details: ' + (device.hostname || '') }, [
+      el('div', { class: 'pi-panel-head' }, [el('h2', {}, [device.hostname || 'Device']), closeBtn]),
+      content,
+    ]);
+    function onKey(e) { if (e.key === 'Escape') closePanel(); }
+    document.addEventListener('keydown', onKey);
+    document.body.appendChild(overlay);
+    document.body.appendChild(root);
+    panel = { root: root, overlay: overlay, onKey: onKey, opener: opener };
+    closeBtn.focus();
+
+    function load() {
+      var my = ++seq;
+      U.clear(content);
+      content.appendChild(el('p', { class: 'pi-fetch-note', role: 'status' }, ['Fetching live from Datto\u2026']));
+      content.appendChild(U.skelBlock('60px'));
+      content.appendChild(U.skelTable(4));
+      NAT_DATA.getDeviceDrilldown(device.device_uid).then(function (data) {
+        if (!panel || panel.root !== root || my !== seq) return;
+        try {
+          renderDrilldown(content, data, device);
+        } catch (e) {
+          console.error('[drilldown render]', e, data);
+          U.clear(content);
+          content.appendChild(U.errorPanel('Could not display this device.', load));
+        }
+      }, function (err) {
+        if (!panel || panel.root !== root || my !== seq) return;
+        U.clear(content);
+        content.appendChild(U.errorPanel(U.errorMessage(err), load));
+      });
+    }
+    load();
+  }
+
+  function render(host, state, opts) {
+    closePanel();
+    var my = ++token;
+    var trendReq = 0;
+    var site = state.selectedSite;
+
+    if (!site || !site.site_uid) { NAT_APP.goToTab('overview'); return; }
+
+    U.clear(host);
+    var header = el('div', {});
+    var body = el('div', {});
+    host.appendChild(header);
+    host.appendChild(body);
+
+    function load() {
+      renderHeader(header, site, null);
+      U.clear(body);
+      var tiles = el('div', {}, [U.skelTiles()]);
+      var status = section('Status breakdown');
+      status.body.appendChild(U.skelBlock('120px'));
+      var trend = section('Compliance and coverage trend');
+      trend.body.appendChild(U.skelBlock('320px'));
+      var os = section('Operating systems');
+      os.body.appendChild(U.skelTable(4));
+      var devs = section('Devices');
+      devs.body.appendChild(U.skelTable(8));
+      var pend = section('Top pending patches');
+      pend.body.appendChild(U.skelTable(5));
+      [tiles, status.root, trend.root, os.root, devs.root, pend.root].forEach(function (n) { body.appendChild(n); });
+
+      var toggleHost = el('span', {});
+      trend.head.appendChild(el('span', { class: 'pi-spacer' }));
+      trend.head.appendChild(toggleHost);
+
+      var lastTrend = null, curTiles = null;
+      function drawToggles() {
+        var avail = U.trendAvail(curTiles);
+        U.clear(toggleHost);
+        toggleHost.appendChild(U.trendViewToggle(U.effectiveView(avail), function () { showTrend(lastTrend); }, avail));
+        toggleHost.appendChild(U.daysToggle(days, setDays));
+      }
+
+      function showTrend(points, err) {
+        lastTrend = points;
+        U.clear(trend.body);
+        drawToggles();
+        if (err) { trend.body.appendChild(U.errorPanel(err, function () { setDays(days, true); })); return; }
+        var view = U.effectiveView(U.trendAvail(curTiles));
+        trend.body.appendChild(points && points.length ? U.trendChart(points, view) : U.emptyPanel());
+      }
+
+      function setDays(d, retry) {
+        if (d === days && !retry) return;
+        days = d;
+        var req = ++trendReq;
+        U.clear(trend.body);
+        trend.body.appendChild(U.skelBlock('320px'));
+        drawToggles();
+        NAT_DATA.getSiteDetail(site.site_uid, d).then(function (res) {
+          if (my !== token || req !== trendReq) return;
+          showTrend(res && res.trend);
+        }).catch(function (err) {
+          if (my !== token || req !== trendReq) return;
+          showTrend(null, U.errorMessage(err));
+        });
+      }
+
+      NAT_DATA.getSiteDetail(site.site_uid, days).then(function (data) {
+        if (my !== token) return;
+        if (data && data.site && data.site.site_uid) site = data.site;
+        curTiles = data && data.tiles;
+        if (isEmpty(data)) {
+          renderHeader(header, site, data && data.as_of);
+          U.clear(body);
+          body.appendChild(U.emptyPanel());
+          return;
+        }
+        renderHeader(header, site, data.as_of);
+        // Customer-view tiles/cards apply device filters on this page.
+        var HINT = 'Filter devices \u2192';
+        function filterOn(map) {
+          var on = {};
+          Object.keys(map).forEach(function (k) {
+            on[k] = function () { if (deviceCtl) deviceCtl.apply(map[k]); };
+          });
+          return on;
+        }
+        U.clear(tiles);
+        tiles.appendChild(U.kpiTiles(data.tiles, { hint: HINT, on: filterOn({ install_error: ['install_error'], devices_stale: ['stale'] }) }));
+        var groups = U.groupCards(data.tiles, { hint: HINT, on: filterOn({ ws_card: ['workstations'], srv_card: ['servers'] }) });
+        if (groups) tiles.appendChild(groups);
+        var risk = U.riskTiles(data.risk, { hint: HINT, on: filterOn({ os_unsupported: ['unsupported_os'], os_ending_soon: ['ending_soon'], reboot_overdue: ['reboot_overdue'] }) });
+        if (risk) tiles.appendChild(risk);
+        renderBreakdown(status.body, data.status_breakdown);
+        showTrend(data.trend);
+        var osNode = U.osPanel(data.os_breakdown);
+        if (osNode) { U.clear(os.body); os.body.appendChild(osNode); }
+        else if (os.root.parentNode) os.root.parentNode.removeChild(os.root);
+        renderDevices(devs.body, data.devices || [], site, (state.deviceFilter || '').split(',').filter(Boolean));
+        renderPending(pend.body, data.top_pending || []);
+      }).catch(function (err) {
+        if (my !== token) return;
+        U.clear(body);
+        body.appendChild(U.errorPanel(U.errorMessage(err), function () { load(); }));
+      });
+    }
+
+    load();
+  }
+
+  NAT_APP.registerPage('site', { render: render });
+})();
+
+  </script>
+</body>
+</html>

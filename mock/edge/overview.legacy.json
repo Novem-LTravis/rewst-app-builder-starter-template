@@ -1,0 +1,1077 @@
+{
+  "overview": {
+    "as_of": "20261030",
+    "tiles": {
+      "devices_in_scope": 807,
+      "coverage_pct": 89.6,
+      "compliance_pct": 82.2,
+      "install_error": 23,
+      "devices_stale": 25,
+      "workstations": {
+        "devices_in_scope": 722,
+        "coverage_pct": 90.8,
+        "compliance_pct": 82.9,
+        "install_error": 16,
+        "devices_stale": 21
+      },
+      "servers": {
+        "devices_in_scope": 85,
+        "coverage_pct": 79.5,
+        "compliance_pct": 70.4,
+        "install_error": 7,
+        "devices_stale": 4
+      }
+    },
+    "trend": [
+      {
+        "date": "20260802",
+        "compliance_pct": 84.6,
+        "coverage_pct": 88.9,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260803",
+        "compliance_pct": 83.5,
+        "coverage_pct": 88.9,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260804",
+        "compliance_pct": 83.2,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260805",
+        "compliance_pct": 84.2,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260806",
+        "compliance_pct": 84.6,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260807",
+        "compliance_pct": 83.7,
+        "coverage_pct": 89,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260808",
+        "compliance_pct": 83.8,
+        "coverage_pct": 88.9,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260809",
+        "compliance_pct": 83.6,
+        "coverage_pct": 88.8,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260810",
+        "compliance_pct": 83.1,
+        "coverage_pct": 88.8,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260811",
+        "compliance_pct": 84.1,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260812",
+        "compliance_pct": 75.4,
+        "coverage_pct": 88.8,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260813",
+        "compliance_pct": 77,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260814",
+        "compliance_pct": 77.1,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260815",
+        "compliance_pct": 79.3,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260816",
+        "compliance_pct": 79.5,
+        "coverage_pct": 88.9,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260817",
+        "compliance_pct": 81,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260818",
+        "compliance_pct": 82.4,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260819",
+        "compliance_pct": 83.6,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260820",
+        "compliance_pct": 84.1,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260821",
+        "compliance_pct": 83.1,
+        "coverage_pct": 89,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260822",
+        "compliance_pct": 83.3,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260823",
+        "compliance_pct": 84.4,
+        "coverage_pct": 89,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260824",
+        "compliance_pct": 83.6,
+        "coverage_pct": 89,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260825",
+        "compliance_pct": 83.2,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260826",
+        "compliance_pct": 83.1,
+        "coverage_pct": 88.9,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260827",
+        "compliance_pct": 83.5,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260828",
+        "compliance_pct": 83.1,
+        "coverage_pct": 89,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260829",
+        "compliance_pct": 83.4,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260830",
+        "compliance_pct": 83.6,
+        "coverage_pct": 89,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260831",
+        "compliance_pct": 83.2,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260901",
+        "compliance_pct": 82.8,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260902",
+        "compliance_pct": 84,
+        "coverage_pct": 89.5,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260903",
+        "compliance_pct": 83.8,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260904",
+        "compliance_pct": 84.1,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260905",
+        "compliance_pct": 84.1,
+        "coverage_pct": 89,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260906",
+        "compliance_pct": 83.1,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260907",
+        "compliance_pct": 83.6,
+        "coverage_pct": 89.5,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260908",
+        "compliance_pct": 83.7,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260909",
+        "compliance_pct": 72.9,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260910",
+        "compliance_pct": 74,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260911",
+        "compliance_pct": 75.8,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260912",
+        "compliance_pct": 76.7,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260913",
+        "compliance_pct": 79.2,
+        "coverage_pct": 89,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260914",
+        "compliance_pct": 79.8,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260915",
+        "compliance_pct": 81.8,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260916",
+        "compliance_pct": 81.7,
+        "coverage_pct": 89,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260917",
+        "compliance_pct": 82.2,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260918",
+        "compliance_pct": 83,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260919",
+        "compliance_pct": 83.4,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260920",
+        "compliance_pct": 82.5,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260921",
+        "compliance_pct": 82.3,
+        "coverage_pct": 89.5,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260922",
+        "compliance_pct": 82.7,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260923",
+        "compliance_pct": 83.1,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260924",
+        "compliance_pct": 83.2,
+        "coverage_pct": 89.5,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260925",
+        "compliance_pct": 83.4,
+        "coverage_pct": 89.6,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260926",
+        "compliance_pct": 83.6,
+        "coverage_pct": 89.6,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260927",
+        "compliance_pct": 82.2,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260928",
+        "compliance_pct": 83.5,
+        "coverage_pct": 89.5,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260929",
+        "compliance_pct": 82.3,
+        "coverage_pct": 89.6,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20260930",
+        "compliance_pct": 83.5,
+        "coverage_pct": 89.1,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20261001",
+        "compliance_pct": 83.2,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20261002",
+        "compliance_pct": 83,
+        "coverage_pct": 89.6,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20261003",
+        "compliance_pct": 82.7,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20261004",
+        "compliance_pct": 82.3,
+        "coverage_pct": 89.6,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20261005",
+        "compliance_pct": 82.2,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20261006",
+        "compliance_pct": 82.1,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20261007",
+        "compliance_pct": 83.4,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20261008",
+        "compliance_pct": 82.5,
+        "coverage_pct": 89.2,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20261009",
+        "compliance_pct": 83.3,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": null,
+        "ws_coverage_pct": null,
+        "srv_compliance_pct": null,
+        "srv_coverage_pct": null
+      },
+      {
+        "date": "20261010",
+        "compliance_pct": 82.4,
+        "coverage_pct": 89.6,
+        "ws_compliance_pct": 83.3,
+        "ws_coverage_pct": 90.8,
+        "srv_compliance_pct": 70.3,
+        "srv_coverage_pct": 79.7
+      },
+      {
+        "date": "20261011",
+        "compliance_pct": 82.7,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": 83.4,
+        "ws_coverage_pct": 90.6,
+        "srv_compliance_pct": 70.8,
+        "srv_coverage_pct": 79.3
+      },
+      {
+        "date": "20261012",
+        "compliance_pct": 83,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": 83.7,
+        "ws_coverage_pct": 90.6,
+        "srv_compliance_pct": 71.2,
+        "srv_coverage_pct": 79.3
+      },
+      {
+        "date": "20261013",
+        "compliance_pct": 82.1,
+        "coverage_pct": 89.6,
+        "ws_compliance_pct": 82.9,
+        "ws_coverage_pct": 90.8,
+        "srv_compliance_pct": 70.1,
+        "srv_coverage_pct": 79.6
+      },
+      {
+        "date": "20261014",
+        "compliance_pct": 74.6,
+        "coverage_pct": 89.5,
+        "ws_compliance_pct": 75.6,
+        "ws_coverage_pct": 90.7,
+        "srv_compliance_pct": 62.2,
+        "srv_coverage_pct": 79.7
+      },
+      {
+        "date": "20261015",
+        "compliance_pct": 75.9,
+        "coverage_pct": 89.6,
+        "ws_compliance_pct": 77.2,
+        "ws_coverage_pct": 90.8,
+        "srv_compliance_pct": 62.9,
+        "srv_coverage_pct": 80.1
+      },
+      {
+        "date": "20261016",
+        "compliance_pct": 77.1,
+        "coverage_pct": 89.5,
+        "ws_compliance_pct": 78.8,
+        "ws_coverage_pct": 90.7,
+        "srv_compliance_pct": 63.4,
+        "srv_coverage_pct": 80.4
+      },
+      {
+        "date": "20261017",
+        "compliance_pct": 78.6,
+        "coverage_pct": 89.3,
+        "ws_compliance_pct": 80.6,
+        "ws_coverage_pct": 90.5,
+        "srv_compliance_pct": 64.2,
+        "srv_coverage_pct": 80.5
+      },
+      {
+        "date": "20261018",
+        "compliance_pct": 78.9,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": 81.3,
+        "ws_coverage_pct": 90.6,
+        "srv_compliance_pct": 63.8,
+        "srv_coverage_pct": 81
+      },
+      {
+        "date": "20261019",
+        "compliance_pct": 79.6,
+        "coverage_pct": 89.8,
+        "ws_compliance_pct": 82.2,
+        "ws_coverage_pct": 91,
+        "srv_compliance_pct": 63.9,
+        "srv_coverage_pct": 81.6
+      },
+      {
+        "date": "20261020",
+        "compliance_pct": 81.4,
+        "coverage_pct": 89.7,
+        "ws_compliance_pct": 84.2,
+        "ws_coverage_pct": 90.9,
+        "srv_compliance_pct": 65.3,
+        "srv_coverage_pct": 81.7
+      },
+      {
+        "date": "20261021",
+        "compliance_pct": 81.3,
+        "coverage_pct": 89.8,
+        "ws_compliance_pct": 84.2,
+        "ws_coverage_pct": 91,
+        "srv_compliance_pct": 65.1,
+        "srv_coverage_pct": 81.9
+      },
+      {
+        "date": "20261022",
+        "compliance_pct": 82.8,
+        "coverage_pct": 89.7,
+        "ws_compliance_pct": 85.7,
+        "ws_coverage_pct": 90.9,
+        "srv_compliance_pct": 66.7,
+        "srv_coverage_pct": 81.8
+      },
+      {
+        "date": "20261023",
+        "compliance_pct": 81.8,
+        "coverage_pct": 89.8,
+        "ws_compliance_pct": 84.5,
+        "ws_coverage_pct": 91,
+        "srv_compliance_pct": 66,
+        "srv_coverage_pct": 81.7
+      },
+      {
+        "date": "20261024",
+        "compliance_pct": 81.7,
+        "coverage_pct": 89.5,
+        "ws_compliance_pct": 84.1,
+        "ws_coverage_pct": 90.7,
+        "srv_compliance_pct": 66.4,
+        "srv_coverage_pct": 81.1
+      },
+      {
+        "date": "20261025",
+        "compliance_pct": 82.9,
+        "coverage_pct": 89.4,
+        "ws_compliance_pct": 85,
+        "ws_coverage_pct": 90.6,
+        "srv_compliance_pct": 68.3,
+        "srv_coverage_pct": 80.7
+      },
+      {
+        "date": "20261026",
+        "compliance_pct": 82.6,
+        "coverage_pct": 89.5,
+        "ws_compliance_pct": 84.3,
+        "ws_coverage_pct": 90.7,
+        "srv_compliance_pct": 68.7,
+        "srv_coverage_pct": 80.4
+      },
+      {
+        "date": "20261027",
+        "compliance_pct": 82.1,
+        "coverage_pct": 89.9,
+        "ws_compliance_pct": 83.5,
+        "ws_coverage_pct": 91.1,
+        "srv_compliance_pct": 68.9,
+        "srv_coverage_pct": 80.5
+      },
+      {
+        "date": "20261028",
+        "compliance_pct": 82.3,
+        "coverage_pct": 89.8,
+        "ws_compliance_pct": 83.4,
+        "ws_coverage_pct": 91,
+        "srv_compliance_pct": 69.8,
+        "srv_coverage_pct": 80.1
+      },
+      {
+        "date": "20261029",
+        "compliance_pct": 81.6,
+        "coverage_pct": 89.7,
+        "ws_compliance_pct": 82.4,
+        "ws_coverage_pct": 90.9,
+        "srv_compliance_pct": 69.5,
+        "srv_coverage_pct": 79.7
+      },
+      {
+        "date": "20261030",
+        "compliance_pct": 82.2,
+        "coverage_pct": 89.6,
+        "ws_compliance_pct": 82.9,
+        "ws_coverage_pct": 90.8,
+        "srv_compliance_pct": 70.4,
+        "srv_coverage_pct": 79.5
+      }
+    ],
+    "sites": [
+      {
+        "site_uid": "17f57942-fbe6-46f4-ae5b-700146915cd2",
+        "site_name": "Atlas Freight & Logistics",
+        "autotask_company_id": "9237",
+        "devices_in_scope": 62,
+        "compliance_pct": 99.1,
+        "coverage_pct": 93.2,
+        "change_7d": -2.6,
+        "install_error": 1,
+        "devices_stale": 0
+      },
+      {
+        "site_uid": "a83b4f92-2f5e-449d-a62c-4c9bba098ef3",
+        "site_name": "Birchwood Veterinary Clinics",
+        "autotask_company_id": "3389",
+        "devices_in_scope": 28,
+        "compliance_pct": 97.4,
+        "coverage_pct": 90.3,
+        "change_7d": -1.8,
+        "install_error": 0,
+        "devices_stale": 1
+      },
+      {
+        "site_uid": "a0dbcf59-2023-42b7-adac-25d657ceaec6",
+        "site_name": "Cedar & Stone Architects",
+        "autotask_company_id": "6311",
+        "devices_in_scope": 19,
+        "compliance_pct": 92,
+        "coverage_pct": 93.7,
+        "change_7d": 3.8,
+        "install_error": 0,
+        "devices_stale": 0
+      },
+      {
+        "site_uid": "fd83c993-2df9-45da-af21-a352586c7904",
+        "site_name": "Dunmore Legal LLP",
+        "autotask_company_id": "1974",
+        "devices_in_scope": 47,
+        "compliance_pct": 96.8,
+        "coverage_pct": 99.7,
+        "change_7d": null,
+        "install_error": 0,
+        "devices_stale": 0
+      },
+      {
+        "site_uid": "f358480d-3d7c-44de-aadc-a2136a626d9e",
+        "site_name": "Eastgate Primary School",
+        "autotask_company_id": "4269",
+        "devices_in_scope": 85,
+        "compliance_pct": 71.5,
+        "coverage_pct": 85.1,
+        "change_7d": 3.5,
+        "install_error": 2,
+        "devices_stale": 9
+      },
+      {
+        "site_uid": "9742eab0-d385-47dd-ab1a-458a8d0e6233",
+        "site_name": "Fernhill Care Homes",
+        "autotask_company_id": "7191",
+        "devices_in_scope": 120,
+        "compliance_pct": 64.2,
+        "coverage_pct": 89,
+        "change_7d": -0.8,
+        "install_error": 7,
+        "devices_stale": 2
+      },
+      {
+        "site_uid": "ed27d390-24a4-4881-acb4-f73136ef99e7",
+        "site_name": "Greywater Engineering",
+        "autotask_company_id": "",
+        "devices_in_scope": 74,
+        "compliance_pct": 88.9,
+        "coverage_pct": 98.5,
+        "change_7d": -1.9,
+        "install_error": 1,
+        "devices_stale": 0
+      },
+      {
+        "site_uid": "44b99655-7bb0-4d61-abac-1e4a91d856e3",
+        "site_name": "Halcyon Wealth Partners",
+        "autotask_company_id": "1861",
+        "devices_in_scope": 33,
+        "compliance_pct": 100,
+        "coverage_pct": 93.5,
+        "change_7d": -0.4,
+        "install_error": 0,
+        "devices_stale": 2
+      },
+      {
+        "site_uid": "f2c65c5d-b55c-4c7d-a12a-7dac71461efb",
+        "site_name": "Ironbridge Construction",
+        "autotask_company_id": "8646",
+        "devices_in_scope": 96,
+        "compliance_pct": 79.3,
+        "coverage_pct": 81.5,
+        "change_7d": -2.1,
+        "install_error": 3,
+        "devices_stale": 3
+      },
+      {
+        "site_uid": "3d160a69-874d-427e-ac64-2274755dbbac",
+        "site_name": "Juniper Hotels Group",
+        "autotask_company_id": "1816",
+        "devices_in_scope": 58,
+        "compliance_pct": 93.6,
+        "coverage_pct": 91.8,
+        "change_7d": -2.6,
+        "install_error": 1,
+        "devices_stale": 1
+      },
+      {
+        "site_uid": "1a80a95e-03c4-47ff-a70e-6e8a74b2d7a8",
+        "site_name": "Kestrel Insurance Brokers",
+        "autotask_company_id": "2126",
+        "devices_in_scope": 41,
+        "compliance_pct": 98.2,
+        "coverage_pct": 90.3,
+        "change_7d": -0.9,
+        "install_error": 1,
+        "devices_stale": 0
+      },
+      {
+        "site_uid": "eb94ebc9-7532-4ed0-a9ac-9320423c23a4",
+        "site_name": "Lakeside Community Trust",
+        "autotask_company_id": "3251",
+        "devices_in_scope": 23,
+        "compliance_pct": 85.4,
+        "coverage_pct": 88.8,
+        "change_7d": null,
+        "install_error": 2,
+        "devices_stale": 0
+      },
+      {
+        "site_uid": "3635f607-64b0-49e5-a034-1b07588b2319",
+        "site_name": "Meridian Print & Packaging",
+        "autotask_company_id": "9774",
+        "devices_in_scope": 66,
+        "compliance_pct": 69.8,
+        "coverage_pct": 80.8,
+        "change_7d": 1.4,
+        "install_error": 2,
+        "devices_stale": 2
+      },
+      {
+        "site_uid": "43413535-5cf7-4906-afab-d514fd60d533",
+        "site_name": "Northgate Accountancy",
+        "autotask_company_id": "8304",
+        "devices_in_scope": 15,
+        "compliance_pct": 95.5,
+        "coverage_pct": 90.5,
+        "change_7d": -0.1,
+        "install_error": 0,
+        "devices_stale": 2
+      },
+      {
+        "site_uid": "d72960f8-5ba5-4aad-aeae-2f1546885dcd",
+        "site_name": "Harbourview Dental Group",
+        "autotask_company_id": "3344",
+        "devices_in_scope": 40,
+        "compliance_pct": 60.6,
+        "coverage_pct": 92.5,
+        "change_7d": 2.4,
+        "install_error": 3,
+        "devices_stale": 3
+      }
+    ],
+    "top_pending": [
+      {
+        "kb": "KB5044284",
+        "title": "2024-10 Cumulative Update for Windows 11 Version 24H2",
+        "severity": "CRITICAL",
+        "devices": 142,
+        "sites": 14
+      },
+      {
+        "kb": "KB5044273",
+        "title": "2024-10 Cumulative Update for Windows 11 Version 23H2",
+        "severity": "CRITICAL",
+        "devices": 118,
+        "sites": 13
+      },
+      {
+        "kb": "KB5044277",
+        "title": "2024-10 Cumulative Update for Windows 10 Version 22H2",
+        "severity": "IMPORTANT",
+        "devices": 96,
+        "sites": 12
+      },
+      {
+        "kb": "KB5044281",
+        "title": "2024-10 Cumulative Update for Windows Server 2022",
+        "severity": "CRITICAL",
+        "devices": 21,
+        "sites": 9
+      },
+      {
+        "kb": "KB5044286",
+        "title": "2024-10 Cumulative Update for Windows Server 2019",
+        "severity": "IMPORTANT",
+        "devices": 14,
+        "sites": 7
+      },
+      {
+        "kb": "KB5042421",
+        "title": "Security Update for Microsoft Office 2016",
+        "severity": "IMPORTANT",
+        "devices": 77,
+        "sites": 11
+      },
+      {
+        "kb": "KB5043178",
+        "title": ".NET Framework 4.8.1 Security and Quality Rollup",
+        "severity": "MODERATE",
+        "devices": 64,
+        "sites": 12
+      },
+      {
+        "kb": "KB5041585",
+        "title": "Microsoft Edge Stable Channel Update",
+        "severity": "UNSPECIFIED",
+        "devices": 51,
+        "sites": 10
+      },
+      {
+        "kb": "KB890830",
+        "title": "Windows Malicious Software Removal Tool",
+        "severity": "LOW",
+        "devices": 38,
+        "sites": 8
+      },
+      {
+        "kb": "KB5039895",
+        "title": "Servicing Stack Update for Windows 10 Version 22H2",
+        "severity": "MODERATE",
+        "devices": 17,
+        "sites": 5
+      }
+    ]
+  }
+}

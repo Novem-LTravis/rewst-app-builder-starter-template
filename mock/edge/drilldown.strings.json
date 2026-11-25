@@ -1,0 +1,26 @@
+{
+  "drilldown": {
+    "device": {
+      "hostname": "EDGE-STRINGS-01",
+      "site_name": "Harbourview Dental Group",
+      "operating_system": "Microsoft Windows 10 Pro 10.0.19045",
+      "online": "False",
+      "last_seen_utc": "2026-10-28T09:00:00Z",
+      "last_audit_utc": "2026-10-28T09:20:00Z",
+      "patch_status": "RebootRequired",
+      "portal_url": "https://pinotage.rmm.datto.com/device/22222222"
+    },
+    "pending_patches": [
+      { "kb": "KB5044284", "title": "2024-10 Cumulative Update for Windows 10", "severity": "CRITICAL", "release_date": "2026-10-08T00:00:00Z", "reboot_required": "True" },
+      { "kb": "KB5042421", "title": "Security Update for Office", "severity": "SOMETHING_NEW", "release_date": 1791417600000, "reboot_required": "false" },
+      { "kb": "KB5039895", "title": "Edge Update", "reboot_required": "False" }
+    ],
+    "not_approved_patches": [
+      { "kb": "KB5043178", "title": ".NET Rollup", "severity": null, "release_date": null, "reboot_required": "True" }
+    ],
+    "policies": [
+      { "policy_name": "Workstations - Monthly", "enabled": "True", "level": "Account", "schedule_type": "MONTHLY", "days_of_week": "1", "start_time": "02:00", "window_minutes": 60, "wake_devices": "True", "force_reboot": "False", "reboot_prompt": "1 Hour" },
+      { "policy_name": "Office Apps", "enabled": "False", "level": "Site", "owner_site": "Acme", "audit_only": "True" }
+    ]
+  }
+}

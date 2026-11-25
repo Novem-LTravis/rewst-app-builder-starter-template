@@ -1,0 +1,17 @@
+{
+  "drilldown": {
+    "device": {
+      "hostname": "EDGE-EMPTY-01",
+      "site_name": "Harbourview Dental Group",
+      "operating_system": "Microsoft Windows 11 Pro 10.0.26100",
+      "online": true,
+      "last_seen_utc": "2026-10-30T06:10:00Z",
+      "last_audit_utc": "2026-10-30T06:25:00Z",
+      "patch_status": "FullyPatched",
+      "portal_url": "https://pinotage.rmm.datto.com/device/11111111"
+    },
+    "pending_patches": [],
+    "not_approved_patches": [],
+    "policies": []
+  }
+}
